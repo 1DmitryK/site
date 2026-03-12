@@ -1,1 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immigrify â Your Move, Simplified</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f0e8;
+    --cream: #ede7d9;
+    --accent: #c8402a;
+    --gold: #d4a53a;
+    --muted: #7a7060;
+    --done: #2a7a4a;
+  }
 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  header {
+    padding: 32px 40px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid var(--ink);
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .hero {
+    padding: 60px 40px 40px;
+    max-width: 900px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 6vw, 68px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--accent); }
+
+  .hero p { color: var(--muted); font-size: 17px; max-width: 500px; line-height: 1.6; }
+
+  .selector-section { padding: 0 40px 40px; animation: fadeUp 0.7s 0.1s ease both; }
+
+  .selector-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .country-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .country-btn {
+    padding: 10px 20px;
+    border: 1.5px solid var(--ink);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .country-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: translateY(100%);
+    transition: transform 0.18s ease;
+    z-index: 0;
+  }
+
+  .country-btn span { position: relative; z-index: 1; }
+  .country-btn:hover::before { transform: translateY(0); }
+  .country-btn:hover { color: var(--paper); }
+  .country-btn.active { background: var(--ink); color: var(--paper); }
+
+  .progress-section { padding: 0 40px 32px; display: none; }
+  .progress-section.visible { display: block; }
+  .progress-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .progress-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; }
+  .progress-count { font-size: 13px; color: var(--muted); }
+  .progress-bar-track { height: 4px; background: var(--cream); border: 1px solid rgba(0,0,0,0.1); border-radius: 2px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: var(--done); border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+
+  .checklist-section { padding: 0 40px 80px; display: none; }
+  .checklist-section.visible { display: block; }
+
+  .phase-block { margin-bottom: 40px; animation: fadeUp 0.5s ease both; }
+
+  .phase-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .phase-num {
+    width: 28px; height: 28px;
+    background: var(--ink); color: var(--paper);
+    font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Fraunces', serif;
+  }
+
+  .phase-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; }
+  .phase-time { margin-left: auto; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+
+  .checklist-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 16px; margin-bottom: 6px;
+    background: white; border: 1px solid rgba(0,0,0,0.08);
+    cursor: pointer; transition: all 0.15s ease; position: relative;
+  }
+
+  .checklist-item:hover { border-color: var(--ink); transform: translateX(3px); }
+  .checklist-item.checked { background: rgba(42,122,74,0.06); border-color: rgba(42,122,74,0.3); }
+  .checklist-item.checked .item-text { text-decoration: line-through; color: var(--muted); }
+
+  .check-box { width: 20px; height: 20px; border: 1.5px solid var(--ink); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease; }
+  .checklist-item.checked .check-box { background: var(--done); border-color: var(--done); }
+  .check-tick { opacity: 0; transform: scale(0); transition: all 0.15s ease; color: white; font-size: 12px; }
+  .checklist-item.checked .check-tick { opacity: 1; transform: scale(1); }
+
+  .item-content { flex: 1; }
+  .item-text { font-size: 14px; font-weight: 500; line-height: 1.4; transition: all 0.15s ease; }
+  .item-note { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+  .item-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; padding: 3px 8px; border: 1px solid; flex-shrink: 0; margin-top: 2px; }
+  .tag-urgent { color: var(--accent); border-color: var(--accent); background: rgba(200,64,42,0.06); }
+  .tag-important { color: var(--gold); border-color: var(--gold); background: rgba(212,165,58,0.06); }
+  .tag-optional { color: var(--muted); border-color: var(--muted); background: transparent; }
+
+  .celebration { display: none; padding: 40px; text-align: center; animation: fadeUp 0.6s ease both; }
+  .celebration.visible { display: block; }
+  .celebration-emoji { font-size: 64px; margin-bottom: 16px; }
+  .celebration h2 { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 700; margin-bottom: 8px; }
+  .celebration p { color: var(--muted); font-size: 16px; }
+
+  .footer-cta {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--ink); color: var(--paper);
+    padding: 16px 40px;
+    display: none; z-index: 200;
+    animation: slideUp 0.4s ease both;
+  }
+  .footer-cta.visible { display: flex; align-items: center; justify-content: space-between; }
+  .cta-text { font-size: 14px; }
+  .cta-text strong { font-family: 'Fraunces', serif; font-size: 16px; display: block; }
+  .cta-btn { padding: 10px 24px; background: var(--accent); color: white; border: none; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: 0.05em; transition: opacity 0.15s; }
+  .cta-btn:hover { opacity: 0.85; }
+
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,14,12,0.7); z-index: 500; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(4px); }
+  .modal-overlay.visible { display: flex; }
+  .modal { background: var(--paper); border: 2px solid var(--ink); max-width: 480px; width: 100%; padding: 40px; position: relative; animation: fadeUp 0.3s ease both; }
+  .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--muted); line-height: 1; }
+  .modal-close:hover { color: var(--ink); }
+  .modal h2 { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .modal p { color: var(--muted); font-size: 14px; margin-bottom: 24px; line-height: 1.5; }
+
+  .form-group { margin-bottom: 16px; }
+  .form-label { display: block; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+  .form-input, .form-textarea, .form-select { width: 100%; padding: 11px 14px; border: 1.5px solid rgba(0,0,0,0.2); background: white; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); outline: none; transition: border-color 0.15s; appearance: none; }
+  .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--ink); }
+  .form-textarea { resize: vertical; min-height: 90px; }
+  .form-submit { width: 100%; padding: 13px; background: var(--ink); color: var(--paper); border: none; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; letter-spacing: 0.05em; transition: opacity 0.15s; margin-top: 8px; }
+  .form-submit:hover { opacity: 0.85; }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .form-success { display: none; text-align: center; padding: 20px 0; }
+  .form-success.visible { display: block; }
+  .form-success-icon { font-size: 48px; margin-bottom: 12px; }
+  .form-success h3 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .form-success p { color: var(--muted); font-size: 14px; }
+
+  .tab-row { display: flex; border-bottom: 1.5px solid var(--ink); margin-bottom: 24px; }
+  .tab-btn { padding: 10px 18px; border: none; background: none; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted); border-bottom: 2.5px solid transparent; margin-bottom: -1.5px; transition: all 0.15s; }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .feedback-section { padding: 40px 40px 100px; border-top: 1.5px solid rgba(0,0,0,0.1); display: none; }
+  .feedback-section.visible { display: block; }
+  .feedback-section h3 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+  .feedback-section p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+  @media (max-width: 600px) {
+    header { padding: 20px; }
+    .hero { padding: 36px 20px 28px; }
+    .selector-section, .progress-section, .checklist-section { padding-left: 20px; padding-right: 20px; }
+    .footer-cta { padding: 14px 20px; }
+    .modal { padding: 28px 20px; }
+    .feedback-section { padding-left: 20px; padding-right: 20px; }
+  }
+
+  #google_translate_element .goog-te-gadget-simple {
+    background: transparent !important;
+    border: 1.5px solid rgba(255,255,255,0.4) !important;
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+    cursor: pointer !important;
+  }
+  .goog-te-banner-frame { display: none !important; }
+  body { top: 0 !important; }
+  .skiptranslate { display: none !important; }
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'uk,ru,ar,hi,pl,ro,tr,bn,tl,es,fr,de,it,nl,pt',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<header>
+  <div class="logo">Immigri<span>fy</span></div>
+  <div id="google_translate_element"></div>
+</header>
+
+<section class="hero">
+  <h1>Your move to<br><em>Europe,</em><br>step by step.</h1>
+  <p>Everything you need to relocate â visa guides, checklists, local tips. Built by immigrants, for immigrants.</p>
+</section>
+
+<section class="selector-section">
+  <div class="selector-label">I'm moving to →</div>
+  <div class="country-grid" id="destinationGrid"></div>
+  <div id="fromRow" style="display:none; margin-top:20px;">
+    <div class="selector-label">I'm coming from →</div>
+    <div class="country-grid" id="countryGrid"></div>
+  </div>
+</section>
+
+<section class="progress-section" id="progressSection">
+  <div class="progress-header">
+    <div class="progress-title" id="progressTitle">Your relocation checklist</div>
+    <div class="progress-count" id="progressCount">0 of 0 done</div>
+  </div>
+  <div class="progress-bar-track">
+    <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+  </div>
+</section>
+
+<section class="checklist-section" id="checklistSection"></section>
+
+<div class="celebration" id="celebration">
+  <div class="celebration-emoji">🎉</div>
+  <h2>You're all set!</h2>
+  <p>All steps completed. Welcome to your new life.</p>
+</div>
+
+<section class="feedback-section" id="feedbackSection">
+  <h3>💬 Help us improve</h3>
+  <p>Missing a country? Something wrong? Let us know â we read every message.</p>
+  <div style="max-width:480px">
+    <div class="form-group">
+      <label class="form-label">Your email (optional)</label>
+      <input class="form-input" type="email" id="inlineEmail" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">What would you like to see?</label>
+      <select class="form-select" id="inlineType">
+        <option value="">â Choose a topic â</option>
+        <option value="country">Add a new destination country</option>
+        <option value="origin">Add my home country</option>
+        <option value="content">A checklist item is wrong or outdated</option>
+        <option value="feature">Suggest a new feature</option>
+        <option value="other">Other feedback</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tell us more</label>
+      <textarea class="form-textarea" id="inlineMessage" placeholder="e.g. Please add USA, or the Germany visa info is wrong..."></textarea>
+    </div>
+    <button class="form-submit" id="inlineSubmitBtn" onclick="submitInlineFeedback()">Send Feedback →</button>
+    <div id="inlineSuccess" class="form-success">
+      <div class="form-success-icon">🙏</div>
+      <h3>Thank you!</h3>
+      <p>Your feedback helps us build a better product for millions of immigrants.</p>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">ÃÂ¢ÃÂÃÂ</button>
+    <div class="tab-row">
+      <button class="tab-btn active" onclick="switchTab('email', this)">📧 Get Full Guide</button>
+      <button class="tab-btn" onclick="switchTab('feedback', this)">💬 Give Feedback</button>
+    </div>
+    <div class="tab-panel active" id="tab-email">
+      <h2>Get the full guide</h2>
+      <p>We'll send you the complete relocation pack â visa timelines, bank accounts, housing tips, healthcare, and more. Free.</p>
+      <div id="emailFormBody">
+        <div class="form-group">
+          <label class="form-label">Your email address</label>
+          <input class="form-input" type="email" id="modalEmail" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Where are you moving to?</label>
+          <select class="form-select" id="modalDest">
+            <option value="">â Select destination â</option>
+            <option>ð¬ð§ United Kingdom</option>
+            <option>ð©ðª Germany</option>
+            <option>ð«ð· France</option>
+            <option>ð§ðª Belgium</option>
+            <option>ðµð± Poland</option>
+            <option>ð³ð± Netherlands</option>
+            <option>ðªð¸ Spain</option>
+            <option>ð®ð¹ Italy</option>
+            <option>🇨🇦 Canada</option>
+            <option>ð Other</option>
+          </select>
+        </div>
+        <button class="form-submit" onclick="submitEmailSignup()">Send me the guide →</button>
+      </div>
+      <div class="form-success" id="emailSuccess">
+        <div class="form-success-icon">ÃÂ¢ÃÂÃÂ</div>
+        <h3>You're on the list!</h3>
+        <p>We'll send you the full guide soon. Check your inbox â and spam folder just in case.</p>
+      </div>
+    </div>
+    <div class="tab-panel" id="tab-feedback">
+      <h2>Give feedback</h2>
+      <p>Missing a country? Something outdated? Tell us â every message is read personally.</p>
+      <div id="feedbackFormBody">
+        <div class="form-group">
+          <label class="form-label">Type of feedback</label>
+          <select class="form-select" id="modalFeedbackType">
+            <option value="">â Choose â</option>
+            <option value="country">Add a new destination country</option>
+            <option value="origin">Add my home country</option>
+            <option value="content">Checklist item is wrong / outdated</option>
+            <option value="feature">Suggest a feature</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your message</label>
+          <textarea class="form-textarea" id="modalFeedbackMsg" placeholder="e.g. Please add Canada, or the Germany Anmeldung info needs updating..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your email (optional â if you want a reply)</label>
+          <input class="form-input" type="email" id="modalFeedbackEmail" placeholder="your@email.com">
+        </div>
+        <button class="form-submit" onclick="submitFeedback()">Send feedback →</button>
+      </div>
+      <div class="form-success" id="feedbackSuccess">
+        <div class="form-success-icon">🙏</div>
+        <h3>Thank you!</h3>
+        <p>Your feedback helps us build a better product for millions of immigrants.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-cta" id="footerCta">
+  <div class="cta-text">
+    <strong>Want the full guide?</strong>
+    Visa timelines, bank accounts, housing & more â free
+  </div>
+  <button class="cta-btn" onclick="openModal('email')">Get Full Guide →</button>
+</div>
+
+<script>
+const destinations = [
+  { code: 'UK', flag: 'ð¬ð§', name: 'United Kingdom' },
+  { code: 'DE', flag: 'ð©ðª', name: 'Germany' },
+  { code: 'FR', flag: 'ð«ð·', name: 'France' },
+  { code: 'BE', flag: 'ð§ðª', name: 'Belgium' },
+  { code: 'PL', flag: 'ðµð±', name: 'Poland' },
+  { code: 'NL', flag: 'ð³ð±', name: 'Netherlands' },
+  { code: 'ES', flag: 'ðªð¸', name: 'Spain' },
+  { code: 'IT', flag: 'ð®ð¹', name: 'Italy' },
+  { code: 'CA', flag: '🇨🇦', name: 'Canada' },
+  { code: 'OTHER_EU', flag: 'ðªðº', name: 'Other EU country' },
+];
+
+const countries = [
+  { code: 'UA', flag: 'ðºð¦', name: 'Ukraine' },
+  { code: 'IN', flag: 'ð®ð³', name: 'India' },
+  { code: 'NG', flag: 'ð³ð¬', name: 'Nigeria' },
+  { code: 'PH', flag: 'ðµð­', name: 'Philippines' },
+  { code: 'RO', flag: 'ð·ð´', name: 'Romania' },
+  { code: 'PK', flag: 'ðµð°', name: 'Pakistan' },
+  { code: 'BD', flag: 'ð§ð©', name: 'Bangladesh' },
+  { code: 'TR', flag: 'ð¹ð·', name: 'Turkey' },
+  { code: 'MA', flag: 'ð²ð¦', name: 'Morocco' },
+  { code: 'OTHER', flag: 'ð', name: 'Other country' },
+];
+
+const destinationChecklists = {
+  DE: { name: "Germany", currency: "ÃÂ¢ÃÂÃÂ¬", phases: [
+    { phase: "Visa & Registration", time: "Before arrival", items: [
+      { text: "Apply for correct visa (National D-visa for work/study)", note: "Apply at German embassy in your home country", tag: "urgent" },
+      { text: "Blocked account (Sperrkonto) â if student", note: "Minimum ~ÃÂ¢ÃÂÃÂ¬11,208/year required â Deutsche Bank or Fintiba", tag: "urgent" },
+      { text: "Health insurance confirmation letter", note: "TK, AOK or private â required for visa", tag: "urgent" },
+      { text: "University admission letter or job contract", note: "Original + certified copy", tag: "urgent" },
+      { text: "Apostille on your diplomas and certificates", note: "Get from your home country authorities", tag: "important" },
+    ]},
+    { phase: "Week 1 in Germany", time: "Days 1â7", items: [
+      { text: "Register your address â Anmeldung", note: "Go to local BÃÂÃÂ¼rgeramt within 14 days â MANDATORY", tag: "urgent" },
+      { text: "Open German bank account", note: "N26, DKB or Commerzbank â bring passport + Anmeldung", tag: "urgent" },
+      { text: "Get German SIM card", note: "Aldi Talk, Lidl Connect or O2 â cheap prepaid options", tag: "important" },
+      { text: "Register with health insurance (Krankenkasse)", note: "TK or AOK most popular â needed for everything", tag: "urgent" },
+      { text: "Tax ID (Steuer-ID) â will arrive by post automatically", note: "Wait 2â3 weeks after Anmeldung", tag: "important" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Apply for residence permit (Aufenthaltstitel)", note: "AuslÃÂÃÂ¤nderbehÃÂÃÂ¶rde â book appointment early, huge queues", tag: "urgent" },
+      { text: "Register at job centre (Agentur fÃÂÃÂ¼r Arbeit) if unemployed", note: "Required within 3 days of knowing you'll be unemployed", tag: "important" },
+      { text: "Get ELSTER account for taxes", note: "elster.de â for filing annual tax returns", tag: "optional" },
+      { text: "Find a German language course (Integrationskurs)", note: "Heavily subsidised by government â volkshochschule.de", tag: "important" },
+      { text: "Get ÃÂÃÂPNV monthly pass for public transport", note: "Deutschlandticket â ÃÂ¢ÃÂÃÂ¬49/month, works everywhere", tag: "optional" },
+    ]},
+    { phase: "Settling In", time: "Month 2â3", items: [
+      { text: "Get German driving licence if needed", note: "Can exchange some foreign licences â check ADAC.de", tag: "optional" },
+      { text: "Register children at Kita (nursery) or Schule", note: "Contact local Jugendamt for Kita, Schulamt for school", tag: "important" },
+      { text: "Open Schufa account to build credit history", note: "meineschufa.de â free annual report", tag: "optional" },
+    ]}
+  ]},
+  FR: { name: "France", currency: "ÃÂ¢ÃÂÃÂ¬", phases: [
+    { phase: "Visa & Pre-departure", time: "Before arrival", items: [
+      { text: "Apply for long-stay visa (Visa de long sÃÂÃÂ©jour)", note: "Via French consulate â processing takes 3â8 weeks", tag: "urgent" },
+      { text: "Arrange accommodation proof (attestation d'hÃÂÃÂ©bergement)", note: "Required for visa and registration", tag: "urgent" },
+      { text: "Health insurance or European Health Card", note: "Private insurance required until PUMA kicks in", tag: "urgent" },
+    ]},
+    { phase: "Week 1 in France", time: "Days 1â7", items: [
+      { text: "Validate your long-stay visa online â OFII procedure", note: "ofii.fr â do within 3 months of arrival, MANDATORY", tag: "urgent" },
+      { text: "Open French bank account", note: "BNP Paribas, SociÃÂÃÂ©tÃÂÃÂ© GÃÂÃÂ©nÃÂÃÂ©rale or Lydia/Revolut to start", tag: "urgent" },
+      { text: "Register at your local Mairie (town hall)", note: "For EU citizens â carte de sÃÂÃÂ©jour may be needed", tag: "urgent" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Apply for Carte Vitale (health insurance card)", note: "Register at CPAM â ameli.fr â takes 4â6 weeks", tag: "urgent" },
+      { text: "Apply for CAF housing benefits (APL)", note: "caf.fr â can get ÃÂ¢ÃÂÃÂ¬50â300/month towards rent", tag: "important" },
+      { text: "Get French tax number (numÃÂÃÂ©ro fiscal)", note: "impots.gouv.fr â needed for almost everything", tag: "important" },
+    ]},
+    { phase: "Settling In", time: "Month 2â3", items: [
+      { text: "Get Navigo pass for Paris transport or local transit card", note: "50% employer reimbursement is mandatory by law", tag: "optional" },
+      { text: "Register children at school via local Mairie", note: "Bring birth certificate, proof of address, vaccination records", tag: "important" },
+    ]}
+  ]},
+  BE: { name: "Belgium", currency: "ÃÂ¢ÃÂÃÂ¬", phases: [
+    { phase: "Visa & Documents", time: "Before arrival", items: [
+      { text: "Apply for D-visa (long stay) at Belgian embassy", note: "For non-EU citizens â takes 4â8 weeks", tag: "urgent" },
+      { text: "Health insurance proof", note: "Required for visa and commune registration", tag: "urgent" },
+    ]},
+    { phase: "Week 1 in Belgium", time: "Days 1â7", items: [
+      { text: "Register at your local commune (gemeentehuis/maison communale)", note: "Must do within 8 days of arrival â MANDATORY", tag: "urgent" },
+      { text: "Open Belgian bank account", note: "BNP Paribas Fortis, ING or Belfius â bring passport + commune proof", tag: "urgent" },
+      { text: "Apply for eID card (for non-EU) or eID registration", note: "Processed through commune â takes 3â5 weeks", tag: "urgent" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Register with a mutualitÃÂÃÂ© (health insurance fund)", note: "MutualitÃÂÃÂ© ChrÃÂÃÂ©tienne, Solidaris etc. â mandatory in Belgium", tag: "urgent" },
+      { text: "Get Belgian National Register Number (NISS)", note: "Arrives with commune registration â needed for everything", tag: "urgent" },
+    ]},
+    { phase: "Settling In", time: "Month 2â3", items: [
+      { text: "Get STIB/De Lijn/TEC transport card", note: "Brussels: STIB card | Flanders: De Lijn | Wallonia: TEC", tag: "optional" },
+      { text: "File Belgian tax return (dÃÂÃÂ©claration fiscale)", note: "Due each spring â myminfin.be", tag: "important" },
+    ]}
+  ]},
+  PL: { name: "Poland", currency: "PLN", phases: [
+    { phase: "Visa & Pre-arrival", time: "Before arrival", items: [
+      { text: "Apply for Polish national visa (type D) if non-EU", note: "Via Polish consulate â processing 2â4 weeks", tag: "urgent" },
+      { text: "Health insurance for visa application", note: "Private insurance or EU health card", tag: "urgent" },
+    ]},
+    { phase: "Week 1 in Poland", time: "Days 1â7", items: [
+      { text: "Register your place of stay (zameldowanie)", note: "At local UrzÃÂÃÂd Gminy â bring passport + accommodation proof", tag: "urgent" },
+      { text: "Apply for PESEL number", note: "UrzÃÂÃÂd Gminy â Poland's universal ID number, needed for everything", tag: "urgent" },
+      { text: "Open Polish bank account", note: "PKO BP, mBank or Alior â bring passport + PESEL", tag: "urgent" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Apply for temporary residence permit (zezwolenie na pobyt)", note: "UrzÃÂÃÂd WojewÃÂÃÂ³dzki â can take 2â6 months, apply ASAP", tag: "urgent" },
+      { text: "Register with NFZ (national health fund)", note: "nfz.gov.pl â if employed, employer registers you", tag: "urgent" },
+    ]},
+    { phase: "Settling In", time: "Month 2â3", items: [
+      { text: "Register children at school (szkoÃÂÃÂa)", note: "Contact local gmina â bring PESEL + birth certificate", tag: "important" },
+      { text: "File annual PIT tax return", note: "Due April 30 â e-deklaracje.gov.pl", tag: "important" },
+    ]}
+  ]},
+  NL: { name: "Netherlands", currency: "ÃÂ¢ÃÂÃÂ¬", phases: [
+    { phase: "Visa & Pre-arrival", time: "Before arrival", items: [
+      { text: "Apply for MVV entry visa if required (non-EU)", note: "Via Dutch embassy â then convert to residence permit", tag: "urgent" },
+      { text: "Arrange health insurance â MANDATORY in NL", note: "Must get Dutch health insurance within 4 months", tag: "urgent" },
+    ]},
+    { phase: "Week 1 in Netherlands", time: "Days 1â7", items: [
+      { text: "Register at gemeente (municipality) â BRP registration", note: "Book appointment at gemeente.nl â MANDATORY", tag: "urgent" },
+      { text: "Get BSN number (BurgerServiceNummer)", note: "Issued during BRP registration â needed for everything", tag: "urgent" },
+      { text: "Open Dutch bank account", note: "ING, Rabobank or Bunq â bring passport + BSN", tag: "urgent" },
+      { text: "Get Dutch health insurance (zorgverzekering)", note: "Zilveren Kruis, CZ or VGZ â monthly ~ÃÂ¢ÃÂÃÂ¬130â160", tag: "urgent" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Apply for DigiD (digital ID for government services)", note: "digid.nl â needed for taxes, healthcare, everything", tag: "urgent" },
+      { text: "Look into 30% ruling if highly skilled migrant", note: "Huge tax break â check with employer or belastingdienst.nl", tag: "important" },
+    ]},
+    { phase: "Settling In", time: "Month 2â3", items: [
+      { text: "Get Dutch cycling proficiency â seriously, get a bike", note: "OV-fiets rental or buy second-hand â everyone cycles here", tag: "optional" },
+      { text: "File belastingaangifte (tax return)", note: "Due May 1 each year â belastingdienst.nl", tag: "important" },
+    ]}
+  ]},
+  ES: { name: "Spain", currency: "ÃÂ¢ÃÂÃÂ¬", phases: [
+    { phase: "Visa & Documents", time: "Before arrival", items: [
+      { text: "Apply for long-stay visa (visado de larga duraciÃÂÃÂ³n)", note: "Spanish consulate â processing 1â3 months", tag: "urgent" },
+      { text: "Private health insurance for visa", note: "Sanitas or Adeslas popular choices", tag: "urgent" },
+    ]},
+    { phase: "Week 1 in Spain", time: "Days 1â7", items: [
+      { text: "Register on PadrÃÂÃÂ³n Municipal at Ayuntamiento", note: "Local town hall â MANDATORY for all residents", tag: "urgent" },
+      { text: "Apply for NIE (NÃÂÃÂºmero de Identidad de Extranjero)", note: "PolicÃÂÃÂ­a Nacional â needed for everything financial", tag: "urgent" },
+      { text: "Open Spanish bank account", note: "BBVA, Santander or N26 â bring NIE + passport + padrÃÂÃÂ³n", tag: "urgent" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Apply for TIE residence card (non-EU)", note: "ExtranjerÃÂÃÂ­a office â book via sede.gob.es", tag: "urgent" },
+      { text: "Register with local health centre (Centro de Salud)", note: "Free public healthcare once registered on padrÃÂÃÂ³n", tag: "urgent" },
+    ]},
+    { phase: "Settling In", time: "Month 2â3", items: [
+      { text: "File declaraciÃÂÃÂ³n de la renta (tax return)", note: "Due June each year â agenciatributaria.es", tag: "important" },
+    ]}
+  ]},
+  IT: { name: "Italy", currency: "ÃÂ¢ÃÂÃÂ¬", phases: [
+    { phase: "Visa & Documents", time: "Before arrival", items: [
+      { text: "Apply for national visa (visto D) at Italian consulate", note: "Takes 2â8 weeks depending on category", tag: "urgent" },
+      { text: "Health insurance for visa period", note: "Required until you access SSN (public health service)", tag: "urgent" },
+    ]},
+    { phase: "Week 1 in Italy", time: "Days 1â8", items: [
+      { text: "Apply for permesso di soggiorno within 8 days", note: "Via post office (Poste Italiane) â MANDATORY", tag: "urgent" },
+      { text: "Get codice fiscale (tax code)", note: "Agenzia delle Entrate or Italian consulate abroad", tag: "urgent" },
+      { text: "Open Italian bank account", note: "Intesa Sanpaolo, UniCredit or Fineco â bring codice fiscale", tag: "urgent" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Register with ASL (local health authority) for SSN card", note: "Free public healthcare â bring permesso + codice fiscale", tag: "urgent" },
+    ]},
+    { phase: "Settling In", time: "Month 2â3", items: [
+      { text: "File dichiarazione dei redditi (tax return)", note: "Due September each year â agenziadellentrate.gov.it", tag: "important" },
+      { text: "Register children at school (via Comune)", note: "Bring birth certificate, codice fiscale, vaccinations record", tag: "important" },
+    ]}
+  ]},
+  CA: { name: "Canada", currency: "CAD", phases: [
+    { phase: "Visa & Pre-arrival", time: "3Ã¢ÂÂ6 months before", items: [
+      { text: "Apply for correct visa or PR pathway", note: "Express Entry, Study Permit, Work Permit Ã¢ÂÂ ircc.canada.ca", tag: "urgent" },
+      { text: "Educational Credential Assessment (ECA) if needed", note: "For Express Entry Ã¢ÂÂ use WES, IQAS or ICES. Takes 3Ã¢ÂÂ5 months", tag: "urgent" },
+      { text: "IELTS or CELPIP English test", note: "Required for Express Entry Ã¢ÂÂ book 2Ã¢ÂÂ3 months ahead", tag: "urgent" },
+      { text: "Medical exam with IRCC-approved panel physician", note: "Required for most immigration streams", tag: "urgent" },
+      { text: "Police clearance certificate", note: "From every country you lived in for 6+ months", tag: "urgent" },
+      { text: "Book temporary accommodation for arrival", note: "Airbnb or extended-stay hotel for first 2 weeks", tag: "important" },
+    ]},
+    { phase: "Week 1 in Canada", time: "Days 1Ã¢ÂÂ7", items: [
+      { text: "Apply for SIN (Social Insurance Number)", note: "Service Canada Ã¢ÂÂ sin-nas.gc.ca Ã¢ÂÂ needed for work and all benefits", tag: "urgent" },
+      { text: "Open Canadian bank account", note: "TD, RBC, Scotiabank or Tangerine Ã¢ÂÂ bring passport + address proof", tag: "urgent" },
+      { text: "Get Canadian SIM card", note: "Koodo, Public Mobile or Lucky Mobile Ã¢ÂÂ affordable prepaid options", tag: "urgent" },
+      { text: "Register for provincial health insurance", note: "OHIP (Ontario), CareCard (BC) etc. Ã¢ÂÂ note 3-month wait in some provinces", tag: "urgent" },
+      { text: "Visit local newcomer settlement agency", note: "Free help with housing, jobs, language Ã¢ÂÂ findhelp.ca", tag: "important" },
+    ]},
+    { phase: "First Month", time: "Weeks 2Ã¢ÂÂ4", items: [
+      { text: "Find long-term housing", note: "Kijiji, PadMapper or Facebook Marketplace Ã¢ÂÂ budget 1st + last month rent", tag: "urgent" },
+      { text: "Exchange foreign driving licence", note: "At provincial DriveTest (Ontario) or ICBC (BC) office", tag: "important" },
+      { text: "Register children at local school board", note: "Free public school for all children regardless of status", tag: "important" },
+      { text: "Enrol in LINC English classes (free for PRs)", note: "Language Instruction for Newcomers Ã¢ÂÂ cic.gc.ca/LINC", tag: "important" },
+      { text: "Get secured credit card to build Canadian credit", note: "No credit history? Start with Home Trust or Capital One secured card", tag: "important" },
+    ]},
+    { phase: "Settling In", time: "Month 2Ã¢ÂÂ3", items: [
+      { text: "File Canadian tax return (T1 form)", note: "Due April 30 Ã¢ÂÂ even with no income, file to unlock benefits", tag: "urgent" },
+      { text: "Apply for Canada Child Benefit (CCB) if you have kids", note: "Tax-free monthly payment Ã¢ÂÂ canada.ca/child-benefit", tag: "important" },
+      { text: "Apply for GST/HST credit", note: "Automatic after filing taxes Ã¢ÂÂ up to ~$500/year back", tag: "important" },
+      { text: "Open TFSA (Tax-Free Savings Account)", note: "Best savings account in Canada Ã¢ÂÂ $7,000 contribution room per year", tag: "optional" },
+      { text: "Connect with immigrant community", note: "Settlement.org, local multicultural centres, Facebook newcomer groups", tag: "optional" },
+    ]}
+  ]},
+  OTHER_EU: { name: "EU Country", currency: "ÃÂ¢ÃÂÃÂ¬/local", phases: [
+    { phase: "Visa & Documents", time: "Before arrival", items: [
+      { text: "Check if you need a visa (Schengen or national D-visa)", note: "Most non-EU citizens need a long-stay visa for 90+ days", tag: "urgent" },
+      { text: "Apply at embassy of destination country", note: "Processing typically 2â8 weeks", tag: "urgent" },
+      { text: "Health insurance for visa application", note: "Private insurance required until national health kicks in", tag: "urgent" },
+    ]},
+    { phase: "Week 1", time: "Days 1â7", items: [
+      { text: "Register your residence at local municipality", note: "Usually mandatory within 7â14 days of arrival", tag: "urgent" },
+      { text: "Get local tax/ID number", note: "Essential for bank accounts, employment, healthcare", tag: "urgent" },
+      { text: "Open local bank account", note: "Revolut or N26 work EU-wide as backup while waiting", tag: "urgent" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Register with public health system", note: "Most EU countries have universal healthcare for residents", tag: "urgent" },
+      { text: "Find language courses in local language", note: "Many EU governments offer free integration courses", tag: "important" },
+    ]},
+    { phase: "Settling In", time: "Month 2â3", items: [
+      { text: "File local tax return (usually annual)", note: "Check deadline and national tax authority website", tag: "important" },
+      { text: "Connect with expat community in your city", note: "Facebook groups, Meetup.com, Internations.org", tag: "optional" },
+    ]}
+  ]}
+};
+
+const checklists = {
+  UA: [
+    { phase: "Before You Leave Ukraine", time: "4â8 weeks before", items: [
+      { text: "Gather your passport (valid 6+ months)", note: "Check expiry date carefully", tag: "urgent" },
+      { text: "Collect proof of Ukrainian nationality", note: "Birth certificate or national ID", tag: "urgent" },
+      { text: "Get Homes for Ukraine scheme sponsor confirmation", note: "Or other visa route documents", tag: "urgent" },
+      { text: "Medical records & prescriptions", note: "Especially for ongoing treatment", tag: "important" },
+      { text: "School certificates & diplomas", note: "Get officially translated copies", tag: "important" },
+      { text: "Prepare personal savings for first 2 weeks", note: "Benefits take time to process â try to have some cash available if possible", tag: "important" },
+      { text: "Download offline maps of your UK city", note: "Google Maps → download area", tag: "optional" },
+    ]},
+    { phase: "Arriving in the UK", time: "Week 1", items: [
+      { text: "Register with your local council", note: "Mandatory â triggers housing & benefit support", tag: "urgent" },
+      { text: "Set up your eVisa â create a UKVI account", note: "gov.uk/evisa â BRPs no longer valid since Jan 2025, eVisa is now mandatory", tag: "urgent" },
+      { text: "Register with a GP (doctor)", note: "Find nearest NHS GP at nhs.uk/service-search", tag: "urgent" },
+      { text: "Open a basic bank account", note: "Monzo or Starling accept eVisa â no credit check needed", tag: "urgent" },
+      { text: "Get a UK SIM card", note: "Giffgaff, Smarty or Lebara â no contract needed", tag: "important" },
+      { text: "Find your nearest food bank if needed", note: "Trussell Trust â no shame, it's what it's there for", tag: "optional" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Apply for Universal Credit", note: "gov.uk/universal-credit â do it as soon as possible", tag: "urgent" },
+      { text: "Apply for PIP (if disabled)", note: "gov.uk/pip â takes time, apply early", tag: "urgent" },
+      { text: "Get National Insurance Number", note: "Apply at gov.uk/apply-national-insurance-number", tag: "urgent" },
+      { text: "Register children at school", note: "Contact local council for school allocations", tag: "important" },
+      { text: "Find English language classes (ESOL)", note: "Free for eligible â check local council", tag: "important" },
+      { text: "Connect with Ukrainian community in your city", note: "Facebook groups, Ukrainian churches", tag: "optional" },
+      { text: "Set up NHS App on phone", note: "Book GP, see prescriptions, test results", tag: "optional" },
+    ]},
+    { phase: "Settling In", time: "Month 2â3", items: [
+      { text: "Explore council tax discount or exemption", note: "Students and some benefits claimants are exempt", tag: "important" },
+      { text: "Check eligibility for free school meals", note: "If you have children", tag: "important" },
+      { text: "Get a library card", note: "Free internet, books, printing â massively useful", tag: "optional" },
+      { text: "Understand your rights as a temporary protection holder", note: "Citizens Advice has free help", tag: "important" },
+      { text: "Start building UK credit score", note: "Use Experian or Credit Karma to monitor", tag: "optional" },
+    ]}
+  ],
+  DEFAULT: [
+    { phase: "Visa & Documents", time: "3â6 months before", items: [
+      { text: "Confirm the correct visa category for your situation", note: "Work, study, family reunification, etc.", tag: "urgent" },
+      { text: "Check passport validity (6+ months after travel)", note: "Renew if needed â takes 4â10 weeks", tag: "urgent" },
+      { text: "Book biometric appointment at visa centre", note: "Book early â slots fill fast", tag: "urgent" },
+    ]},
+    { phase: "Before You Leave", time: "4â8 weeks before", items: [
+      { text: "Arrange temporary accommodation for first 2 weeks", note: "Airbnb or hostel while finding long-term housing", tag: "urgent" },
+      { text: "Get travel & health insurance", note: "Especially important before NHS registration", tag: "urgent" },
+      { text: "Back up important documents to cloud", note: "Google Drive or iCloud â passport, visa, certificates", tag: "important" },
+    ]},
+    { phase: "Week 1 in the UK", time: "Arrival week", items: [
+      { text: "Register with local GP (doctor)", note: "nhs.uk/service-search â bring ID and address proof", tag: "urgent" },
+      { text: "Open a UK bank account", note: "Monzo, Starling or Revolut â works without credit history", tag: "urgent" },
+      { text: "Get UK SIM card", note: "Giffgaff, Smarty or Three â no contract needed", tag: "urgent" },
+      { text: "Apply for National Insurance Number", note: "gov.uk/apply-national-insurance-number", tag: "important" },
+    ]},
+    { phase: "First Month", time: "Weeks 2â4", items: [
+      { text: "Find long-term housing via Rightmove or SpareRoom", note: "SpareRoom good for shared houses â lower cost", tag: "urgent" },
+      { text: "Understand your rights at work (if working)", note: "ACAS has free advice â acas.org.uk", tag: "important" },
+      { text: "Start monitoring your UK credit score", note: "Experian or Credit Karma â free", tag: "optional" },
+    ]}
+  ]
+};
+
+let state = {};
+let currentCountry = null;
+let currentDestination = null;
+
+function loadState() {
+  try { state = JSON.parse(localStorage.getItem('immigrify_state') || '{}'); } catch(e) { state = {}; }
+}
+
+function saveState() {
+  try { localStorage.setItem('immigrify_state', JSON.stringify(state)); } catch(e) {}
+}
+
+function renderDestinations() {
+  const grid = document.getElementById('destinationGrid');
+  grid.innerHTML = '';
+  destinations.forEach(d => {
+    const btn = document.createElement('button');
+    btn.className = 'country-btn';
+    btn.innerHTML = '<span>' + d.flag + ' ' + d.name + '</span>';
+    btn.onclick = (e) => selectDestination(d, e.currentTarget);
+    grid.appendChild(btn);
+  });
+}
+
+function renderCountries() {
+  const grid = document.getElementById('countryGrid');
+  grid.innerHTML = '';
+  countries.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'country-btn';
+    btn.innerHTML = '<span>' + c.flag + ' ' + c.name + '</span>';
+    btn.onclick = (e) => selectCountry(c, e.currentTarget);
+    grid.appendChild(btn);
+  });
+}
+
+function selectDestination(d, btnEl) {
+  currentDestination = d;
+  document.querySelectorAll('#destinationGrid .country-btn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+  if (d.code === 'UK') {
+    document.getElementById('fromRow').style.display = 'block';
+    currentCountry = null;
+    document.getElementById('progressSection').classList.remove('visible');
+    document.getElementById('checklistSection').classList.remove('visible');
+    document.getElementById('checklistSection').innerHTML = '';
+    document.getElementById('footerCta').classList.remove('visible');
+    renderCountries();
+  } else {
+    document.getElementById('fromRow').style.display = 'none';
+    currentCountry = null;
+    renderDestinationChecklist(d);
+  }
+}
+
+function selectCountry(c, btnEl) {
+  currentCountry = c;
+  document.querySelectorAll('#countryGrid .country-btn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+  renderUKChecklist(c);
+}
+
+function getKey(scope, phaseIdx, itemIdx) {
+  return scope + '_' + phaseIdx + '_' + itemIdx;
+}
+
+function buildChecklistDOM(phases, scope) {
+  const section = document.getElementById('checklistSection');
+  section.innerHTML = '';
+  phases.forEach((phase, pi) => {
+    const block = document.createElement('div');
+    block.className = 'phase-block';
+    block.style.animationDelay = (pi * 0.08) + 's';
+    block.innerHTML = '<div class="phase-title"><div class="phase-num">' + (pi + 1) + '</div><div class="phase-name">' + phase.phase + '</div><div class="phase-time">' + phase.time + '</div></div>';
+    phase.items.forEach((item, ii) => {
+      const key = getKey(scope, pi, ii);
+      const checked = !!state[key];
+      const el = document.createElement('div');
+      el.className = 'checklist-item' + (checked ? ' checked' : '');
+      el.innerHTML = '<div class="check-box"><span class="check-tick">ÃÂ¢ÃÂÃÂ</span></div><div class="item-content"><div class="item-text">' + item.text + '</div>' + (item.note ? '<div class="item-note">' + item.note + '</div>' : '') + '</div><div class="item-tag tag-' + item.tag + '">' + item.tag + '</div>';
+      el.onclick = () => {
+        state[key] = !state[key];
+        saveState();
+        el.classList.toggle('checked', !!state[key]);
+        updateProgressFromPhases(phases, scope);
+      };
+      block.appendChild(el);
+    });
+    section.appendChild(block);
+  });
+  document.getElementById('progressSection').classList.add('visible');
+  document.getElementById('checklistSection').classList.add('visible');
+  document.getElementById('footerCta').classList.add('visible');
+  document.getElementById('feedbackSection').classList.add('visible');
+  updateProgressFromPhases(phases, scope);
+}
+
+function renderDestinationChecklist(d) {
+  const data = destinationChecklists[d.code];
+  if (!data) return;
+  const scope = 'DEST_' + d.code;
+  document.getElementById('progressTitle').textContent = 'Moving to ' + data.name;
+  buildChecklistDOM(data.phases, scope);
+}
+
+function renderUKChecklist(c) {
+  const data = checklists[c.code] || checklists['DEFAULT'];
+  const scope = 'UK_' + c.code;
+  document.getElementById('progressTitle').textContent = 'Moving to UK from ' + c.name;
+  buildChecklistDOM(data, scope);
+}
+
+function updateProgressFromPhases(phases, scope) {
+  let total = 0, done = 0;
+  phases.forEach((phase, pi) => {
+    phase.items.forEach((_, ii) => {
+      total++;
+      if (state[getKey(scope, pi, ii)]) done++;
+    });
+  });
+  const pct = total ? Math.round((done/total)*100) : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = done + ' of ' + total + ' done';
+  const celeb = document.getElementById('celebration');
+  if (pct === 100) {
+    celeb.classList.add('visible');
+    document.getElementById('checklistSection').style.opacity = '0.4';
+  } else {
+    celeb.classList.remove('visible');
+    document.getElementById('checklistSection').style.opacity = '1';
+  }
+}
+
+function openModal(tab) {
+  document.getElementById('modalOverlay').classList.add('visible');
+  if (tab) switchTab(tab, document.querySelector('.tab-btn:' + (tab === 'email' ? 'first-child' : 'last-child')));
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('visible');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+const FORMSPREE = 'https://formspree.io/f/xlgpbpkv';
+
+async function sendToFormspree(data, btnEl, successEl, formEl) {
+  btnEl.disabled = true;
+  btnEl.textContent = 'SendingÃÂ¢ÃÂÃÂ¦';
+  try {
+    const res = await fetch(FORMSPREE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (res.ok) {
+      if (formEl) formEl.style.display = 'none';
+      successEl.classList.add('visible');
+    } else {
+      btnEl.disabled = false;
+      btnEl.textContent = 'Try again';
+    }
+  } catch(e) {
+    btnEl.disabled = false;
+    btnEl.textContent = 'Try again';
+  }
+}
+
+function submitEmailSignup() {
+  const email = document.getElementById('modalEmail').value.trim();
+  const dest = document.getElementById('modalDest').value;
+  if (!email) { document.getElementById('modalEmail').focus(); return; }
+  sendToFormspree(
+    { _subject: 'ð New Immigrify signup', type: 'email-signup', email, destination: dest },
+    document.querySelector('#tab-email .form-submit'),
+    document.getElementById('emailSuccess'),
+    document.getElementById('emailFormBody')
+  );
+}
+
+function submitFeedback() {
+  const msg = document.getElementById('modalFeedbackMsg').value.trim();
+  if (!msg) { document.getElementById('modalFeedbackMsg').focus(); return; }
+  sendToFormspree(
+    { _subject: '💬 Immigrify feedback: ' + (document.getElementById('modalFeedbackType').value || 'general'), type: 'modal-feedback', category: document.getElementById('modalFeedbackType').value, message: msg, email: document.getElementById('modalFeedbackEmail').value.trim() || 'not provided' },
+    document.querySelector('#tab-feedback .form-submit'),
+    document.getElementById('feedbackSuccess'),
+    document.getElementById('feedbackFormBody')
+  );
+}
+
+function submitInlineFeedback() {
+  const msg = document.getElementById('inlineMessage').value.trim();
+  if (!msg) { document.getElementById('inlineMessage').focus(); return; }
+  const btn = document.getElementById('inlineSubmitBtn');
+  sendToFormspree(
+    { _subject: '💬 Immigrify inline feedback', type: 'inline-feedback', category: document.getElementById('inlineType').value, message: msg, email: document.getElementById('inlineEmail').value.trim() || 'not provided' },
+    btn, document.getElementById('inlineSuccess'), null
+  ).then(() => {
+    document.querySelectorAll('#feedbackSection .form-group').forEach(el => el.style.display = 'none');
+    btn.style.display = 'none';
+  });
+}
+
+loadState();
+renderDestinations();
+renderCountries();
+</script>
+</body>
+</html>
