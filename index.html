@@ -4,9 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Immigrify — Your Move, Simplified</title>
+
+  <!-- Google Analytics 4 -->
+  <!-- Replace GA_MEASUREMENT_ID with your real ID, for example G-ABC1234567 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --ink: #0f0e0c;
@@ -19,10 +31,12 @@
       --white: #ffffff;
       --shadow: 0 10px 30px rgba(15, 14, 12, 0.08);
       --radius: 18px;
+      --header-height: 88px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       background: var(--paper);
@@ -33,6 +47,14 @@
       overflow-x: hidden;
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
     header {
       position: sticky;
       top: 0;
@@ -41,15 +63,23 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 24px 40px;
+      padding: 18px 28px;
       background: rgba(245, 240, 232, 0.94);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(15, 14, 12, 0.12);
+      min-height: var(--header-height);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
     }
 
     .logo {
       font-family: 'Fraunces', serif;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 700;
       letter-spacing: -0.03em;
       white-space: nowrap;
@@ -57,10 +87,53 @@
 
     .logo span { color: var(--accent); }
 
-    .translate-note {
-      font-size: 12px;
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .lang-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
       color: var(--muted);
-      text-align: right;
+      font-weight: 700;
+    }
+
+    .lang-btn {
+      appearance: none;
+      border: 1px solid rgba(15, 14, 12, 0.12);
+      background: var(--white);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--ink);
+    }
+
+    .lang-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
     }
 
     main {
@@ -70,7 +143,22 @@
 
     .hero {
       padding: 56px 40px 28px;
-      max-width: 900px;
+      max-width: 950px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(200, 64, 42, 0.08);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .hero h1 {
@@ -89,7 +177,7 @@
 
     .hero p {
       margin: 0;
-      max-width: 640px;
+      max-width: 700px;
       font-size: 18px;
       line-height: 1.65;
       color: var(--muted);
@@ -105,10 +193,18 @@
 
     .selector-section { padding-bottom: 32px; }
 
+    .selector-card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(15, 14, 12, 0.08);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
     .selector-label {
       margin-bottom: 14px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--muted);
@@ -128,7 +224,7 @@
       padding: 12px 18px;
       border-radius: 999px;
       font: inherit;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
       box-shadow: 0 2px 8px rgba(15, 14, 12, 0.04);
@@ -156,6 +252,13 @@
     #fromRow {
       margin-top: 22px;
       display: none;
+    }
+
+    .selection-summary {
+      margin-top: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
     }
 
     .progress-section {
@@ -260,7 +363,7 @@
       margin-left: auto;
       color: var(--muted);
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
     }
@@ -325,7 +428,7 @@
 
     .item-text {
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
       line-height: 1.45;
     }
 
@@ -368,12 +471,15 @@
     }
 
     .celebration.visible { display: block; }
+
     .celebration-emoji { font-size: 54px; margin-bottom: 10px; }
+
     .celebration h2 {
       margin: 0 0 8px;
       font-family: 'Fraunces', serif;
       font-size: 34px;
     }
+
     .celebration p { margin: 0; color: var(--muted); }
 
     .feedback-section {
@@ -482,7 +588,9 @@
     }
 
     .form-success.visible { display: block; }
+
     .form-success-icon { font-size: 48px; margin-bottom: 10px; }
+
     .form-success h3 {
       margin: 0 0 8px;
       font-family: 'Fraunces', serif;
@@ -599,11 +707,40 @@
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
+    .hidden {
+      display: none !important;
+    }
+
+    [dir="rtl"] body {
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    [dir="rtl"] .progress-header,
+    [dir="rtl"] .phase-title,
+    [dir="rtl"] .footer-cta,
+    [dir="rtl"] header {
+      direction: rtl;
+    }
+
+    [dir="rtl"] .phase-time {
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    [dir="rtl"] .checklist-item:hover {
+      transform: translateX(-2px);
+    }
+
+    [dir="rtl"] .item-tag {
+      margin-right: auto;
+      margin-left: 0;
+    }
+
     @media (max-width: 900px) {
       .footer-cta { left: 12px; right: 12px; }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 700px) {
       header,
       .hero,
       .selector-section,
@@ -615,10 +752,16 @@
       }
 
       header {
-        padding-top: 18px;
-        padding-bottom: 18px;
+        padding-top: 16px;
+        padding-bottom: 16px;
         align-items: flex-start;
         flex-direction: column;
+      }
+
+      .header-right,
+      .lang-switcher {
+        width: 100%;
+        justify-content: flex-start;
       }
 
       .hero {
@@ -644,22 +787,43 @@
 </head>
 <body>
   <header>
-    <div class="logo">Immigri<span>fy</span></div>
+    <div class="header-left">
+      <div class="logo">Immigri<span>fy</span></div>
+    </div>
+
+    <div class="header-right">
+      <div class="lang-switcher">
+        <div class="lang-label" id="langLabel">Language</div>
+        <button class="lang-btn active" type="button" data-lang="en">EN</button>
+        <button class="lang-btn" type="button" data-lang="uk">UK</button>
+        <button class="lang-btn" type="button" data-lang="ar">AR</button>
+        <button class="lang-btn" type="button" data-lang="hi">HI</button>
+      </div>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <h1>Your move to<br><em id="heroRegion">the world,</em><br>step by step.</h1>
-      <p>Everything you need to relocate — visa guides, checklists, local tips. Built by immigrants, for immigrants.</p>
+      <div class="eyebrow" id="eyebrowText">Built by immigrants, for immigrants</div>
+      <h1>
+        <span id="heroLine1">Your move to</span><br>
+        <em id="heroRegion">the world,</em><br>
+        <span id="heroLine3">step by step.</span>
+      </h1>
+      <p id="heroText">Everything you need to relocate — visa guides, checklists, local tips. Built by immigrants, for immigrants.</p>
     </section>
 
     <section class="selector-section">
-      <div class="selector-label">I'm moving to</div>
-      <div class="country-grid" id="destinationGrid"></div>
+      <div class="selector-card">
+        <div class="selector-label" id="destinationLabel">I'm moving to</div>
+        <div class="country-grid" id="destinationGrid"></div>
 
-      <div id="fromRow">
-        <div class="selector-label">I'm coming from</div>
-        <div class="country-grid" id="countryGrid"></div>
+        <div id="fromRow">
+          <div class="selector-label" id="originLabel">I'm coming from</div>
+          <div class="country-grid" id="countryGrid"></div>
+        </div>
+
+        <div class="selection-summary" id="selectionSummary"></div>
       </div>
     </section>
 
@@ -679,34 +843,27 @@
 
     <div class="celebration" id="celebration">
       <div class="celebration-emoji">🎉</div>
-      <h2>You're all set!</h2>
-      <p>All steps completed. Welcome to your new life.</p>
+      <h2 id="celebrationTitle">You're all set!</h2>
+      <p id="celebrationText">All steps completed. Welcome to your new life.</p>
     </div>
 
     <section class="feedback-section" id="feedbackSection">
       <div class="feedback-card">
-        <h3>💬 Help us improve</h3>
-        <p>Missing a country? Something wrong? Let us know — we read every message.</p>
+        <h3 id="feedbackTitle">💬 Help us improve</h3>
+        <p id="feedbackIntro">Missing a country? Something wrong? Let us know — we read every message.</p>
 
         <div class="form-group">
-          <label class="form-label" for="inlineEmail">Your email (optional)</label>
+          <label class="form-label" for="inlineEmail" id="inlineEmailLabel">Your email (optional)</label>
           <input class="form-input" type="email" id="inlineEmail" placeholder="your@email.com">
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="inlineType">What would you like to see?</label>
-          <select class="form-select" id="inlineType">
-            <option value="">— Choose a topic —</option>
-            <option value="country">Add a new destination country</option>
-            <option value="origin">Add my home country</option>
-            <option value="content">A checklist item is wrong or outdated</option>
-            <option value="feature">Suggest a new feature</option>
-            <option value="other">Other feedback</option>
-          </select>
+          <label class="form-label" for="inlineType" id="inlineTypeLabel">What would you like to see?</label>
+          <select class="form-select" id="inlineType"></select>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="inlineMessage">Tell us more</label>
+          <label class="form-label" for="inlineMessage" id="inlineMessageLabel">Tell us more</label>
           <textarea class="form-textarea" id="inlineMessage" placeholder="e.g. Please add the USA, or the Germany visa info is wrong..."></textarea>
         </div>
 
@@ -714,8 +871,8 @@
 
         <div id="inlineSuccess" class="form-success">
           <div class="form-success-icon">🙏</div>
-          <h3>Thank you!</h3>
-          <p>Your feedback helps us build a better product for millions of immigrants.</p>
+          <h3 id="inlineSuccessTitle">Thank you!</h3>
+          <p id="inlineSuccessText">Your feedback helps us build a better product for millions of immigrants.</p>
         </div>
       </div>
     </section>
@@ -726,22 +883,22 @@
       <button class="modal-close" id="modalCloseBtn" type="button" aria-label="Close">×</button>
 
       <div class="tab-row">
-        <button class="tab-btn active" type="button" data-tab-btn="email">📧 Get Full Guide</button>
-        <button class="tab-btn" type="button" data-tab-btn="feedback">💬 Give Feedback</button>
+        <button class="tab-btn active" type="button" data-tab-btn="email" id="tabEmailBtn">📧 Get Full Guide</button>
+        <button class="tab-btn" type="button" data-tab-btn="feedback" id="tabFeedbackBtn">💬 Give Feedback</button>
       </div>
 
       <div class="tab-panel active" id="tab-email">
-        <h2>Get the full guide</h2>
-        <p>We'll send you the complete relocation pack — visa timelines, bank accounts, housing tips, healthcare, and more. Free.</p>
+        <h2 id="modalEmailTitle">Get the full guide</h2>
+        <p id="modalEmailText">We'll send you the complete relocation pack — visa timelines, bank accounts, housing tips, healthcare, and more. Free.</p>
 
         <div id="emailFormBody">
           <div class="form-group">
-            <label class="form-label" for="modalEmail">Your email address</label>
+            <label class="form-label" for="modalEmail" id="modalEmailLabel">Your email address</label>
             <input class="form-input" type="email" id="modalEmail" placeholder="your@email.com">
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="modalDest">Where are you moving to?</label>
+            <label class="form-label" for="modalDest" id="modalDestLabel">Where are you moving to?</label>
             <select class="form-select" id="modalDest"></select>
           </div>
 
@@ -750,35 +907,28 @@
 
         <div class="form-success" id="emailSuccess">
           <div class="form-success-icon">✅</div>
-          <h3>You're on the list!</h3>
-          <p>We'll send you the full guide soon. Check your inbox — and your spam folder just in case.</p>
+          <h3 id="emailSuccessTitle">You're on the list!</h3>
+          <p id="emailSuccessText">We'll send you the full guide soon. Check your inbox — and your spam folder just in case.</p>
         </div>
       </div>
 
       <div class="tab-panel" id="tab-feedback">
-        <h2>Give feedback</h2>
-        <p>Missing a country? Something outdated? Tell us — every message is read personally.</p>
+        <h2 id="modalFeedbackTitle">Give feedback</h2>
+        <p id="modalFeedbackText">Missing a country? Something outdated? Tell us — every message is read personally.</p>
 
         <div id="feedbackFormBody">
           <div class="form-group">
-            <label class="form-label" for="modalFeedbackType">Type of feedback</label>
-            <select class="form-select" id="modalFeedbackType">
-              <option value="">— Choose —</option>
-              <option value="country">Add a new destination country</option>
-              <option value="origin">Add my home country</option>
-              <option value="content">Checklist item is wrong / outdated</option>
-              <option value="feature">Suggest a feature</option>
-              <option value="other">Other</option>
-            </select>
+            <label class="form-label" for="modalFeedbackType" id="modalFeedbackTypeLabel">Type of feedback</label>
+            <select class="form-select" id="modalFeedbackType"></select>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="modalFeedbackMsg">Your message</label>
+            <label class="form-label" for="modalFeedbackMsg" id="modalFeedbackMsgLabel">Your message</label>
             <textarea class="form-textarea" id="modalFeedbackMsg" placeholder="e.g. Please add Canada, or the Germany Anmeldung info needs updating..."></textarea>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="modalFeedbackEmail">Your email (optional — if you want a reply)</label>
+            <label class="form-label" for="modalFeedbackEmail" id="modalFeedbackEmailLabel">Your email (optional — if you want a reply)</label>
             <input class="form-input" type="email" id="modalFeedbackEmail" placeholder="your@email.com">
           </div>
 
@@ -787,8 +937,8 @@
 
         <div class="form-success" id="feedbackSuccess">
           <div class="form-success-icon">🙏</div>
-          <h3>Thank you!</h3>
-          <p>Your feedback helps us build a better product for millions of immigrants.</p>
+          <h3 id="feedbackSuccessTitle">Thank you!</h3>
+          <p id="feedbackSuccessText">Your feedback helps us build a better product for millions of immigrants.</p>
         </div>
       </div>
     </div>
@@ -796,8 +946,8 @@
 
   <div class="footer-cta" id="footerCta">
     <div class="cta-text">
-      <strong>Want the full guide?</strong>
-      Visa timelines, bank accounts, housing and more — free.
+      <strong id="footerCtaTitle">Want the full guide?</strong>
+      <span id="footerCtaText">Visa timelines, bank accounts, housing and more — free.</span>
     </div>
     <button class="cta-btn" id="openGuideBtn" type="button">Get Full Guide →</button>
   </div>
@@ -805,39 +955,424 @@
   <script>
     const FORMSPREE = 'https://formspree.io/f/xlgpbpkv';
 
+    const translations = {
+      en: {
+        htmlLang: 'en',
+        dir: 'ltr',
+        langLabel: 'Language',
+        eyebrowText: 'Built by immigrants, for immigrants',
+        heroLine1: 'Your move to',
+        heroLine3: 'step by step.',
+        heroDefaultRegion: 'the world,',
+        heroText: 'Everything you need to relocate — visa guides, checklists, local tips. Built by immigrants, for immigrants.',
+        destinationLabel: "I'm moving to",
+        originLabel: "I'm coming from",
+        selectionSummaryEmpty: 'Choose a destination to see your personalised relocation checklist.',
+        selectionSummaryDestination: 'Selected destination: {destination}.',
+        selectionSummaryOrigin: 'Selected route: {origin} → {destination}.',
+        progressDefaultTitle: 'Your relocation checklist',
+        progressCount: '{done} of {total} done',
+        celebrationTitle: "You're all set!",
+        celebrationText: 'All steps completed. Welcome to your new life.',
+        feedbackTitle: '💬 Help us improve',
+        feedbackIntro: 'Missing a country? Something wrong? Let us know — we read every message.',
+        inlineEmailLabel: 'Your email (optional)',
+        inlineTypeLabel: 'What would you like to see?',
+        inlineMessageLabel: 'Tell us more',
+        inlineMessagePlaceholder: 'e.g. Please add the USA, or the Germany visa info is wrong...',
+        inlineSubmitBtn: 'Send feedback →',
+        inlineSuccessTitle: 'Thank you!',
+        inlineSuccessText: 'Your feedback helps us build a better product for millions of immigrants.',
+        tabEmailBtn: '📧 Get Full Guide',
+        tabFeedbackBtn: '💬 Give Feedback',
+        modalEmailTitle: 'Get the full guide',
+        modalEmailText: "We'll send you the complete relocation pack — visa timelines, bank accounts, housing tips, healthcare, and more. Free.",
+        modalEmailLabel: 'Your email address',
+        modalDestLabel: 'Where are you moving to?',
+        emailSubmitBtn: 'Send me the guide →',
+        emailSuccessTitle: "You're on the list!",
+        emailSuccessText: "We'll send you the full guide soon. Check your inbox — and your spam folder just in case.",
+        modalFeedbackTitle: 'Give feedback',
+        modalFeedbackText: 'Missing a country? Something outdated? Tell us — every message is read personally.',
+        modalFeedbackTypeLabel: 'Type of feedback',
+        modalFeedbackMsgLabel: 'Your message',
+        modalFeedbackMsgPlaceholder: 'e.g. Please add Canada, or the Germany checklist needs updating...',
+        modalFeedbackEmailLabel: 'Your email (optional — if you want a reply)',
+        feedbackSubmitBtn: 'Send feedback →',
+        feedbackSuccessTitle: 'Thank you!',
+        feedbackSuccessText: 'Your feedback helps us build a better product for millions of immigrants.',
+        footerCtaTitle: 'Want the full guide?',
+        footerCtaText: 'Visa timelines, bank accounts, housing and more — free.',
+        openGuideBtn: 'Get Full Guide →',
+        chooseTopic: '— Choose a topic —',
+        choose: '— Choose —',
+        selectDestinationOption: '— Select destination —',
+        other: 'Other',
+        feedbackOptions: {
+          country: 'Add a new destination country',
+          origin: 'Add my home country',
+          content: 'A checklist item is wrong or outdated',
+          feature: 'Suggest a new feature',
+          other: 'Other feedback'
+        },
+        tags: {
+          urgent: 'urgent',
+          important: 'important',
+          optional: 'optional'
+        },
+        phases: {
+          beforeArrival: 'Before arrival',
+          week1: 'Week 1',
+          days17: 'Days 1–7',
+          days18: 'Days 1–8',
+          weeks24: 'Weeks 2–4',
+          months36: '3–6 months before',
+          weeks48: '4–8 weeks before',
+          arrivalWeek: 'Arrival week'
+        },
+        phaseTitles: {
+          visaDocuments: 'Visa & Documents',
+          visaPreDeparture: 'Visa & Pre-departure',
+          visaRegistration: 'Visa & Registration',
+          visaPreArrival: 'Visa & Pre-arrival',
+          beforeLeaveUkraine: 'Before You Leave Ukraine',
+          arrivingUK: 'Arriving in the UK',
+          week1Germany: 'Week 1 in Germany',
+          week1France: 'Week 1 in France',
+          week1Belgium: 'Week 1 in Belgium',
+          week1Poland: 'Week 1 in Poland',
+          week1Netherlands: 'Week 1 in the Netherlands',
+          week1Spain: 'Week 1 in Spain',
+          week1Italy: 'Week 1 in Italy',
+          week1Canada: 'Week 1 in Canada',
+          firstMonth: 'First Month',
+          beforeLeave: 'Before You Leave',
+          week1UK: 'Week 1 in the UK',
+          week1Generic: 'Week 1'
+        }
+      },
+
+      uk: {
+        htmlLang: 'uk',
+        dir: 'ltr',
+        langLabel: 'Мова',
+        eyebrowText: 'Створено іммігрантами для іммігрантів',
+        heroLine1: 'Ваш переїзд до',
+        heroLine3: 'крок за кроком.',
+        heroDefaultRegion: 'світу,',
+        heroText: 'Усе, що потрібно для переїзду — візові поради, чеклісти та місцеві підказки.',
+        destinationLabel: 'Я переїжджаю до',
+        originLabel: 'Я приїжджаю з',
+        selectionSummaryEmpty: 'Оберіть країну призначення, щоб побачити персональний чекліст переїзду.',
+        selectionSummaryDestination: 'Обрана країна призначення: {destination}.',
+        selectionSummaryOrigin: 'Обраний маршрут: {origin} → {destination}.',
+        progressDefaultTitle: 'Ваш чекліст переїзду',
+        progressCount: '{done} із {total} виконано',
+        celebrationTitle: 'Усе готово!',
+        celebrationText: 'Усі кроки виконано. Ласкаво просимо до нового життя.',
+        feedbackTitle: '💬 Допоможіть нам стати кращими',
+        feedbackIntro: 'Бракує країни? Є помилка? Напишіть нам — ми читаємо кожне повідомлення.',
+        inlineEmailLabel: 'Ваш email (необовʼязково)',
+        inlineTypeLabel: 'Що ви хотіли б побачити?',
+        inlineMessageLabel: 'Розкажіть більше',
+        inlineMessagePlaceholder: 'Наприклад: будь ласка, додайте США або інформація про візу до Німеччини неправильна...',
+        inlineSubmitBtn: 'Надіслати відгук →',
+        inlineSuccessTitle: 'Дякуємо!',
+        inlineSuccessText: 'Ваш відгук допомагає нам створювати кращий продукт для мільйонів іммігрантів.',
+        tabEmailBtn: '📧 Отримати повний гід',
+        tabFeedbackBtn: '💬 Залишити відгук',
+        modalEmailTitle: 'Отримати повний гід',
+        modalEmailText: 'Ми надішлемо вам повний пакет для переїзду — строки віз, банківські рахунки, житло, медицина та інше. Безкоштовно.',
+        modalEmailLabel: 'Ваша email-адреса',
+        modalDestLabel: 'Куди ви переїжджаєте?',
+        emailSubmitBtn: 'Надіслати мені гід →',
+        emailSuccessTitle: 'Вас додано до списку!',
+        emailSuccessText: 'Ми скоро надішлемо вам повний гід. Перевірте вхідні та, про всяк випадок, папку спам.',
+        modalFeedbackTitle: 'Залишити відгук',
+        modalFeedbackText: 'Бракує країни? Щось застаріло? Напишіть нам — кожне повідомлення читають особисто.',
+        modalFeedbackTypeLabel: 'Тип відгуку',
+        modalFeedbackMsgLabel: 'Ваше повідомлення',
+        modalFeedbackMsgPlaceholder: 'Наприклад: будь ласка, додайте Канаду або інформацію про Німеччину треба оновити...',
+        modalFeedbackEmailLabel: 'Ваш email (необовʼязково — якщо хочете відповідь)',
+        feedbackSubmitBtn: 'Надіслати відгук →',
+        feedbackSuccessTitle: 'Дякуємо!',
+        feedbackSuccessText: 'Ваш відгук допомагає нам створювати кращий продукт для мільйонів іммігрантів.',
+        footerCtaTitle: 'Хочете повний гід?',
+        footerCtaText: 'Строки віз, банки, житло та інше — безкоштовно.',
+        openGuideBtn: 'Отримати повний гід →',
+        chooseTopic: '— Оберіть тему —',
+        choose: '— Оберіть —',
+        selectDestinationOption: '— Оберіть країну призначення —',
+        other: 'Інше',
+        feedbackOptions: {
+          country: 'Додати нову країну призначення',
+          origin: 'Додати мою рідну країну',
+          content: 'Пункт чекліста неправильний або застарілий',
+          feature: 'Запропонувати нову функцію',
+          other: 'Інший відгук'
+        },
+        tags: {
+          urgent: 'терміново',
+          important: 'важливо',
+          optional: 'необовʼязково'
+        },
+        phases: {
+          beforeArrival: 'До прибуття',
+          week1: '1-й тиждень',
+          days17: 'Дні 1–7',
+          days18: 'Дні 1–8',
+          weeks24: 'Тижні 2–4',
+          months36: 'За 3–6 місяців',
+          weeks48: 'За 4–8 тижнів',
+          arrivalWeek: 'Тиждень прибуття'
+        },
+        phaseTitles: {
+          visaDocuments: 'Віза та документи',
+          visaPreDeparture: 'Віза та підготовка до виїзду',
+          visaRegistration: 'Віза та реєстрація',
+          visaPreArrival: 'Віза та підготовка до приїзду',
+          beforeLeaveUkraine: 'Перед виїздом з України',
+          arrivingUK: 'Прибуття до Великої Британії',
+          week1Germany: 'Перший тиждень у Німеччині',
+          week1France: 'Перший тиждень у Франції',
+          week1Belgium: 'Перший тиждень у Бельгії',
+          week1Poland: 'Перший тиждень у Польщі',
+          week1Netherlands: 'Перший тиждень у Нідерландах',
+          week1Spain: 'Перший тиждень в Іспанії',
+          week1Italy: 'Перший тиждень в Італії',
+          week1Canada: 'Перший тиждень у Канаді',
+          firstMonth: 'Перший місяць',
+          beforeLeave: 'Перед виїздом',
+          week1UK: 'Перший тиждень у Великій Британії',
+          week1Generic: 'Перший тиждень'
+        }
+      },
+
+      ar: {
+        htmlLang: 'ar',
+        dir: 'rtl',
+        langLabel: 'اللغة',
+        eyebrowText: 'صُمّم من مهاجرين لأجل مهاجرين',
+        heroLine1: 'انتقالك إلى',
+        heroLine3: 'خطوة بخطوة.',
+        heroDefaultRegion: 'العالم،',
+        heroText: 'كل ما تحتاجه للانتقال — أدلة التأشيرة، قوائم التحقق، ونصائح محلية.',
+        destinationLabel: 'أنا أنتقل إلى',
+        originLabel: 'أنا قادم من',
+        selectionSummaryEmpty: 'اختر بلد الوجهة لرؤية قائمة انتقال مخصّصة لك.',
+        selectionSummaryDestination: 'الوجهة المختارة: {destination}.',
+        selectionSummaryOrigin: 'المسار المختار: {origin} ← {destination}.',
+        progressDefaultTitle: 'قائمة انتقالك',
+        progressCount: '{done} من {total} تمّ إنجازه',
+        celebrationTitle: 'أنت جاهز!',
+        celebrationText: 'تم إكمال كل الخطوات. أهلاً بك في حياتك الجديدة.',
+        feedbackTitle: '💬 ساعدنا على التحسين',
+        feedbackIntro: 'هل هناك بلد مفقود؟ أو خطأ ما؟ أخبرنا — نحن نقرأ كل رسالة.',
+        inlineEmailLabel: 'بريدك الإلكتروني (اختياري)',
+        inlineTypeLabel: 'ماذا تريد أن ترى؟',
+        inlineMessageLabel: 'أخبرنا أكثر',
+        inlineMessagePlaceholder: 'مثلاً: أضفوا الولايات المتحدة أو معلومات تأشيرة ألمانيا غير صحيحة...',
+        inlineSubmitBtn: 'إرسال الملاحظات →',
+        inlineSuccessTitle: 'شكراً لك!',
+        inlineSuccessText: 'ملاحظاتك تساعدنا على بناء منتج أفضل لملايين المهاجرين.',
+        tabEmailBtn: '📧 احصل على الدليل الكامل',
+        tabFeedbackBtn: '💬 أرسل ملاحظاتك',
+        modalEmailTitle: 'احصل على الدليل الكامل',
+        modalEmailText: 'سنرسل لك حزمة الانتقال الكاملة — جداول التأشيرات، الحسابات البنكية، السكن، الرعاية الصحية وغير ذلك. مجاناً.',
+        modalEmailLabel: 'بريدك الإلكتروني',
+        modalDestLabel: 'إلى أين ستنتقل؟',
+        emailSubmitBtn: 'أرسل لي الدليل →',
+        emailSuccessTitle: 'تمت إضافتك!',
+        emailSuccessText: 'سنرسل لك الدليل الكامل قريباً. تحقق من البريد الوارد ومجلد الرسائل غير المرغوب فيها أيضاً.',
+        modalFeedbackTitle: 'أرسل ملاحظاتك',
+        modalFeedbackText: 'هل هناك بلد مفقود؟ أو شيء قديم؟ أخبرنا — كل رسالة تُقرأ شخصياً.',
+        modalFeedbackTypeLabel: 'نوع الملاحظات',
+        modalFeedbackMsgLabel: 'رسالتك',
+        modalFeedbackMsgPlaceholder: 'مثلاً: أضيفوا كندا أو معلومات قائمة ألمانيا تحتاج إلى تحديث...',
+        modalFeedbackEmailLabel: 'بريدك الإلكتروني (اختياري — إذا أردت رداً)',
+        feedbackSubmitBtn: 'إرسال الملاحظات →',
+        feedbackSuccessTitle: 'شكراً لك!',
+        feedbackSuccessText: 'ملاحظاتك تساعدنا على بناء منتج أفضل لملايين المهاجرين.',
+        footerCtaTitle: 'هل تريد الدليل الكامل؟',
+        footerCtaText: 'جداول التأشيرات، البنوك، السكن وغير ذلك — مجاناً.',
+        openGuideBtn: 'احصل على الدليل الكامل →',
+        chooseTopic: '— اختر موضوعاً —',
+        choose: '— اختر —',
+        selectDestinationOption: '— اختر الوجهة —',
+        other: 'أخرى',
+        feedbackOptions: {
+          country: 'إضافة بلد وجهة جديد',
+          origin: 'إضافة بلدي الأصلي',
+          content: 'عنصر في القائمة غير صحيح أو قديم',
+          feature: 'اقتراح ميزة جديدة',
+          other: 'ملاحظات أخرى'
+        },
+        tags: {
+          urgent: 'عاجل',
+          important: 'مهم',
+          optional: 'اختياري'
+        },
+        phases: {
+          beforeArrival: 'قبل الوصول',
+          week1: 'الأسبوع الأول',
+          days17: 'الأيام 1–7',
+          days18: 'الأيام 1–8',
+          weeks24: 'الأسابيع 2–4',
+          months36: 'قبل 3–6 أشهر',
+          weeks48: 'قبل 4–8 أسابيع',
+          arrivalWeek: 'أسبوع الوصول'
+        },
+        phaseTitles: {
+          visaDocuments: 'التأشيرة والوثائق',
+          visaPreDeparture: 'التأشيرة وما قبل المغادرة',
+          visaRegistration: 'التأشيرة والتسجيل',
+          visaPreArrival: 'التأشيرة وما قبل الوصول',
+          beforeLeaveUkraine: 'قبل مغادرة أوكرانيا',
+          arrivingUK: 'الوصول إلى المملكة المتحدة',
+          week1Germany: 'الأسبوع الأول في ألمانيا',
+          week1France: 'الأسبوع الأول في فرنسا',
+          week1Belgium: 'الأسبوع الأول في بلجيكا',
+          week1Poland: 'الأسبوع الأول في بولندا',
+          week1Netherlands: 'الأسبوع الأول في هولندا',
+          week1Spain: 'الأسبوع الأول في إسبانيا',
+          week1Italy: 'الأسبوع الأول في إيطاليا',
+          week1Canada: 'الأسبوع الأول في كندا',
+          firstMonth: 'الشهر الأول',
+          beforeLeave: 'قبل المغادرة',
+          week1UK: 'الأسبوع الأول في المملكة المتحدة',
+          week1Generic: 'الأسبوع الأول'
+        }
+      },
+
+      hi: {
+        htmlLang: 'hi',
+        dir: 'ltr',
+        langLabel: 'भाषा',
+        eyebrowText: 'प्रवासी लोगों द्वारा, प्रवासी लोगों के लिए',
+        heroLine1: 'आपका सफर',
+        heroLine3: 'कदम दर कदम।',
+        heroDefaultRegion: 'दुनिया की ओर,',
+        heroText: 'स्थानांतरण के लिए जो कुछ चाहिए — वीज़ा गाइड, चेकलिस्ट और स्थानीय सुझाव।',
+        destinationLabel: 'मैं जा रहा/रही हूँ',
+        originLabel: 'मैं आ रहा/रही हूँ',
+        selectionSummaryEmpty: 'अपनी व्यक्तिगत relocation checklist देखने के लिए destination चुनें।',
+        selectionSummaryDestination: 'चुना गया destination: {destination}.',
+        selectionSummaryOrigin: 'चुना गया route: {origin} → {destination}.',
+        progressDefaultTitle: 'आपकी relocation checklist',
+        progressCount: '{done} में से {total} पूरे',
+        celebrationTitle: 'सब तैयार है!',
+        celebrationText: 'सभी चरण पूरे हो गए। आपके नए जीवन में स्वागत है।',
+        feedbackTitle: '💬 हमें बेहतर बनाने में मदद करें',
+        feedbackIntro: 'कोई देश नहीं है? कुछ गलत है? हमें बताइए — हम हर संदेश पढ़ते हैं।',
+        inlineEmailLabel: 'आपका email (वैकल्पिक)',
+        inlineTypeLabel: 'आप क्या देखना चाहेंगे?',
+        inlineMessageLabel: 'और बताइए',
+        inlineMessagePlaceholder: 'उदाहरण: कृपया USA जोड़ें, या Germany visa जानकारी गलत है...',
+        inlineSubmitBtn: 'Feedback भेजें →',
+        inlineSuccessTitle: 'धन्यवाद!',
+        inlineSuccessText: 'आपका feedback हमें लाखों प्रवासियों के लिए बेहतर उत्पाद बनाने में मदद करता है।',
+        tabEmailBtn: '📧 पूरा गाइड पाएं',
+        tabFeedbackBtn: '💬 Feedback दें',
+        modalEmailTitle: 'पूरा गाइड पाएं',
+        modalEmailText: 'हम आपको पूरा relocation pack भेजेंगे — visa timelines, bank accounts, housing tips, healthcare और बहुत कुछ। मुफ़्त।',
+        modalEmailLabel: 'आपका email address',
+        modalDestLabel: 'आप कहाँ जा रहे हैं?',
+        emailSubmitBtn: 'मुझे गाइड भेजें →',
+        emailSuccessTitle: 'आप सूची में जुड़ गए हैं!',
+        emailSuccessText: 'हम आपको जल्द ही पूरा गाइड भेजेंगे। अपना inbox और spam folder भी देख लें।',
+        modalFeedbackTitle: 'Feedback दें',
+        modalFeedbackText: 'कोई देश नहीं है? कुछ पुराना है? हमें बताइए — हर संदेश को व्यक्तिगत रूप से पढ़ा जाता है।',
+        modalFeedbackTypeLabel: 'Feedback का प्रकार',
+        modalFeedbackMsgLabel: 'आपका संदेश',
+        modalFeedbackMsgPlaceholder: 'उदाहरण: कृपया Canada जोड़ें, या Germany checklist को अपडेट चाहिए...',
+        modalFeedbackEmailLabel: 'आपका email (वैकल्पिक — अगर आप जवाब चाहते हैं)',
+        feedbackSubmitBtn: 'Feedback भेजें →',
+        feedbackSuccessTitle: 'धन्यवाद!',
+        feedbackSuccessText: 'आपका feedback हमें लाखों प्रवासियों के लिए बेहतर उत्पाद बनाने में मदद करता है।',
+        footerCtaTitle: 'पूरा गाइड चाहिए?',
+        footerCtaText: 'Visa timelines, bank accounts, housing और बहुत कुछ — मुफ़्त।',
+        openGuideBtn: 'पूरा गाइड पाएं →',
+        chooseTopic: '— विषय चुनें —',
+        choose: '— चुनें —',
+        selectDestinationOption: '— destination चुनें —',
+        other: 'अन्य',
+        feedbackOptions: {
+          country: 'नया destination country जोड़ें',
+          origin: 'मेरा home country जोड़ें',
+          content: 'Checklist item गलत या पुराना है',
+          feature: 'नई feature सुझाएँ',
+          other: 'अन्य feedback'
+        },
+        tags: {
+          urgent: 'ज़रूरी',
+          important: 'महत्वपूर्ण',
+          optional: 'वैकल्पिक'
+        },
+        phases: {
+          beforeArrival: 'आने से पहले',
+          week1: 'पहला सप्ताह',
+          days17: 'दिन 1–7',
+          days18: 'दिन 1–8',
+          weeks24: 'सप्ताह 2–4',
+          months36: '3–6 महीने पहले',
+          weeks48: '4–8 सप्ताह पहले',
+          arrivalWeek: 'आगमन सप्ताह'
+        },
+        phaseTitles: {
+          visaDocuments: 'वीज़ा और दस्तावेज़',
+          visaPreDeparture: 'वीज़ा और प्रस्थान से पहले',
+          visaRegistration: 'वीज़ा और पंजीकरण',
+          visaPreArrival: 'वीज़ा और आगमन से पहले',
+          beforeLeaveUkraine: 'यूक्रेन छोड़ने से पहले',
+          arrivingUK: 'यूके में आगमन',
+          week1Germany: 'Germany में पहला सप्ताह',
+          week1France: 'France में पहला सप्ताह',
+          week1Belgium: 'Belgium में पहला सप्ताह',
+          week1Poland: 'Poland में पहला सप्ताह',
+          week1Netherlands: 'Netherlands में पहला सप्ताह',
+          week1Spain: 'Spain में पहला सप्ताह',
+          week1Italy: 'Italy में पहला सप्ताह',
+          week1Canada: 'Canada में पहला सप्ताह',
+          firstMonth: 'पहला महीना',
+          beforeLeave: 'रवाना होने से पहले',
+          week1UK: 'यूके में पहला सप्ताह',
+          week1Generic: 'पहला सप्ताह'
+        }
+      }
+    };
+
     const destinations = [
-      { code: 'UK', flag: '🇬🇧', name: 'United Kingdom' },
-      { code: 'DE', flag: '🇩🇪', name: 'Germany' },
-      { code: 'FR', flag: '🇫🇷', name: 'France' },
-      { code: 'BE', flag: '🇧🇪', name: 'Belgium' },
-      { code: 'PL', flag: '🇵🇱', name: 'Poland' },
-      { code: 'NL', flag: '🇳🇱', name: 'Netherlands' },
-      { code: 'ES', flag: '🇪🇸', name: 'Spain' },
-      { code: 'IT', flag: '🇮🇹', name: 'Italy' },
-      { code: 'CA', flag: '🇨🇦', name: 'Canada' },
-      { code: 'OTHER_EU', flag: '🇪🇺', name: 'Other EU country' }
+      { code: 'UK', flag: '🇬🇧', names: { en: 'United Kingdom', uk: 'Велика Британія', ar: 'المملكة المتحدة', hi: 'United Kingdom' } },
+      { code: 'DE', flag: '🇩🇪', names: { en: 'Germany', uk: 'Німеччина', ar: 'ألمانيا', hi: 'Germany' } },
+      { code: 'FR', flag: '🇫🇷', names: { en: 'France', uk: 'Франція', ar: 'فرنسا', hi: 'France' } },
+      { code: 'BE', flag: '🇧🇪', names: { en: 'Belgium', uk: 'Бельгія', ar: 'بلجيكا', hi: 'Belgium' } },
+      { code: 'PL', flag: '🇵🇱', names: { en: 'Poland', uk: 'Польща', ar: 'بولندا', hi: 'Poland' } },
+      { code: 'NL', flag: '🇳🇱', names: { en: 'Netherlands', uk: 'Нідерланди', ar: 'هولندا', hi: 'Netherlands' } },
+      { code: 'ES', flag: '🇪🇸', names: { en: 'Spain', uk: 'Іспанія', ar: 'إسبانيا', hi: 'Spain' } },
+      { code: 'IT', flag: '🇮🇹', names: { en: 'Italy', uk: 'Італія', ar: 'إيطاليا', hi: 'Italy' } },
+      { code: 'CA', flag: '🇨🇦', names: { en: 'Canada', uk: 'Канада', ar: 'كندا', hi: 'Canada' } },
+      { code: 'OTHER_EU', flag: '🇪🇺', names: { en: 'Other EU country', uk: 'Інша країна ЄС', ar: 'دولة أخرى في الاتحاد الأوروبي', hi: 'Other EU country' } }
     ];
 
     const countries = [
-      { code: 'UA', flag: '🇺🇦', name: 'Ukraine' },
-      { code: 'IN', flag: '🇮🇳', name: 'India' },
-      { code: 'NG', flag: '🇳🇬', name: 'Nigeria' },
-      { code: 'PH', flag: '🇵🇭', name: 'Philippines' },
-      { code: 'RO', flag: '🇷🇴', name: 'Romania' },
-      { code: 'PK', flag: '🇵🇰', name: 'Pakistan' },
-      { code: 'BD', flag: '🇧🇩', name: 'Bangladesh' },
-      { code: 'TR', flag: '🇹🇷', name: 'Turkey' },
-      { code: 'MA', flag: '🇲🇦', name: 'Morocco' },
-      { code: 'OTHER', flag: '🌍', name: 'Other country' }
+      { code: 'UA', flag: '🇺🇦', names: { en: 'Ukraine', uk: 'Україна', ar: 'أوكرانيا', hi: 'Ukraine' } },
+      { code: 'IN', flag: '🇮🇳', names: { en: 'India', uk: 'Індія', ar: 'الهند', hi: 'India' } },
+      { code: 'NG', flag: '🇳🇬', names: { en: 'Nigeria', uk: 'Нігерія', ar: 'نيجيريا', hi: 'Nigeria' } },
+      { code: 'PH', flag: '🇵🇭', names: { en: 'Philippines', uk: 'Філіппіни', ar: 'الفلبين', hi: 'Philippines' } },
+      { code: 'RO', flag: '🇷🇴', names: { en: 'Romania', uk: 'Румунія', ar: 'رومانيا', hi: 'Romania' } },
+      { code: 'PK', flag: '🇵🇰', names: { en: 'Pakistan', uk: 'Пакистан', ar: 'باكستان', hi: 'Pakistan' } },
+      { code: 'BD', flag: '🇧🇩', names: { en: 'Bangladesh', uk: 'Бангладеш', ar: 'بنغلاديش', hi: 'Bangladesh' } },
+      { code: 'TR', flag: '🇹🇷', names: { en: 'Turkey', uk: 'Туреччина', ar: 'تركيا', hi: 'Turkey' } },
+      { code: 'MA', flag: '🇲🇦', names: { en: 'Morocco', uk: 'Марокко', ar: 'المغرب', hi: 'Morocco' } },
+      { code: 'OTHER', flag: '🌍', names: { en: 'Other country', uk: 'Інша країна', ar: 'بلد آخر', hi: 'Other country' } }
     ];
 
     const destinationChecklists = {
       DE: {
-        name: 'Germany',
         phases: [
           {
-            phase: 'Visa & Registration',
-            time: 'Before arrival',
+            phaseKey: 'visaRegistration',
+            timeKey: 'beforeArrival',
             items: [
               { text: 'Apply for the correct visa (such as a national D visa for work or study).', note: 'Apply at the German embassy or consulate in your home country.', tag: 'urgent' },
               { text: 'Set up a blocked account (Sperrkonto) if you are arriving as a student.', note: 'Often required to prove financial support.', tag: 'urgent' },
@@ -847,8 +1382,8 @@
             ]
           },
           {
-            phase: 'Week 1 in Germany',
-            time: 'Days 1–7',
+            phaseKey: 'week1Germany',
+            timeKey: 'days17',
             items: [
               { text: 'Register your address (Anmeldung).', note: 'This is mandatory and usually must be done quickly after arrival.', tag: 'urgent' },
               { text: 'Open a German bank account.', note: 'Bring your passport and address registration proof if required.', tag: 'urgent' },
@@ -858,8 +1393,8 @@
             ]
           },
           {
-            phase: 'First Month',
-            time: 'Weeks 2–4',
+            phaseKey: 'firstMonth',
+            timeKey: 'weeks24',
             items: [
               { text: 'Apply for your residence permit if needed.', note: 'Book the appointment early because waiting times can be long.', tag: 'urgent' },
               { text: 'Register with the job centre if you are unemployed.', note: 'Rules depend on your visa and residence status.', tag: 'important' },
@@ -870,12 +1405,12 @@
           }
         ]
       },
+
       FR: {
-        name: 'France',
         phases: [
           {
-            phase: 'Visa & Pre-departure',
-            time: 'Before arrival',
+            phaseKey: 'visaPreDeparture',
+            timeKey: 'beforeArrival',
             items: [
               { text: 'Apply for the correct long-stay visa.', note: 'The process depends on work, study, family, or another route.', tag: 'urgent' },
               { text: 'Prepare accommodation proof.', note: 'This may be needed for both the visa and the first registration steps.', tag: 'urgent' },
@@ -883,8 +1418,8 @@
             ]
           },
           {
-            phase: 'Week 1 in France',
-            time: 'Days 1–7',
+            phaseKey: 'week1France',
+            timeKey: 'days17',
             items: [
               { text: 'Validate your visa online if required.', note: 'Some long-stay visas must be validated after arrival.', tag: 'urgent' },
               { text: 'Open a French bank account.', note: 'A local account can help with rent and salary payments.', tag: 'urgent' },
@@ -892,8 +1427,8 @@
             ]
           },
           {
-            phase: 'First Month',
-            time: 'Weeks 2–4',
+            phaseKey: 'firstMonth',
+            timeKey: 'weeks24',
             items: [
               { text: 'Apply for your health insurance card.', note: 'Processing can take several weeks.', tag: 'urgent' },
               { text: 'Check whether you can claim housing support.', note: 'Some residents can apply for rent support.', tag: 'important' },
@@ -902,20 +1437,20 @@
           }
         ]
       },
+
       BE: {
-        name: 'Belgium',
         phases: [
           {
-            phase: 'Visa & Documents',
-            time: 'Before arrival',
+            phaseKey: 'visaDocuments',
+            timeKey: 'beforeArrival',
             items: [
               { text: 'Apply for a long-stay visa if you need one.', note: 'Check the Belgian embassy guidance for your route.', tag: 'urgent' },
               { text: 'Prepare health insurance proof.', note: 'This may be required before commune registration.', tag: 'urgent' }
             ]
           },
           {
-            phase: 'Week 1 in Belgium',
-            time: 'Days 1–7',
+            phaseKey: 'week1Belgium',
+            timeKey: 'days17',
             items: [
               { text: 'Register at your local commune.', note: 'This is a key first step after arrival.', tag: 'urgent' },
               { text: 'Open a Belgian bank account.', note: 'Bring ID and local address evidence if needed.', tag: 'urgent' },
@@ -923,8 +1458,8 @@
             ]
           },
           {
-            phase: 'First Month',
-            time: 'Weeks 2–4',
+            phaseKey: 'firstMonth',
+            timeKey: 'weeks24',
             items: [
               { text: 'Register with a health insurance fund.', note: 'This is usually essential for long-term residents.', tag: 'urgent' },
               { text: 'Receive your national register number.', note: 'You will need it for many official services.', tag: 'urgent' }
@@ -932,20 +1467,20 @@
           }
         ]
       },
+
       PL: {
-        name: 'Poland',
         phases: [
           {
-            phase: 'Visa & Pre-arrival',
-            time: 'Before arrival',
+            phaseKey: 'visaPreArrival',
+            timeKey: 'beforeArrival',
             items: [
               { text: 'Apply for the correct Polish visa if required.', note: 'The required type depends on your purpose of stay.', tag: 'urgent' },
               { text: 'Prepare health insurance for the visa stage.', note: 'Check the exact policy rules for your application.', tag: 'urgent' }
             ]
           },
           {
-            phase: 'Week 1 in Poland',
-            time: 'Days 1–7',
+            phaseKey: 'week1Poland',
+            timeKey: 'days17',
             items: [
               { text: 'Register your place of stay if required.', note: 'Ask the local office about the correct registration path.', tag: 'urgent' },
               { text: 'Apply for a PESEL number if you need one.', note: 'This is very important for many everyday services.', tag: 'urgent' },
@@ -953,8 +1488,8 @@
             ]
           },
           {
-            phase: 'First Month',
-            time: 'Weeks 2–4',
+            phaseKey: 'firstMonth',
+            timeKey: 'weeks24',
             items: [
               { text: 'Apply for a temporary residence permit if needed.', note: 'Do this early because processing can take time.', tag: 'urgent' },
               { text: 'Register with the national health fund if required.', note: 'Employers may handle this for some workers.', tag: 'urgent' }
@@ -962,20 +1497,20 @@
           }
         ]
       },
+
       NL: {
-        name: 'Netherlands',
         phases: [
           {
-            phase: 'Visa & Pre-arrival',
-            time: 'Before arrival',
+            phaseKey: 'visaPreArrival',
+            timeKey: 'beforeArrival',
             items: [
               { text: 'Apply for entry clearance or a residence route if needed.', note: 'Your route depends on work, study, or family status.', tag: 'urgent' },
               { text: 'Plan for Dutch health insurance.', note: 'This becomes very important soon after arrival.', tag: 'urgent' }
             ]
           },
           {
-            phase: 'Week 1 in the Netherlands',
-            time: 'Days 1–7',
+            phaseKey: 'week1Netherlands',
+            timeKey: 'days17',
             items: [
               { text: 'Register at the municipality.', note: 'This registration is often needed to receive your local number.', tag: 'urgent' },
               { text: 'Get your BSN number.', note: 'You will need this for work, banking, and healthcare.', tag: 'urgent' },
@@ -984,8 +1519,8 @@
             ]
           },
           {
-            phase: 'First Month',
-            time: 'Weeks 2–4',
+            phaseKey: 'firstMonth',
+            timeKey: 'weeks24',
             items: [
               { text: 'Apply for DigiD.', note: 'This helps you use many government services online.', tag: 'urgent' },
               { text: 'Check whether the 30% ruling could apply to you.', note: 'This may matter for some highly skilled migrants.', tag: 'important' }
@@ -993,20 +1528,20 @@
           }
         ]
       },
+
       ES: {
-        name: 'Spain',
         phases: [
           {
-            phase: 'Visa & Documents',
-            time: 'Before arrival',
+            phaseKey: 'visaDocuments',
+            timeKey: 'beforeArrival',
             items: [
               { text: 'Apply for the correct long-stay visa if required.', note: 'Check your route carefully before submitting documents.', tag: 'urgent' },
               { text: 'Arrange private health insurance if needed.', note: 'Some visa categories require this from the start.', tag: 'urgent' }
             ]
           },
           {
-            phase: 'Week 1 in Spain',
-            time: 'Days 1–7',
+            phaseKey: 'week1Spain',
+            timeKey: 'days17',
             items: [
               { text: 'Register on the local padrón if required.', note: 'This is often essential for later services.', tag: 'urgent' },
               { text: 'Apply for your NIE number.', note: 'You will need it for many financial and legal steps.', tag: 'urgent' },
@@ -1014,8 +1549,8 @@
             ]
           },
           {
-            phase: 'First Month',
-            time: 'Weeks 2–4',
+            phaseKey: 'firstMonth',
+            timeKey: 'weeks24',
             items: [
               { text: 'Apply for your residence card if required.', note: 'Book the appointment as early as possible.', tag: 'urgent' },
               { text: 'Register with your local health centre.', note: 'This supports access to public healthcare where eligible.', tag: 'urgent' }
@@ -1023,20 +1558,20 @@
           }
         ]
       },
+
       IT: {
-        name: 'Italy',
         phases: [
           {
-            phase: 'Visa & Documents',
-            time: 'Before arrival',
+            phaseKey: 'visaDocuments',
+            timeKey: 'beforeArrival',
             items: [
               { text: 'Apply for the correct national visa if needed.', note: 'Use the Italian consulate guidance for your route.', tag: 'urgent' },
               { text: 'Arrange insurance for your initial period.', note: 'This may be needed before joining the public system.', tag: 'urgent' }
             ]
           },
           {
-            phase: 'Week 1 in Italy',
-            time: 'Days 1–8',
+            phaseKey: 'week1Italy',
+            timeKey: 'days18',
             items: [
               { text: 'Apply for your residence permit process if required.', note: 'This usually needs to happen very soon after arrival.', tag: 'urgent' },
               { text: 'Get your tax code.', note: 'This is important for many services in Italy.', tag: 'urgent' },
@@ -1044,20 +1579,20 @@
             ]
           },
           {
-            phase: 'First Month',
-            time: 'Weeks 2–4',
+            phaseKey: 'firstMonth',
+            timeKey: 'weeks24',
             items: [
               { text: 'Register with the local health authority.', note: 'This supports public healthcare access where eligible.', tag: 'urgent' }
             ]
           }
         ]
       },
+
       CA: {
-        name: 'Canada',
         phases: [
           {
-            phase: 'Visa & Pre-arrival',
-            time: '3–6 months before',
+            phaseKey: 'visaPreArrival',
+            timeKey: 'months36',
             items: [
               { text: 'Apply through the correct immigration or visa route.', note: 'This may be work, study, family, or permanent residence.', tag: 'urgent' },
               { text: 'Complete credential checks if your route requires them.', note: 'This is common for skilled migration pathways.', tag: 'urgent' },
@@ -1066,8 +1601,8 @@
             ]
           },
           {
-            phase: 'Week 1 in Canada',
-            time: 'Days 1–7',
+            phaseKey: 'week1Canada',
+            timeKey: 'days17',
             items: [
               { text: 'Apply for a Social Insurance Number.', note: 'You will need this for work and many official services.', tag: 'urgent' },
               { text: 'Open a Canadian bank account.', note: 'Newcomer packages are often available.', tag: 'urgent' },
@@ -1077,8 +1612,8 @@
             ]
           },
           {
-            phase: 'First Month',
-            time: 'Weeks 2–4',
+            phaseKey: 'firstMonth',
+            timeKey: 'weeks24',
             items: [
               { text: 'Find long-term housing.', note: 'Be ready for deposits and proof of income where required.', tag: 'urgent' },
               { text: 'Check if you can exchange your driving licence.', note: 'The rules depend on the province and your licence country.', tag: 'important' },
@@ -1088,12 +1623,12 @@
           }
         ]
       },
+
       OTHER_EU: {
-        name: 'EU Country',
         phases: [
           {
-            phase: 'Visa & Documents',
-            time: 'Before arrival',
+            phaseKey: 'visaDocuments',
+            timeKey: 'beforeArrival',
             items: [
               { text: 'Check whether you need a visa or long-stay permit.', note: 'Requirements differ across EU countries.', tag: 'urgent' },
               { text: 'Apply through the embassy or consulate of your destination.', note: 'Processing times can vary widely.', tag: 'urgent' },
@@ -1101,8 +1636,8 @@
             ]
           },
           {
-            phase: 'Week 1',
-            time: 'Days 1–7',
+            phaseKey: 'week1Generic',
+            timeKey: 'days17',
             items: [
               { text: 'Register your address locally.', note: 'This is often mandatory soon after arrival.', tag: 'urgent' },
               { text: 'Get your local tax or identity number.', note: 'You will need this for work and official services.', tag: 'urgent' },
@@ -1110,8 +1645,8 @@
             ]
           },
           {
-            phase: 'First Month',
-            time: 'Weeks 2–4',
+            phaseKey: 'firstMonth',
+            timeKey: 'weeks24',
             items: [
               { text: 'Join the local public health system where eligible.', note: 'Rules differ by country and visa type.', tag: 'urgent' },
               { text: 'Look for local language courses.', note: 'Some governments support integration classes.', tag: 'important' }
@@ -1121,11 +1656,11 @@
       }
     };
 
-    const checklists = {
+    const ukChecklists = {
       UA: [
         {
-          phase: 'Before You Leave Ukraine',
-          time: '4–8 weeks before',
+          phaseKey: 'beforeLeaveUkraine',
+          timeKey: 'weeks48',
           items: [
             { text: 'Check that your passport will stay valid long enough.', note: 'A longer validity period makes many applications easier.', tag: 'urgent' },
             { text: 'Collect proof of nationality and civil documents.', note: 'Keep clear photo and paper copies.', tag: 'urgent' },
@@ -1136,8 +1671,8 @@
           ]
         },
         {
-          phase: 'Arriving in the UK',
-          time: 'Week 1',
+          phaseKey: 'arrivingUK',
+          timeKey: 'week1',
           items: [
             { text: 'Register with your local council if your route requires this.', note: 'This can trigger important support and next steps.', tag: 'urgent' },
             { text: 'Set up your UKVI account and eVisa if needed.', note: 'Digital immigration status is now very important.', tag: 'urgent' },
@@ -1147,8 +1682,8 @@
           ]
         },
         {
-          phase: 'First Month',
-          time: 'Weeks 2–4',
+          phaseKey: 'firstMonth',
+          timeKey: 'weeks24',
           items: [
             { text: 'Apply for Universal Credit if you are eligible.', note: 'Do this early if you need support.', tag: 'urgent' },
             { text: 'Apply for disability-related support if relevant.', note: 'These claims can take time.', tag: 'urgent' },
@@ -1159,10 +1694,11 @@
           ]
         }
       ],
+
       DEFAULT: [
         {
-          phase: 'Visa & Documents',
-          time: '3–6 months before',
+          phaseKey: 'visaDocuments',
+          timeKey: 'months36',
           items: [
             { text: 'Confirm the correct UK visa category for your situation.', note: 'For example: work, study, family, or another route.', tag: 'urgent' },
             { text: 'Check your passport validity.', note: 'Renew it early if needed.', tag: 'urgent' },
@@ -1170,8 +1706,8 @@
           ]
         },
         {
-          phase: 'Before You Leave',
-          time: '4–8 weeks before',
+          phaseKey: 'beforeLeave',
+          timeKey: 'weeks48',
           items: [
             { text: 'Arrange temporary accommodation for your first days.', note: 'This helps reduce stress while you search for something long term.', tag: 'urgent' },
             { text: 'Arrange travel and health cover if needed.', note: 'Check what is included and when it starts.', tag: 'urgent' },
@@ -1179,8 +1715,8 @@
           ]
         },
         {
-          phase: 'Week 1 in the UK',
-          time: 'Arrival week',
+          phaseKey: 'week1UK',
+          timeKey: 'arrivalWeek',
           items: [
             { text: 'Register with a GP.', note: 'Bring ID and your address details if possible.', tag: 'urgent' },
             { text: 'Open a UK bank account.', note: 'Some digital banks are easier for new arrivals.', tag: 'urgent' },
@@ -1189,8 +1725,8 @@
           ]
         },
         {
-          phase: 'First Month',
-          time: 'Weeks 2–4',
+          phaseKey: 'firstMonth',
+          timeKey: 'weeks24',
           items: [
             { text: 'Look for longer-term housing.', note: 'Prepare your ID, references, and budget information.', tag: 'urgent' },
             { text: 'Learn your rights at work if you will be employed.', note: 'This can help protect you from unfair treatment.', tag: 'important' },
@@ -1203,20 +1739,39 @@
     let state = {};
     let currentCountry = null;
     let currentDestination = null;
+    let currentLanguage = 'en';
+    let checklistCompleteEventSent = false;
 
     const $ = (id) => document.getElementById(id);
 
+    function safeTrack(eventName, params = {}) {
+      if (typeof gtag === 'function') {
+        gtag('event', eventName, params);
+      }
+    }
+
     function loadState() {
       try {
-        state = JSON.parse(localStorage.getItem('immigrify_state') || '{}');
+        state = JSON.parse(localStorage.getItem('immigrify_state_v2') || '{}');
       } catch {
         state = {};
       }
+
+      try {
+        const savedLang = localStorage.getItem('immigrify_lang');
+        if (savedLang && translations[savedLang]) currentLanguage = savedLang;
+      } catch {}
     }
 
     function saveState() {
       try {
-        localStorage.setItem('immigrify_state', JSON.stringify(state));
+        localStorage.setItem('immigrify_state_v2', JSON.stringify(state));
+      } catch {}
+    }
+
+    function saveLanguage() {
+      try {
+        localStorage.setItem('immigrify_lang', currentLanguage);
       } catch {}
     }
 
@@ -1224,14 +1779,157 @@
       return `${scope}_${phaseIdx}_${itemIdx}`;
     }
 
+    function t(path) {
+      const parts = path.split('.');
+      let obj = translations[currentLanguage] || translations.en;
+      for (const part of parts) {
+        obj = obj?.[part];
+      }
+      if (obj === undefined) {
+        let fallback = translations.en;
+        for (const part of parts) {
+          fallback = fallback?.[part];
+        }
+        return fallback ?? path;
+      }
+      return obj;
+    }
+
+    function getName(entity) {
+      return entity?.names?.[currentLanguage] || entity?.names?.en || '';
+    }
+
+    function replaceVars(template, values) {
+      return String(template).replace(/\{(\w+)\}/g, (_, key) => values[key] ?? '');
+    }
+
+    function translatePhaseTitle(key) {
+      return t(`phaseTitles.${key}`);
+    }
+
+    function translatePhaseTime(key) {
+      return t(`phases.${key}`);
+    }
+
+    function translateTag(tag) {
+      return t(`tags.${tag}`);
+    }
+
+    function setText(id, value) {
+      const el = $(id);
+      if (el) el.textContent = value;
+    }
+
+    function setPlaceholder(id, value) {
+      const el = $(id);
+      if (el) el.placeholder = value;
+    }
+
+    function applyStaticTranslations() {
+      document.documentElement.lang = t('htmlLang');
+      document.documentElement.dir = t('dir');
+
+      setText('langLabel', t('langLabel'));
+      setText('eyebrowText', t('eyebrowText'));
+      setText('heroLine1', t('heroLine1'));
+      setText('heroLine3', t('heroLine3'));
+      setText('heroText', t('heroText'));
+      setText('destinationLabel', t('destinationLabel'));
+      setText('originLabel', t('originLabel'));
+      setText('celebrationTitle', t('celebrationTitle'));
+      setText('celebrationText', t('celebrationText'));
+      setText('feedbackTitle', t('feedbackTitle'));
+      setText('feedbackIntro', t('feedbackIntro'));
+      setText('inlineEmailLabel', t('inlineEmailLabel'));
+      setText('inlineTypeLabel', t('inlineTypeLabel'));
+      setText('inlineMessageLabel', t('inlineMessageLabel'));
+      setText('inlineSubmitBtn', t('inlineSubmitBtn'));
+      setText('inlineSuccessTitle', t('inlineSuccessTitle'));
+      setText('inlineSuccessText', t('inlineSuccessText'));
+      setText('tabEmailBtn', t('tabEmailBtn'));
+      setText('tabFeedbackBtn', t('tabFeedbackBtn'));
+      setText('modalEmailTitle', t('modalEmailTitle'));
+      setText('modalEmailText', t('modalEmailText'));
+      setText('modalEmailLabel', t('modalEmailLabel'));
+      setText('modalDestLabel', t('modalDestLabel'));
+      setText('emailSubmitBtn', t('emailSubmitBtn'));
+      setText('emailSuccessTitle', t('emailSuccessTitle'));
+      setText('emailSuccessText', t('emailSuccessText'));
+      setText('modalFeedbackTitle', t('modalFeedbackTitle'));
+      setText('modalFeedbackText', t('modalFeedbackText'));
+      setText('modalFeedbackTypeLabel', t('modalFeedbackTypeLabel'));
+      setText('modalFeedbackMsgLabel', t('modalFeedbackMsgLabel'));
+      setText('modalFeedbackEmailLabel', t('modalFeedbackEmailLabel'));
+      setText('feedbackSubmitBtn', t('feedbackSubmitBtn'));
+      setText('feedbackSuccessTitle', t('feedbackSuccessTitle'));
+      setText('feedbackSuccessText', t('feedbackSuccessText'));
+      setText('footerCtaTitle', t('footerCtaTitle'));
+      setText('footerCtaText', t('footerCtaText'));
+      setText('openGuideBtn', t('openGuideBtn'));
+
+      setPlaceholder('inlineEmail', 'your@email.com');
+      setPlaceholder('inlineMessage', t('inlineMessagePlaceholder'));
+      setPlaceholder('modalEmail', 'your@email.com');
+      setPlaceholder('modalFeedbackMsg', t('modalFeedbackMsgPlaceholder'));
+      setPlaceholder('modalFeedbackEmail', 'your@email.com');
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLanguage);
+      });
+
+      updateHeroRegion();
+      populateFeedbackOptions();
+      populateModalDestinations();
+      updateSelectionSummary();
+    }
+
+    function updateHeroRegion() {
+      const region = currentDestination ? getName(currentDestination) + ',' : t('heroDefaultRegion');
+      setText('heroRegion', region);
+    }
+
+    function populateFeedbackOptions() {
+      const inlineType = $('inlineType');
+      const modalType = $('modalFeedbackType');
+      const options = t('feedbackOptions');
+
+      inlineType.innerHTML = '';
+      modalType.innerHTML = '';
+
+      const inlineFirst = document.createElement('option');
+      inlineFirst.value = '';
+      inlineFirst.textContent = t('chooseTopic');
+      inlineType.appendChild(inlineFirst);
+
+      const modalFirst = document.createElement('option');
+      modalFirst.value = '';
+      modalFirst.textContent = t('choose');
+      modalType.appendChild(modalFirst);
+
+      Object.entries(options).forEach(([value, label]) => {
+        const option1 = document.createElement('option');
+        option1.value = value;
+        option1.textContent = label;
+        inlineType.appendChild(option1);
+
+        const option2 = document.createElement('option');
+        option2.value = value;
+        option2.textContent = label;
+        modalType.appendChild(option2);
+      });
+    }
+
     function renderDestinations() {
       const grid = $('destinationGrid');
       grid.innerHTML = '';
+
       destinations.forEach((destination) => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'country-btn';
-        btn.innerHTML = `<span>${destination.flag} ${destination.name}</span>`;
+        btn.dataset.code = destination.code;
+        btn.innerHTML = `<span>${destination.flag} ${getName(destination)}</span>`;
+        if (currentDestination?.code === destination.code) btn.classList.add('active');
         btn.addEventListener('click', () => selectDestination(destination, btn));
         grid.appendChild(btn);
       });
@@ -1240,11 +1938,14 @@
     function renderCountries() {
       const grid = $('countryGrid');
       grid.innerHTML = '';
+
       countries.forEach((country) => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'country-btn';
-        btn.innerHTML = `<span>${country.flag} ${country.name}</span>`;
+        btn.dataset.code = country.code;
+        btn.innerHTML = `<span>${country.flag} ${getName(country)}</span>`;
+        if (currentCountry?.code === country.code) btn.classList.add('active');
         btn.addEventListener('click', () => selectCountry(country, btn));
         grid.appendChild(btn);
       });
@@ -1252,17 +1953,32 @@
 
     function populateModalDestinations() {
       const select = $('modalDest');
-      select.innerHTML = '<option value="">— Select destination —</option>';
+      const previousValue = select.value;
+      select.innerHTML = '';
+
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = t('selectDestinationOption');
+      select.appendChild(placeholder);
+
       destinations.forEach((destination) => {
         const option = document.createElement('option');
-        option.value = destination.name;
-        option.textContent = `${destination.flag} ${destination.name}`;
+        option.value = getName(destination);
+        option.textContent = `${destination.flag} ${getName(destination)}`;
         select.appendChild(option);
       });
+
       const otherOption = document.createElement('option');
-      otherOption.value = 'Other';
-      otherOption.textContent = '🌍 Other';
+      otherOption.value = t('other');
+      otherOption.textContent = `🌍 ${t('other')}`;
       select.appendChild(otherOption);
+
+      if (currentDestination) {
+        select.value = getName(currentDestination);
+      } else if (previousValue) {
+        const exists = [...select.options].some(option => option.value === previousValue);
+        if (exists) select.value = previousValue;
+      }
     }
 
     function resetChecklistView() {
@@ -1274,16 +1990,48 @@
       $('checklistSection').innerHTML = '';
       $('checklistSection').style.opacity = '1';
       $('progressBar').style.width = '0%';
-      $('progressCount').textContent = '0 of 0 done';
+      $('progressCount').textContent = replaceVars(t('progressCount'), { done: 0, total: 0 });
+      checklistCompleteEventSent = false;
+      updateSelectionSummary();
+    }
+
+    function updateSelectionSummary() {
+      const el = $('selectionSummary');
+
+      if (!currentDestination) {
+        el.textContent = t('selectionSummaryEmpty');
+        return;
+      }
+
+      if (currentDestination.code === 'UK' && currentCountry) {
+        el.textContent = replaceVars(t('selectionSummaryOrigin'), {
+          origin: getName(currentCountry),
+          destination: getName(currentDestination)
+        });
+        return;
+      }
+
+      el.textContent = replaceVars(t('selectionSummaryDestination'), {
+        destination: getName(currentDestination)
+      });
     }
 
     function selectDestination(destination, button) {
       currentDestination = destination;
       currentCountry = null;
+      checklistCompleteEventSent = false;
 
       document.querySelectorAll('#destinationGrid .country-btn').forEach((btn) => btn.classList.remove('active'));
       button.classList.add('active');
-      $('heroRegion').textContent = `${destination.name},`;
+
+      updateHeroRegion();
+      populateModalDestinations();
+
+      safeTrack('select_destination', {
+        destination_code: destination.code,
+        destination_name: destination.names.en,
+        language: currentLanguage
+      });
 
       if (destination.code === 'UK') {
         $('fromRow').style.display = 'block';
@@ -1293,13 +2041,27 @@
         $('fromRow').style.display = 'none';
         renderDestinationChecklist(destination);
       }
+
+      updateSelectionSummary();
     }
 
     function selectCountry(country, button) {
       currentCountry = country;
+      checklistCompleteEventSent = false;
+
       document.querySelectorAll('#countryGrid .country-btn').forEach((btn) => btn.classList.remove('active'));
       button.classList.add('active');
+
+      safeTrack('select_origin_country', {
+        origin_code: country.code,
+        origin_name: country.names.en,
+        destination_code: currentDestination?.code || '',
+        destination_name: currentDestination?.names?.en || '',
+        language: currentLanguage
+      });
+
       renderUKChecklist(country);
+      updateSelectionSummary();
     }
 
     function buildChecklistDOM(phases, scope) {
@@ -1312,8 +2074,8 @@
         block.innerHTML = `
           <div class="phase-title">
             <div class="phase-num">${phaseIndex + 1}</div>
-            <div class="phase-name">${phase.phase}</div>
-            <div class="phase-time">${phase.time}</div>
+            <div class="phase-name">${translatePhaseTitle(phase.phaseKey)}</div>
+            <div class="phase-time">${translatePhaseTime(phase.timeKey)}</div>
           </div>
         `;
 
@@ -1328,7 +2090,7 @@
               <div class="item-text">${item.text}</div>
               ${item.note ? `<div class="item-note">${item.note}</div>` : ''}
             </div>
-            <div class="item-tag tag-${item.tag}">${item.tag}</div>
+            <div class="item-tag tag-${item.tag}">${translateTag(item.tag)}</div>
           `;
 
           itemEl.addEventListener('click', () => {
@@ -1355,13 +2117,14 @@
     function renderDestinationChecklist(destination) {
       const data = destinationChecklists[destination.code];
       if (!data) return;
-      $('progressTitle').textContent = `Moving to ${data.name}`;
+
+      $('progressTitle').textContent = `${t('progressDefaultTitle')}: ${getName(destination)}`;
       buildChecklistDOM(data.phases, `DEST_${destination.code}`);
     }
 
     function renderUKChecklist(country) {
-      const data = checklists[country.code] || checklists.DEFAULT;
-      $('progressTitle').textContent = `Moving to UK from ${country.name}`;
+      const data = ukChecklists[country.code] || ukChecklists.DEFAULT;
+      $('progressTitle').textContent = `${t('progressDefaultTitle')}: ${getName(currentDestination)} — ${getName(country)}`;
       buildChecklistDOM(data, `UK_${country.code}`);
     }
 
@@ -1378,32 +2141,52 @@
 
       const percent = total ? Math.round((done / total) * 100) : 0;
       $('progressBar').style.width = `${percent}%`;
-      $('progressCount').textContent = `${done} of ${total} done`;
+      $('progressCount').textContent = replaceVars(t('progressCount'), { done, total });
 
       if (percent === 100 && total > 0) {
         $('celebration').classList.add('visible');
         $('checklistSection').style.opacity = '0.55';
+
+        if (!checklistCompleteEventSent) {
+          checklistCompleteEventSent = true;
+          safeTrack('checklist_completed', {
+            destination_code: currentDestination?.code || '',
+            destination_name: currentDestination?.names?.en || '',
+            origin_code: currentCountry?.code || '',
+            origin_name: currentCountry?.names?.en || '',
+            language: currentLanguage
+          });
+        }
       } else {
         $('celebration').classList.remove('visible');
         $('checklistSection').style.opacity = '1';
+        checklistCompleteEventSent = false;
       }
     }
 
     function openModal(tabName = 'email') {
       $('modalOverlay').classList.add('visible');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('modal-open');
       switchTab(tabName);
+
+      safeTrack('open_modal', {
+        tab: tabName,
+        language: currentLanguage,
+        destination_code: currentDestination?.code || '',
+        origin_code: currentCountry?.code || ''
+      });
     }
 
     function closeModal() {
       $('modalOverlay').classList.remove('visible');
-      document.body.style.overflow = '';
+      document.body.classList.remove('modal-open');
     }
 
     function switchTab(name) {
       document.querySelectorAll('[data-tab-btn]').forEach((btn) => {
         btn.classList.toggle('active', btn.dataset.tabBtn === name);
       });
+
       document.querySelectorAll('.tab-panel').forEach((panel) => {
         panel.classList.toggle('active', panel.id === `tab-${name}`);
       });
@@ -1412,7 +2195,10 @@
     async function sendToFormspree(data, button, successEl, formEl, afterSuccess) {
       button.disabled = true;
       const originalText = button.textContent;
-      button.textContent = 'Sending…';
+      button.textContent = currentLanguage === 'ar' ? 'جارٍ الإرسال...' :
+                           currentLanguage === 'uk' ? 'Надсилання...' :
+                           currentLanguage === 'hi' ? 'भेजा जा रहा है...' :
+                           'Sending…';
 
       try {
         const response = await fetch(FORMSPREE, {
@@ -1431,7 +2217,10 @@
         if (typeof afterSuccess === 'function') afterSuccess();
       } catch {
         button.disabled = false;
-        button.textContent = 'Try again';
+        button.textContent = currentLanguage === 'ar' ? 'حاول مرة أخرى' :
+                             currentLanguage === 'uk' ? 'Спробуйте ще раз' :
+                             currentLanguage === 'hi' ? 'फिर से कोशिश करें' :
+                             'Try again';
         return;
       }
 
@@ -1441,10 +2230,16 @@
     function submitEmailSignup() {
       const email = $('modalEmail').value.trim();
       const destination = $('modalDest').value;
+
       if (!email) {
         $('modalEmail').focus();
         return;
       }
+
+      safeTrack('submit_guide_signup', {
+        language: currentLanguage,
+        destination_name: currentDestination?.names?.en || destination || ''
+      });
 
       sendToFormspree(
         {
@@ -1452,7 +2247,8 @@
           type: 'email-signup',
           email,
           destination,
-          selectedDestination: currentDestination ? currentDestination.name : ''
+          selectedDestination: currentDestination ? currentDestination.names.en : '',
+          language: currentLanguage
         },
         $('emailSubmitBtn'),
         $('emailSuccess'),
@@ -1467,6 +2263,13 @@
         return;
       }
 
+      safeTrack('submit_modal_feedback', {
+        category: $('modalFeedbackType').value || 'general',
+        language: currentLanguage,
+        destination_code: currentDestination?.code || '',
+        origin_code: currentCountry?.code || ''
+      });
+
       sendToFormspree(
         {
           _subject: `💬 Immigrify feedback: ${$('modalFeedbackType').value || 'general'}`,
@@ -1474,8 +2277,9 @@
           category: $('modalFeedbackType').value,
           message,
           email: $('modalFeedbackEmail').value.trim() || 'not provided',
-          selectedDestination: currentDestination ? currentDestination.name : '',
-          selectedOrigin: currentCountry ? currentCountry.name : ''
+          selectedDestination: currentDestination ? currentDestination.names.en : '',
+          selectedOrigin: currentCountry ? currentCountry.names.en : '',
+          language: currentLanguage
         },
         $('feedbackSubmitBtn'),
         $('feedbackSuccess'),
@@ -1490,6 +2294,13 @@
         return;
       }
 
+      safeTrack('submit_inline_feedback', {
+        category: $('inlineType').value || 'general',
+        language: currentLanguage,
+        destination_code: currentDestination?.code || '',
+        origin_code: currentCountry?.code || ''
+      });
+
       sendToFormspree(
         {
           _subject: '💬 Immigrify inline feedback',
@@ -1497,8 +2308,9 @@
           category: $('inlineType').value,
           message,
           email: $('inlineEmail').value.trim() || 'not provided',
-          selectedDestination: currentDestination ? currentDestination.name : '',
-          selectedOrigin: currentCountry ? currentCountry.name : ''
+          selectedDestination: currentDestination ? currentDestination.names.en : '',
+          selectedOrigin: currentCountry ? currentCountry.names.en : '',
+          language: currentLanguage
         },
         $('inlineSubmitBtn'),
         $('inlineSuccess'),
@@ -1512,15 +2324,47 @@
       );
     }
 
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+
+      currentLanguage = lang;
+      saveLanguage();
+      applyStaticTranslations();
+      renderDestinations();
+
+      if (currentDestination?.code === 'UK') {
+        renderCountries();
+      }
+
+      if (currentDestination) {
+        if (currentDestination.code === 'UK' && currentCountry) {
+          renderUKChecklist(currentCountry);
+        } else if (currentDestination.code !== 'UK') {
+          renderDestinationChecklist(currentDestination);
+        }
+      }
+
+      safeTrack('change_language', {
+        language: currentLanguage,
+        destination_code: currentDestination?.code || '',
+        origin_code: currentCountry?.code || ''
+      });
+    }
+
     function attachEvents() {
       $('openGuideBtn').addEventListener('click', () => openModal('email'));
       $('modalCloseBtn').addEventListener('click', closeModal);
+
       $('modalOverlay').addEventListener('click', (event) => {
         if (event.target === $('modalOverlay')) closeModal();
       });
 
       document.querySelectorAll('[data-tab-btn]').forEach((btn) => {
         btn.addEventListener('click', () => switchTab(btn.dataset.tabBtn));
+      });
+
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
       });
 
       $('emailSubmitBtn').addEventListener('click', submitEmailSignup);
@@ -1536,10 +2380,12 @@
 
     function init() {
       loadState();
+      applyStaticTranslations();
       renderDestinations();
       renderCountries();
       populateModalDestinations();
       attachEvents();
+      updateSelectionSummary();
     }
 
     init();
