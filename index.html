@@ -274,7 +274,7 @@ function googleTranslateElementInit() {
 </header>
 
 <section class="hero">
-  <h1>Your move to<br><em>Europe,</em><br>step by step.</h1>
+  <h1>Your move to<br><em id="heroRegion">the world,</em><br>step by step.</h1>
   <p>Everything you need to relocate â visa guides, checklists, local tips. Built by immigrants, for immigrants.</p>
 </section>
 
@@ -721,7 +721,7 @@ function renderDestinations() {
   destinations.forEach(d => {
     const btn = document.createElement('button');
     btn.className = 'country-btn';
-    btn.innerHTML = '<span translate="no">' + d.flag + '</span> ' + d.name;
+    btn.innerHTML = '<span>' + d.flag + ' ' + d.name + '</span>';
     btn.onclick = (e) => selectDestination(d, e.currentTarget);
     grid.appendChild(btn);
   });
@@ -733,7 +733,7 @@ function renderCountries() {
   countries.forEach(c => {
     const btn = document.createElement('button');
     btn.className = 'country-btn';
-    btn.innerHTML = '<span translate="no">' + c.flag + '</span> ' + c.name;
+    btn.innerHTML = '<span>' + c.flag + ' ' + c.name + '</span>';
     btn.onclick = (e) => selectCountry(c, e.currentTarget);
     grid.appendChild(btn);
   });
@@ -743,7 +743,9 @@ function selectDestination(d, btnEl) {
   currentDestination = d;
   document.querySelectorAll('#destinationGrid .country-btn').forEach(b => b.classList.remove('active'));
   btnEl.classList.add('active');
-  if (d.code === 'UK') {
+  // Update hero region text
+    document.getElementById('heroRegion').textContent = d.name + ',';
+    if (d.code === 'UK') {
     document.getElementById('fromRow').style.display = 'block';
     currentCountry = null;
     document.getElementById('progressSection').classList.remove('visible');
