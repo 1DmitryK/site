@@ -721,7 +721,7 @@ function renderDestinations() {
   destinations.forEach(d => {
     const btn = document.createElement('button');
     btn.className = 'country-btn';
-    btn.innerHTML = '<span>' + d.flag + ' ' + d.name + '</span>';
+    btn.innerHTML = '<span translate="no">' + d.flag + '</span> ' + d.name;
     btn.onclick = (e) => selectDestination(d, e.currentTarget);
     grid.appendChild(btn);
   });
@@ -733,7 +733,7 @@ function renderCountries() {
   countries.forEach(c => {
     const btn = document.createElement('button');
     btn.className = 'country-btn';
-    btn.innerHTML = '<span>' + c.flag + ' ' + c.name + '</span>';
+    btn.innerHTML = '<span translate="no">' + c.flag + '</span> ' + c.name;
     btn.onclick = (e) => selectCountry(c, e.currentTarget);
     grid.appendChild(btn);
   });
