@@ -3,7 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Immigrify — Your Move, Simplified</title>
+  <title>Immigrity — Your Move, Simplified</title>
+
+  <meta name="description" content="Immigrity helps immigrants relocate step by step with visa guides, checklists, local tips, and practical planning tools." />
+  <meta name="keywords" content="immigration checklist, relocation guide, moving abroad, visa guide, immigrant support, immigrity" />
+  <meta name="author" content="Immigrity" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#f6f1e8" />
+  <meta name="color-scheme" content="light" />
+  <link rel="canonical" href="https://immigrity.com/" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f6f1e8'/%3E%3Cpath d='M18 44V20h6v24zm11-24h6v18h11v6H29z' fill='%23141210'/%3E%3Ccircle cx='48' cy='18' r='6' fill='%23c74a2f'/%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='36' fill='%23f6f1e8'/%3E%3Cpath d='M50 124V56h18v68zm32-68h18v50h34v18H82z' fill='%23141210'/%3E%3Ccircle cx='134' cy='50' r='16' fill='%23c74a2f'/%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Immigrity" />
+  <meta property="og:title" content="Immigrity — Your Move, Simplified" />
+  <meta property="og:description" content="Relocation guides, visa checklists, and practical next steps for immigrants moving abroad." />
+  <meta property="og:url" content="https://immigrity.com/" />
+  <meta property="og:locale" content="en_GB" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Immigrity — Your Move, Simplified" />
+  <meta name="twitter:description" content="Relocation guides, visa checklists, and practical next steps for immigrants moving abroad." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Immigrity",
+      "url": "https://immigrity.com/",
+      "description": "Relocation guides, visa checklists, and practical next steps for immigrants moving abroad.",
+      "inLanguage": ["en","uk","ru","ar","hi"],
+      "publisher": {
+        "@type": "Organization",
+        "name": "Immigrity",
+        "url": "https://immigrity.com/"
+      }
+    }
+  </script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHMB4J92L2"></script>
@@ -232,6 +266,22 @@
     [dir="rtl"] .phase-time{margin-left:0;margin-right:auto}
     [dir="rtl"] .sticky-inner,[dir="rtl"] header,[dir="rtl"] .phase-head,[dir="rtl"] .progress-head{direction:rtl}
     [dir="rtl"] .tag{margin-right:auto;margin-left:0}
+
+    .feedback-wrap{
+      padding-bottom:160px;
+      scroll-margin-bottom:160px;
+    }
+    .sticky-cta{
+      opacity:1;
+      transform:translateY(0);
+      transition:opacity .24s ease, transform .24s ease;
+      will-change:opacity,transform;
+    }
+    .sticky-cta.is-hidden{
+      opacity:0;
+      transform:translateY(16px);
+      pointer-events:none;
+    }
     @media (max-width:700px){
       .header-inner,.hero,.section{padding-left:20px;padding-right:20px}
       .header-inner{flex-direction:column;align-items:flex-start}
@@ -239,15 +289,15 @@
       .phase-time{margin-left:0}
       .item{flex-wrap:wrap}
       .tag{margin-left:36px}
+      .feedback-wrap{padding-bottom:220px;scroll-margin-bottom:220px}
+      .sticky-cta{left:12px;right:12px;bottom:12px}
     }
-  /* Enough space so sticky CTA never covers the Send button */
-  .feedback-section { padding-bottom: 180px !important; }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap header-inner">
-      <div class="logo">Immigri<span>fy</span></div>
+      <div class="logo">Immigri<span>ty</span></div>
       <div class="lang-row">
         <div class="lang-label" id="langLabel">Language</div>
         <button class="lang-btn active" data-lang="en" type="button">EN</button>
@@ -1091,11 +1141,11 @@
               'यूके में bank account खोलें।'
             ),
             note:L(
-              'Monzo is perfect for newcomers — free to open. <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:none;">Open Monzo →</a>',
-              'Монзо ідеально підходить для новоприбулих — відкрити безкоштовно. <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:none;">Відкрити Monzo →</a>',
-              'Монзо отлично подходит для новых жильцов — открыть бесплатно. <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:none;">Открыть Monzo →</a>',
-              'مونزو مثالي للقادمين الجدد — الفتح مجاني. <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:none;">فتح Monzo →</a>',
-              'नए लोगों के लिए Monzo सही है — खोलना मुफ़्त है. <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;text-decoration:none;">Monzo खोलें →</a>'
+              'A digital bank can be easier at the beginning.',
+              'На початку цифровий банк може бути простішим варіантом.',
+              'В начале цифровой банк может быть более простым вариантом.',
+              'قد يكون البنك الرقمي أسهل في البداية.',
+              'शुरुआत में digital bank आसान हो सकता है।'
             ),
             tag:'urgent'
           },
@@ -1704,7 +1754,7 @@
       }
       try{
         await postForm({
-          _subject:'Immigrify inline feedback',
+          _subject:'Immigrity inline feedback',
           type:'inline-feedback',
           language:currentLang,
           category:$('inlineType').value || 'general',
@@ -1730,7 +1780,7 @@
       }
       try{
         await postForm({
-          _subject:'Immigrify guide signup',
+          _subject:'Immigrity guide signup',
           type:'guide-signup',
           language:currentLang,
           email,
@@ -1752,7 +1802,7 @@
       }
       try{
         await postForm({
-          _subject:'Immigrify modal feedback',
+          _subject:'Immigrity modal feedback',
           type:'modal-feedback',
           language:currentLang,
           category:$('modalFeedbackType').value || 'general',
@@ -1816,6 +1866,36 @@
       });
     }
 
+
+    function setupStickyCtaVisibility(){
+      const sticky = $('stickyCta');
+      const feedback = $('feedbackWrap');
+      if(!sticky || !feedback) return;
+
+      const toggle = ()=>{
+        const rect = feedback.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const shouldHide = rect.top < viewportHeight - 140 && rect.bottom > 80;
+        sticky.classList.toggle('is-hidden', shouldHide);
+      };
+
+      if('IntersectionObserver' in window){
+        const observer = new IntersectionObserver((entries)=>{
+          const entry = entries[0];
+          sticky.classList.toggle('is-hidden', entry.isIntersecting);
+        },{
+          threshold:0.12,
+          rootMargin:'0px 0px -120px 0px'
+        });
+        observer.observe(feedback);
+      }
+
+      window.addEventListener('scroll', toggle, {passive:true});
+      window.addEventListener('resize', toggle);
+      window.addEventListener('load', toggle);
+      toggle();
+    }
+
     function init(){
       loadState();
       applyUiText();
@@ -1824,6 +1904,7 @@
       renderGuideDestinations();
       bind();
       updateSummary();
+      setupStickyCtaVisibility();
     }
 
     init();
