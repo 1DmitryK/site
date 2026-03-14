@@ -5,1911 +5,321 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Immigrity — Your Move, Simplified</title>
 
-  <meta name="description" content="Immigrity helps immigrants relocate step by step with visa guides, checklists, local tips, and practical planning tools." />
-  <meta name="keywords" content="immigration checklist, relocation guide, moving abroad, visa guide, immigrant support, immigrity" />
-  <meta name="author" content="Immigrity" />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="theme-color" content="#f6f1e8" />
-  <meta name="color-scheme" content="light" />
-  <link rel="canonical" href="https://immigrity.com/" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f6f1e8'/%3E%3Cpath d='M18 44V20h6v24zm11-24h6v18h11v6H29z' fill='%23141210'/%3E%3Ccircle cx='48' cy='18' r='6' fill='%23c74a2f'/%3E%3C/svg%3E" />
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='36' fill='%23f6f1e8'/%3E%3Cpath d='M50 124V56h18v68zm32-68h18v50h34v18H82z' fill='%23141210'/%3E%3Ccircle cx='134' cy='50' r='16' fill='%23c74a2f'/%3E%3C/svg%3E" />
+  <meta name="description" content="Personalised relocation checklists for immigrants. Move to the UK, Germany, Canada and more with step-by-step visa and settlement guides." />
+  <meta name="keywords" content="immigration guide, moving to UK, moving to Germany, relocation checklist, visa support, immigrant tools" />
+  <meta property="og:title" content="Immigrity — Relocate Step-by-Step" />
+  <meta property="og:description" content="Built by immigrants, for immigrants. Get your free personalised move-abroad checklist." />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Immigrity" />
-  <meta property="og:title" content="Immigrity — Your Move, Simplified" />
-  <meta property="og:description" content="Relocation guides, visa checklists, and practical next steps for immigrants moving abroad." />
-  <meta property="og:url" content="https://immigrity.com/" />
-  <meta property="og:locale" content="en_GB" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Immigrity — Your Move, Simplified" />
-  <meta name="twitter:description" content="Relocation guides, visa checklists, and practical next steps for immigrants moving abroad." />
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Immigrity",
-      "url": "https://immigrity.com/",
-      "description": "Relocation guides, visa checklists, and practical next steps for immigrants moving abroad.",
-      "inLanguage": ["en","uk","ru","ar","hi"],
-      "publisher": {
-        "@type": "Organization",
-        "name": "Immigrity",
-        "url": "https://immigrity.com/"
-      }
-    }
-  </script>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHMB4J92L2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-FHMB4J92L2');
-  </script>
-
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#f6f1e8;
-      --card:#ffffff;
-      --ink:#141210;
-      --muted:#6f6659;
-      --line:rgba(20,18,16,.1);
-      --accent:#c74a2f;
-      --done:#2b7a4b;
-      --shadow:0 12px 28px rgba(20,18,16,.08);
-      --radius:20px;
+    :root {
+      --bg: #f6f1e8;
+      --card: #ffffff;
+      --ink: #141210;
+      --muted: #6f6659;
+      --line: rgba(20,18,16,.1);
+      --accent: #c74a2f;
+      --done: #2b7a4b;
+      --shadow: 0 12px 28px rgba(20,18,16,.08);
+      --radius: 20px;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--ink);
-      font-family:'DM Sans',sans-serif;
-      overflow-x:hidden;
-    }
-    body.modal-open{overflow:hidden}
-    .wrap{max-width:1180px;margin:0 auto}
-    header{
-      position:sticky;top:0;z-index:50;
-      backdrop-filter:blur(10px);
-      background:rgba(246,241,232,.92);
-      border-bottom:1px solid var(--line);
-    }
-    .header-inner{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
-      padding:18px 24px;
-    }
-    .logo{
-      font-family:'Fraunces',serif;
-      font-size:30px;font-weight:700;letter-spacing:-.03em;
-    }
-    .logo span{color:var(--accent)}
-    .lang-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-    .lang-label{
-      font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700;
-      margin-right:6px;
-    }
-    .lang-btn{
-      border:1px solid var(--line);background:#fff;color:var(--ink);
-      border-radius:999px;padding:8px 12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;
-    }
-    .lang-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-    .hero{padding:56px 24px 24px}
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:8px;
-      background:rgba(199,74,47,.08);color:var(--accent);
-      padding:7px 12px;border-radius:999px;
-      font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-      margin-bottom:14px;
-    }
-    h1{
-      margin:0 0 16px;
-      font-family:'Fraunces',serif;
-      font-size:clamp(38px,6vw,72px);
-      font-weight:300;line-height:1.05;letter-spacing:-.04em;
-    }
-    h1 em{font-style:italic;color:var(--accent)}
-    .hero p{
-      margin:0;max-width:760px;color:var(--muted);font-size:18px;line-height:1.65;
-    }
-    .section{padding:0 24px 28px}
-    .card{
-      background:rgba(255,255,255,.78);
-      border:1px solid var(--line);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      padding:24px;
-    }
-    .label{
-      margin:0 0 14px;
-      font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);font-weight:700;
-    }
-    .grid{
-      display:flex;flex-wrap:wrap;gap:12px;
-    }
-    .pill{
-      border:1.5px solid rgba(20,18,16,.16);
-      background:#fff;color:var(--ink);
-      border-radius:999px;
-      padding:12px 16px;
-      font:inherit;font-weight:700;
-      cursor:pointer;
-      box-shadow:0 2px 8px rgba(20,18,16,.04);
-    }
-    .pill.active{
-      background:var(--ink);color:#fff;border-color:var(--ink);
-    }
-    #originWrap{display:none;margin-top:22px}
-    .summary{
-      margin-top:18px;color:var(--muted);font-size:14px;line-height:1.6;
-    }
-    .progress-wrap,.checklists,.feedback-wrap,.celebrate,.sticky-cta{display:none}
-    .progress-wrap.visible,.checklists.visible,.feedback-wrap.visible,.celebrate.visible,.sticky-cta.visible{display:block}
-    .progress-card{
-      background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;
-    }
-    .progress-head{
-      display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-bottom:12px;
-    }
-    .progress-title{
-      font-family:'Fraunces',serif;font-size:22px;font-weight:700;
-    }
-    .progress-count{font-size:13px;color:var(--muted)}
-    .track{height:10px;background:#ece4d6;border-radius:999px;overflow:hidden}
-    .bar{height:100%;width:0;background:linear-gradient(90deg,var(--done),#49a36a);transition:width .3s ease}
-    .phase{
-      margin-bottom:24px;background:rgba(255,255,255,.64);
-      border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow);
-    }
-    .phase-head{
-      display:flex;flex-wrap:wrap;align-items:center;gap:12px;
-      border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px;
-    }
-    .num{
-      width:32px;height:32px;border-radius:50%;
-      display:inline-flex;align-items:center;justify-content:center;
-      background:var(--ink);color:#fff;font-family:'Fraunces',serif;font-size:13px;font-weight:700;
-    }
-    .phase-name{font-family:'Fraunces',serif;font-size:24px;font-weight:700}
-    .phase-time{
-      margin-left:auto;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-    }
-    .item{
-      display:flex;gap:14px;align-items:flex-start;
-      border:1px solid var(--line);border-radius:16px;background:#fff;
-      padding:16px;margin-bottom:10px;cursor:pointer;
-    }
-    .item.checked{background:rgba(43,122,75,.06);border-color:rgba(43,122,75,.24)}
-    .box{
-      width:22px;height:22px;border-radius:6px;border:1.5px solid var(--ink);
-      display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;
-    }
-    .tick{opacity:0;transform:scale(.6);transition:.18s ease;color:#fff;font-size:13px;font-weight:700}
-    .item.checked .box{background:var(--done);border-color:var(--done)}
-    .item.checked .tick{opacity:1;transform:scale(1)}
-    .content{flex:1;min-width:0}
-    .text{font-size:15px;font-weight:700;line-height:1.45}
-    .item.checked .text{text-decoration:line-through;color:var(--muted)}
-    .note{margin-top:4px;color:var(--muted);font-size:13px;line-height:1.5}
-    .note a{color:var(--accent);font-weight:700;text-decoration:none}
-    .note a:hover{text-decoration:underline}
-    .tag{
-      border-radius:999px;padding:5px 9px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid currentColor;margin-top:2px;flex-shrink:0;
-    }
-    .urgent{color:var(--accent);background:rgba(199,74,47,.06)}
-    .important{color:#8b6704;background:rgba(212,165,58,.1)}
-    .optional{color:var(--muted);background:transparent}
-    .celebrate{
-      margin:18px 24px 0;padding:24px;border-radius:22px;
-      background:linear-gradient(180deg,rgba(43,122,75,.08),rgba(43,122,75,.03));
-      border:1px solid rgba(43,122,75,.16);text-align:center;
-    }
-    .celebrate-emoji{font-size:54px;margin-bottom:10px}
-    .celebrate h2{margin:0 0 8px;font-family:'Fraunces',serif;font-size:34px}
-    .celebrate p{margin:0;color:var(--muted)}
-    .feedback-card{
-      max-width:560px;background:#fff;border:1px solid var(--line);
-      border-radius:22px;box-shadow:var(--shadow);padding:24px;
-    }
-    .feedback-card h3{margin:0 0 6px;font-family:'Fraunces',serif;font-size:26px}
-    .feedback-card p{margin:0 0 18px;color:var(--muted);line-height:1.6}
-    .group{margin-bottom:16px}
-    .field-label{
-      display:block;margin-bottom:7px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
-    }
-    .input,.textarea,.select{
-      width:100%;border:1.5px solid rgba(20,18,16,.14);background:#fff;border-radius:14px;
-      padding:13px 14px;font:inherit;color:var(--ink);outline:none;
-    }
-    .textarea{min-height:110px;resize:vertical}
-    .btn{
-      appearance:none;border:0;border-radius:999px;background:var(--ink);color:#fff;
-      padding:13px 18px;font:inherit;font-weight:700;cursor:pointer;
-    }
-    .success{display:none;text-align:center;padding:22px 0 8px}
-    .success.visible{display:block}
-    .sticky-cta{
-      position:fixed;left:18px;right:18px;bottom:18px;z-index:60;
-    }
-    .sticky-inner{
-      display:flex;justify-content:space-between;gap:16px;align-items:center;
-      background:rgba(20,18,16,.96);color:#fff;border-radius:20px;padding:16px 18px;box-shadow:0 18px 40px rgba(20,18,16,.28);
-    }
-    .cta-copy strong{display:block;font-family:'Fraunces',serif;font-size:18px;margin-bottom:4px}
-    .cta-copy span{font-size:14px;line-height:1.4}
-    .modal-bg{
-      position:fixed;inset:0;background:rgba(20,18,16,.66);backdrop-filter:blur(6px);
-      display:none;align-items:center;justify-content:center;padding:20px;z-index:100;
-    }
-    .modal-bg.visible{display:flex}
-    .modal{
-      width:min(100%,540px);background:var(--bg);border-radius:24px;border:1px solid var(--line);
-      box-shadow:0 24px 60px rgba(20,18,16,.24);padding:26px;position:relative;max-height:min(86vh,760px);overflow:auto;
-    }
-    .close{
-      position:absolute;right:16px;top:16px;width:38px;height:38px;border:0;border-radius:50%;
-      background:rgba(20,18,16,.06);font-size:20px;cursor:pointer;color:var(--ink);
-    }
-    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 20px;padding-right:46px}
-    .tab{
-      border:1px solid var(--line);background:#fff;color:var(--muted);
-      border-radius:999px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;
-    }
-    .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-    .panel{display:none}
-    .panel.active{display:block}
-    .hidden{display:none!important}
-    [dir="rtl"] .phase-time{margin-left:0;margin-right:auto}
-    [dir="rtl"] .sticky-inner,[dir="rtl"] header,[dir="rtl"] .phase-head,[dir="rtl"] .progress-head{direction:rtl}
-    [dir="rtl"] .tag{margin-right:auto;margin-left:0}
 
-    .feedback-wrap{
-      padding-bottom:160px;
-      scroll-margin-bottom:160px;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: 'DM Sans', sans-serif; line-height: 1.6;
     }
-    .sticky-cta{
-      opacity:1;
-      transform:translateY(0);
-      transition:opacity .24s ease, transform .24s ease;
-      will-change:opacity,transform;
+
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(246, 241, 232, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      padding: 15px 0;
     }
-    .sticky-cta.is-hidden{
-      opacity:0;
-      transform:translateY(16px);
-      pointer-events:none;
+
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 700; cursor: pointer; }
+    .logo span { color: var(--accent); }
+
+    .hero { text-align: center; padding: 60px 0 40px; }
+    h1 { 
+      font-family: 'Fraunces', serif; font-size: clamp(32px, 8vw, 64px); 
+      font-weight: 300; margin-bottom: 20px; line-height: 1.1;
     }
-    @media (max-width:700px){
-      .header-inner,.hero,.section{padding-left:20px;padding-right:20px}
-      .header-inner{flex-direction:column;align-items:flex-start}
-      .progress-head,.phase-head,.sticky-inner{flex-direction:column;align-items:flex-start}
-      .phase-time{margin-left:0}
-      .item{flex-wrap:wrap}
-      .tag{margin-left:36px}
-      .feedback-wrap{padding-bottom:220px;scroll-margin-bottom:220px}
-      .sticky-cta{left:12px;right:12px;bottom:12px}
+    h1 em { color: var(--accent); font-style: italic; }
+
+    .selector-card {
+      background: var(--card); border-radius: 24px; padding: 30px;
+      box-shadow: var(--shadow); border: 1px solid var(--line);
+      margin-bottom: 40px;
     }
+
+    .label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 15px; }
+
+    .grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
+    .pill {
+      padding: 12px 20px; border-radius: 99px; border: 1.5px solid var(--line);
+      background: #fff; cursor: pointer; font-weight: 700; transition: 0.2s;
+    }
+    .pill:hover { border-color: var(--accent); }
+    .pill.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    .phase { margin-bottom: 30px; }
+    .phase-title { font-family: 'Fraunces', serif; font-size: 24px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .phase-num { background: var(--ink); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+    .item {
+      background: #fff; border: 1px solid var(--line); border-radius: 16px;
+      padding: 16px; margin-bottom: 12px; display: flex; gap: 15px;
+      cursor: pointer; transition: 0.2s;
+    }
+    .item:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .item.checked { background: #f0fdf4; border-color: var(--done); opacity: 0.8; }
+    
+    .checkbox { width: 22px; height: 22px; border: 2px solid var(--ink); border-radius: 6px; flex-shrink: 0; position: relative; }
+    .item.checked .checkbox { background: var(--done); border-color: var(--done); }
+    .item.checked .checkbox::after { content: '✓'; color: #fff; position: absolute; left: 4px; top: -2px; font-weight: bold; }
+
+    .item-content strong { display: block; font-size: 16px; }
+    .item-content p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+
+    .tag { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 4px 8px; border-radius: 6px; border: 1px solid currentColor; margin-top: 8px; display: inline-block; }
+    .tag.urgent { color: var(--accent); background: rgba(199, 74, 47, 0.1); }
+    .tag.info { color: #2563eb; background: rgba(37, 99, 235, 0.1); }
+
+    .lang-switcher button {
+      background: none; border: 1px solid var(--line); padding: 5px 10px;
+      border-radius: 5px; cursor: pointer; font-weight: 700; margin-left: 5px;
+    }
+    .lang-switcher button.active { background: var(--ink); color: #fff; }
+
+    footer { text-align: center; padding: 40px 0; color: var(--muted); font-size: 14px; }
+
+    [style*="display: none"] { display: none !important; }
   </style>
 </head>
 <body>
+
   <header>
-    <div class="wrap header-inner">
-      <div class="logo">Immigri<span>ty</span></div>
-      <div class="lang-row">
-        <div class="lang-label" id="langLabel">Language</div>
-        <button class="lang-btn active" data-lang="en" type="button">EN</button>
-        <button class="lang-btn" data-lang="uk" type="button">UK</button>
-        <button class="lang-btn" data-lang="ru" type="button">RU</button>
-        <button class="lang-btn" data-lang="ar" type="button">AR</button>
-        <button class="lang-btn" data-lang="hi" type="button">HI</button>
+    <div class="wrap header-content">
+      <div class="logo" onclick="location.reload()">Immigri<span>ty</span></div>
+      <div class="lang-switcher">
+        <button onclick="setLang('en')" id="btn-en" class="active">EN</button>
+        <button onclick="setLang('uk')" id="btn-uk">UK</button>
+        <button onclick="setLang('ru')" id="btn-ru">RU</button>
       </div>
     </div>
   </header>
 
   <main class="wrap">
     <section class="hero">
-      <div class="eyebrow" id="eyebrowText">Built by immigrants, for immigrants</div>
-      <h1>
-        <span id="heroLine1">Your move to</span><br>
-        <em id="heroRegion">the world,</em><br>
-        <span id="heroLine3">step by step.</span>
-      </h1>
-      <p id="heroText">Everything you need to relocate — visa guides, checklists, local tips. Built by immigrants, for immigrants.</p>
+      <h1 id="hero-text">Your move to <br><em>the world,</em><br> step by step.</h1>
+      <p id="hero-subtext">Personalised relocation checklists built by immigrants, for immigrants.</p>
     </section>
 
-    <section class="section">
-      <div class="card">
-        <div class="label" id="destinationLabel">I'm moving to</div>
-        <div class="grid" id="destinationGrid"></div>
+    <div class="selector-card">
+      <div class="label" id="label-moving-to">I'm moving to</div>
+      <div class="grid" id="dest-grid"></div>
 
-        <div id="originWrap">
-          <div class="label" id="originLabel">I'm coming from</div>
-          <div class="grid" id="originGrid"></div>
-        </div>
-
-        <div class="summary" id="selectionSummary"></div>
+      <div id="origin-section" style="display: none;">
+        <div class="label" id="label-coming-from">I'm coming from</div>
+        <div class="grid" id="origin-grid"></div>
       </div>
-    </section>
-
-    <section class="section progress-wrap" id="progressWrap">
-      <div class="progress-card">
-        <div class="progress-head">
-          <div class="progress-title" id="progressTitle">Your relocation checklist</div>
-          <div class="progress-count" id="progressCount">0 of 0 done</div>
-        </div>
-        <div class="track"><div class="bar" id="progressBar"></div></div>
-      </div>
-    </section>
-
-    <section class="section checklists" id="checklists"></section>
-
-    <div class="celebrate" id="celebrate">
-      <div class="celebrate-emoji">🎉</div>
-      <h2 id="celebrateTitle">You're all set!</h2>
-      <p id="celebrateText">All steps completed. Welcome to your new life.</p>
     </div>
 
-    <section class="section feedback-wrap" id="feedbackWrap">
-      <div class="feedback-card">
-        <h3 id="feedbackTitle">💬 Help us improve</h3>
-        <p id="feedbackText">Missing a country? Something wrong? Let us know — we read every message.</p>
-
-        <div class="group">
-          <label class="field-label" for="inlineEmail" id="inlineEmailLabel">Your email (optional)</label>
-          <input class="input" id="inlineEmail" type="email" placeholder="your@email.com">
-        </div>
-
-        <div class="group">
-          <label class="field-label" for="inlineType" id="inlineTypeLabel">What would you like to see?</label>
-          <select class="select" id="inlineType"></select>
-        </div>
-
-        <div class="group">
-          <label class="field-label" for="inlineMessage" id="inlineMessageLabel">Tell us more</label>
-          <textarea class="textarea" id="inlineMessage"></textarea>
-        </div>
-
-        <button class="btn" id="inlineSubmitBtn" type="button">Send feedback →</button>
-
-        <div class="success" id="inlineSuccess">
-          <div style="font-size:48px;margin-bottom:10px">🙏</div>
-          <h3 id="inlineSuccessTitle">Thank you!</h3>
-          <p id="inlineSuccessText">Your feedback helps us build a better product for millions of immigrants.</p>
-        </div>
-      </div>
-    </section>
+    <div id="checklist-container"></div>
   </main>
 
-  <div class="sticky-cta" id="stickyCta">
-    <div class="sticky-inner">
-      <div class="cta-copy">
-        <strong id="ctaTitle">Want the full guide?</strong>
-        <span id="ctaText">Visa timelines, bank accounts, housing and more — free.</span>
-      </div>
-      <button class="btn" id="openGuideBtn" type="button">Get Full Guide →</button>
-    </div>
-  </div>
-
-  <div class="modal-bg" id="modalBg">
-    <div class="modal">
-      <button class="close" id="closeModalBtn" type="button" aria-label="Close">×</button>
-
-      <div class="tabs">
-        <button class="tab active" type="button" data-tab="guide" id="tabGuideBtn">📧 Get Full Guide</button>
-        <button class="tab" type="button" data-tab="feedback" id="tabFeedbackBtn">💬 Give Feedback</button>
-      </div>
-
-      <div class="panel active" id="panel-guide">
-        <h2 id="modalGuideTitle" style="margin:0 0 8px;font-family:'Fraunces',serif;font-size:30px">Get the full guide</h2>
-        <p id="modalGuideText" style="margin:0 0 18px;color:var(--muted);line-height:1.6">We'll send you the complete relocation pack — visa timelines, bank accounts, housing tips, healthcare, and more. Free.</p>
-
-        <div id="guideForm">
-          <div class="group">
-            <label class="field-label" for="guideEmail" id="guideEmailLabel">Your email address</label>
-            <input class="input" id="guideEmail" type="email" placeholder="your@email.com">
-          </div>
-
-          <div class="group">
-            <label class="field-label" for="guideDestination" id="guideDestinationLabel">Where are you moving to?</label>
-            <select class="select" id="guideDestination"></select>
-          </div>
-
-          <button class="btn" id="guideSubmitBtn" type="button">Send me the guide →</button>
-        </div>
-
-        <div class="success" id="guideSuccess">
-          <div style="font-size:48px;margin-bottom:10px">✅</div>
-          <h3 id="guideSuccessTitle">You're on the list!</h3>
-          <p id="guideSuccessText">We'll send you the full guide soon. Check your inbox and spam folder.</p>
-        </div>
-      </div>
-
-      <div class="panel" id="panel-feedback">
-        <h2 id="modalFeedbackTitle" style="margin:0 0 8px;font-family:'Fraunces',serif;font-size:30px">Give feedback</h2>
-        <p id="modalFeedbackText" style="margin:0 0 18px;color:var(--muted);line-height:1.6">Missing a country? Something outdated? Tell us — every message is read personally.</p>
-
-        <div id="modalFeedbackForm">
-          <div class="group">
-            <label class="field-label" for="modalFeedbackType" id="modalFeedbackTypeLabel">Type of feedback</label>
-            <select class="select" id="modalFeedbackType"></select>
-          </div>
-
-          <div class="group">
-            <label class="field-label" for="modalFeedbackMessage" id="modalFeedbackMessageLabel">Your message</label>
-            <textarea class="textarea" id="modalFeedbackMessage"></textarea>
-          </div>
-
-          <div class="group">
-            <label class="field-label" for="modalFeedbackEmail" id="modalFeedbackEmailLabel">Your email (optional)</label>
-            <input class="input" id="modalFeedbackEmail" type="email" placeholder="your@email.com">
-          </div>
-
-          <button class="btn" id="modalFeedbackSubmitBtn" type="button">Send feedback →</button>
-        </div>
-
-        <div class="success" id="modalFeedbackSuccess">
-          <div style="font-size:48px;margin-bottom:10px">🙏</div>
-          <h3 id="modalFeedbackSuccessTitle">Thank you!</h3>
-          <p id="modalFeedbackSuccessText">Your feedback helps us improve the site.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <footer>
+    <p>&copy; 2026 Immigrity — Your Move, Simplified.</p>
+  </footer>
 
   <script>
-    const FORMSPREE_URL = 'https://formspree.io/f/xlgpbpkv';
-
-    const ui = {
+    const translations = {
       en: {
-        htmlLang:'en', dir:'ltr',
-        langLabel:'Language',
-        eyebrowText:'Built by immigrants, for immigrants',
-        heroLine1:'Your move to',
-        heroLine3:'step by step.',
-        heroDefaultRegion:'the world,',
-        heroText:'Everything you need to relocate — visa guides, checklists, local tips.',
-        destinationLabel:"I'm moving to",
-        originLabel:"I'm coming from",
-        selectionEmpty:'Choose a destination to see your personalised relocation checklist.',
-        selectionDestination:'Selected destination: {destination}.',
-        selectionRoute:'Selected route: {origin} → {destination}.',
-        progressTitle:'Your relocation checklist',
-        progressCount:'{done} of {total} done',
-        celebrateTitle:"You're all set!",
-        celebrateText:'All steps completed. Welcome to your new life.',
-        feedbackTitle:'💬 Help us improve',
-        feedbackText:'Missing a country? Something wrong? Let us know — we read every message.',
-        inlineEmailLabel:'Your email (optional)',
-        inlineTypeLabel:'What would you like to see?',
-        inlineMessageLabel:'Tell us more',
-        inlineMessagePlaceholder:'For example: please add more countries, improve visa info, or fix something outdated.',
-        inlineSubmit:'Send feedback →',
-        inlineSuccessTitle:'Thank you!',
-        inlineSuccessText:'Your feedback helps us build a better product for millions of immigrants.',
-        ctaTitle:'Want the full guide?',
-        ctaText:'Visa timelines, bank accounts, housing and more — free.',
-        ctaBtn:'Get Full Guide →',
-        tabGuide:'📧 Get Full Guide',
-        tabFeedback:'💬 Give Feedback',
-        modalGuideTitle:'Get the full guide',
-        modalGuideText:"We'll send you the complete relocation pack — visa timelines, bank accounts, housing tips, healthcare, and more. Free.",
-        guideEmailLabel:'Your email address',
-        guideDestinationLabel:'Where are you moving to?',
-        guideSubmit:'Send me the guide →',
-        guideSuccessTitle:"You're on the list!",
-        guideSuccessText:"We'll send you the full guide soon. Check your inbox and spam folder.",
-        modalFeedbackTitle:'Give feedback',
-        modalFeedbackText:'Missing a country? Something outdated? Tell us — every message is read personally.',
-        modalFeedbackTypeLabel:'Type of feedback',
-        modalFeedbackMessageLabel:'Your message',
-        modalFeedbackEmailLabel:'Your email (optional)',
-        modalFeedbackSubmit:'Send feedback →',
-        modalFeedbackSuccessTitle:'Thank you!',
-        modalFeedbackSuccessText:'Your feedback helps us improve the site.',
-        chooseTopic:'— Choose a topic —',
-        chooseDestination:'— Select destination —',
-        other:'Other',
-        feedbackTypes:{
-          country:'Add a new destination country',
-          origin:'Add a new country of origin',
-          content:'A checklist item is wrong or outdated',
-          feature:'Suggest a new feature',
-          other:'Other feedback'
-        },
-        tags:{urgent:'urgent',important:'important',optional:'optional'},
-        times:{
-          beforeArrival:'Before arrival',
-          week1:'Week 1',
-          days17:'Days 1–7',
-          weeks24:'Weeks 2–4',
-          months36:'3–6 months before',
-          weeks48:'4–8 weeks before',
-          arrivalWeek:'Arrival week'
-        }
+        hero: "Your move to <br><em>{country},</em><br> step by step.",
+        subtext: "Personalised relocation checklists built by immigrants, for immigrants.",
+        movingTo: "I'm moving to",
+        comingFrom: "I'm coming from",
+        world: "the world",
+        phases: { docs: "Documents & Visa", arrival: "First Week", life: "Settling In" }
       },
       uk: {
-        htmlLang:'uk', dir:'ltr',
-        langLabel:'Мова',
-        eyebrowText:'Створено іммігрантами для іммігрантів',
-        heroLine1:'Ваш переїзд до',
-        heroLine3:'крок за кроком.',
-        heroDefaultRegion:'світу,',
-        heroText:'Усе, що потрібно для переїзду — візові поради, чеклісти та місцеві підказки.',
-        destinationLabel:'Я переїжджаю до',
-        originLabel:'Я приїжджаю з',
-        selectionEmpty:'Оберіть країну призначення, щоб побачити персональний чекліст переїзду.',
-        selectionDestination:'Обрана країна призначення: {destination}.',
-        selectionRoute:'Обраний маршрут: {origin} → {destination}.',
-        progressTitle:'Ваш чекліст переїзду',
-        progressCount:'{done} із {total} виконано',
-        celebrateTitle:'Усе готово!',
-        celebrateText:'Усі кроки виконано. Ласкаво просимо до нового життя.',
-        feedbackTitle:'💬 Допоможіть нам стати кращими',
-        feedbackText:'Бракує країни? Є помилка? Напишіть нам — ми читаємо кожне повідомлення.',
-        inlineEmailLabel:'Ваш email (необов’язково)',
-        inlineTypeLabel:'Що ви хотіли б побачити?',
-        inlineMessageLabel:'Розкажіть більше',
-        inlineMessagePlaceholder:'Наприклад: додайте нові країни, оновіть візову інформацію або виправте помилку.',
-        inlineSubmit:'Надіслати відгук →',
-        inlineSuccessTitle:'Дякуємо!',
-        inlineSuccessText:'Ваш відгук допомагає нам створювати кращий продукт для мільйонів іммігрантів.',
-        ctaTitle:'Хочете повний гід?',
-        ctaText:'Строки віз, банки, житло та інше — безкоштовно.',
-        ctaBtn:'Отримати повний гід →',
-        tabGuide:'📧 Отримати повний гід',
-        tabFeedback:'💬 Залишити відгук',
-        modalGuideTitle:'Отримати повний гід',
-        modalGuideText:'Ми надішлемо вам повний пакет для переїзду — строки віз, банківські рахунки, житло, медицина та інше. Безкоштовно.',
-        guideEmailLabel:'Ваша email-адреса',
-        guideDestinationLabel:'Куди ви переїжджаєте?',
-        guideSubmit:'Надіслати мені гід →',
-        guideSuccessTitle:'Вас додано до списку!',
-        guideSuccessText:'Ми скоро надішлемо вам повний гід. Перевірте вхідні та папку спам.',
-        modalFeedbackTitle:'Залишити відгук',
-        modalFeedbackText:'Бракує країни? Щось застаріло? Напишіть нам — кожне повідомлення читають особисто.',
-        modalFeedbackTypeLabel:'Тип відгуку',
-        modalFeedbackMessageLabel:'Ваше повідомлення',
-        modalFeedbackEmailLabel:'Ваш email (необов’язково)',
-        modalFeedbackSubmit:'Надіслати відгук →',
-        modalFeedbackSuccessTitle:'Дякуємо!',
-        modalFeedbackSuccessText:'Ваш відгук допомагає нам покращувати сайт.',
-        chooseTopic:'— Оберіть тему —',
-        chooseDestination:'— Оберіть країну призначення —',
-        other:'Інше',
-        feedbackTypes:{
-          country:'Додати нову країну призначення',
-          origin:'Додати нову країну походження',
-          content:'Пункт чекліста неправильний або застарілий',
-          feature:'Запропонувати нову функцію',
-          other:'Інший відгук'
-        },
-        tags:{urgent:'терміново',important:'важливо',optional:'необов’язково'},
-        times:{
-          beforeArrival:'До прибуття',
-          week1:'Перший тиждень',
-          days17:'Дні 1–7',
-          weeks24:'Тижні 2–4',
-          months36:'За 3–6 місяців',
-          weeks48:'За 4–8 тижнів',
-          arrivalWeek:'Тиждень прибуття'
-        }
+        hero: "Ваш переїзд до <br><em>{country},</em><br> крок за кроком.",
+        subtext: "Персоналізовані чек-листи для релокації, створені іммігрантами для іммігрантів.",
+        movingTo: "Я переїжджаю до",
+        comingFrom: "Я приїжджаю з",
+        world: "світу",
+        phases: { docs: "Документи та Віза", arrival: "Перший тиждень", life: "Облаштування" }
       },
       ru: {
-        htmlLang:'ru', dir:'ltr',
-        langLabel:'Язык',
-        eyebrowText:'Создано иммигрантами для иммигрантов',
-        heroLine1:'Ваш переезд в',
-        heroLine3:'шаг за шагом.',
-        heroDefaultRegion:'мир,',
-        heroText:'Всё, что нужно для переезда — визовые подсказки, чеклисты и местные советы.',
-        destinationLabel:'Я переезжаю в',
-        originLabel:'Я еду из',
-        selectionEmpty:'Выберите страну назначения, чтобы увидеть персональный чеклист переезда.',
-        selectionDestination:'Выбрана страна назначения: {destination}.',
-        selectionRoute:'Выбран маршрут: {origin} → {destination}.',
-        progressTitle:'Ваш чеклист переезда',
-        progressCount:'{done} из {total} выполнено',
-        celebrateTitle:'Всё готово!',
-        celebrateText:'Все шаги выполнены. Добро пожаловать в новую жизнь.',
-        feedbackTitle:'💬 Помогите нам стать лучше',
-        feedbackText:'Не хватает страны? Есть ошибка? Напишите нам — мы читаем каждое сообщение.',
-        inlineEmailLabel:'Ваш email (необязательно)',
-        inlineTypeLabel:'Что вы хотели бы увидеть?',
-        inlineMessageLabel:'Расскажите подробнее',
-        inlineMessagePlaceholder:'Например: добавьте новые страны, обновите визовую информацию или исправьте ошибку.',
-        inlineSubmit:'Отправить отзыв →',
-        inlineSuccessTitle:'Спасибо!',
-        inlineSuccessText:'Ваш отзыв помогает нам улучшать сайт для миллионов иммигрантов.',
-        ctaTitle:'Хотите полный гид?',
-        ctaText:'Сроки виз, банки, жильё и другое — бесплатно.',
-        ctaBtn:'Получить полный гид →',
-        tabGuide:'📧 Получить полный гид',
-        tabFeedback:'💬 Оставить отзыв',
-        modalGuideTitle:'Получить полный гид',
-        modalGuideText:'Мы отправим вам полный пакет для переезда — сроки виз, банковские счета, жильё, медицина и другое. Бесплатно.',
-        guideEmailLabel:'Ваш email',
-        guideDestinationLabel:'Куда вы переезжаете?',
-        guideSubmit:'Отправить мне гид →',
-        guideSuccessTitle:'Вы в списке!',
-        guideSuccessText:'Мы скоро отправим вам полный гид. Проверьте входящие и папку спам.',
-        modalFeedbackTitle:'Оставить отзыв',
-        modalFeedbackText:'Не хватает страны? Что-то устарело? Напишите нам — каждое сообщение читается лично.',
-        modalFeedbackTypeLabel:'Тип отзыва',
-        modalFeedbackMessageLabel:'Ваше сообщение',
-        modalFeedbackEmailLabel:'Ваш email (необязательно)',
-        modalFeedbackSubmit:'Отправить отзыв →',
-        modalFeedbackSuccessTitle:'Спасибо!',
-        modalFeedbackSuccessText:'Ваш отзыв помогает нам улучшать сайт.',
-        chooseTopic:'— Выберите тему —',
-        chooseDestination:'— Выберите страну назначения —',
-        other:'Другое',
-        feedbackTypes:{
-          country:'Добавить новую страну назначения',
-          origin:'Добавить новую страну отправления',
-          content:'Пункт чеклиста неправильный или устарел',
-          feature:'Предложить новую функцию',
-          other:'Другой отзыв'
-        },
-        tags:{urgent:'срочно',important:'важно',optional:'необязательно'},
-        times:{
-          beforeArrival:'До прибытия',
-          week1:'Первая неделя',
-          days17:'Дни 1–7',
-          weeks24:'Недели 2–4',
-          months36:'За 3–6 месяцев',
-          weeks48:'За 4–8 недель',
-          arrivalWeek:'Неделя прибытия'
-        }
-      },
-      ar: {
-        htmlLang:'ar', dir:'rtl',
-        langLabel:'اللغة',
-        eyebrowText:'صُمّم من مهاجرين لأجل مهاجرين',
-        heroLine1:'انتقالك إلى',
-        heroLine3:'خطوة بخطوة.',
-        heroDefaultRegion:'العالم،',
-        heroText:'كل ما تحتاجه للانتقال — أدلة التأشيرة، قوائم التحقق، ونصائح محلية.',
-        destinationLabel:'أنا أنتقل إلى',
-        originLabel:'أنا قادم من',
-        selectionEmpty:'اختر بلد الوجهة لرؤية قائمة انتقال مخصّصة لك.',
-        selectionDestination:'الوجهة المختارة: {destination}.',
-        selectionRoute:'المسار المختار: {origin} ← {destination}.',
-        progressTitle:'قائمة انتقالك',
-        progressCount:'{done} من {total} تم إنجازه',
-        celebrateTitle:'أنت جاهز!',
-        celebrateText:'تم إكمال كل الخطوات. أهلاً بك في حياتك الجديدة.',
-        feedbackTitle:'💬 ساعدنا على التحسين',
-        feedbackText:'هل هناك بلد مفقود أو خطأ ما؟ أخبرنا — نحن نقرأ كل رسالة.',
-        inlineEmailLabel:'بريدك الإلكتروني (اختياري)',
-        inlineTypeLabel:'ماذا تريد أن ترى؟',
-        inlineMessageLabel:'أخبرنا أكثر',
-        inlineMessagePlaceholder:'مثلاً: أضفوا بلداناً جديدة أو حدّثوا معلومات التأشيرة أو أصلحوا خطأ.',
-        inlineSubmit:'إرسال الملاحظات →',
-        inlineSuccessTitle:'شكراً لك!',
-        inlineSuccessText:'ملاحظاتك تساعدنا على تحسين الموقع.',
-        ctaTitle:'هل تريد الدليل الكامل؟',
-        ctaText:'جداول التأشيرات، البنوك، السكن وغير ذلك — مجاناً.',
-        ctaBtn:'احصل على الدليل الكامل →',
-        tabGuide:'📧 احصل على الدليل الكامل',
-        tabFeedback:'💬 أرسل ملاحظاتك',
-        modalGuideTitle:'احصل على الدليل الكامل',
-        modalGuideText:'سنرسل لك حزمة الانتقال الكاملة — جداول التأشيرات، الحسابات البنكية، السكن، الرعاية الصحية وغير ذلك. مجاناً.',
-        guideEmailLabel:'بريدك الإلكتروني',
-        guideDestinationLabel:'إلى أين ستنتقل؟',
-        guideSubmit:'أرسل لي الدليل →',
-        guideSuccessTitle:'تمت إضافتك!',
-        guideSuccessText:'سنرسل لك الدليل الكامل قريباً. تحقق من البريد الوارد ومجلد الرسائل غير المرغوب فيها.',
-        modalFeedbackTitle:'أرسل ملاحظاتك',
-        modalFeedbackText:'هل هناك بلد مفقود أو شيء قديم؟ أخبرنا — كل رسالة تُقرأ شخصياً.',
-        modalFeedbackTypeLabel:'نوع الملاحظات',
-        modalFeedbackMessageLabel:'رسالتك',
-        modalFeedbackEmailLabel:'بريدك الإلكتروني (اختياري)',
-        modalFeedbackSubmit:'إرسال الملاحظات →',
-        modalFeedbackSuccessTitle:'شكراً لك!',
-        modalFeedbackSuccessText:'ملاحظاتك تساعدنا على تحسين الموقع.',
-        chooseTopic:'— اختر موضوعاً —',
-        chooseDestination:'— اختر الوجهة —',
-        other:'أخرى',
-        feedbackTypes:{
-          country:'إضافة بلد وجهة جديد',
-          origin:'إضافة بلد انطلاق جديد',
-          content:'عنصر في القائمة غير صحيح أو قديم',
-          feature:'اقتراح ميزة جديدة',
-          other:'ملاحظات أخرى'
-        },
-        tags:{urgent:'عاجل',important:'مهم',optional:'اختياري'},
-        times:{
-          beforeArrival:'قبل الوصول',
-          week1:'الأسبوع الأول',
-          days17:'الأيام 1–7',
-          weeks24:'الأسابيع 2–4',
-          months36:'قبل 3–6 أشهر',
-          weeks48:'قبل 4–8 أسابيع',
-          arrivalWeek:'أسبوع الوصول'
-        }
-      },
-      hi: {
-        htmlLang:'hi', dir:'ltr',
-        langLabel:'भाषा',
-        eyebrowText:'प्रवासी लोगों द्वारा, प्रवासी लोगों के लिए',
-        heroLine1:'आपका सफर',
-        heroLine3:'कदम दर कदम।',
-        heroDefaultRegion:'दुनिया की ओर,',
-        heroText:'स्थानांतरण के लिए जो कुछ चाहिए — वीज़ा गाइड, चेकलिस्ट और स्थानीय सुझाव।',
-        destinationLabel:'मैं जा रहा/रही हूँ',
-        originLabel:'मैं आ रहा/रही हूँ',
-        selectionEmpty:'अपनी व्यक्तिगत relocation checklist देखने के लिए destination चुनें।',
-        selectionDestination:'चुना गया destination: {destination}.',
-        selectionRoute:'चुना गया route: {origin} → {destination}.',
-        progressTitle:'आपकी relocation checklist',
-        progressCount:'{done} में से {total} पूरे',
-        celebrateTitle:'सब तैयार है!',
-        celebrateText:'सभी चरण पूरे हो गए। आपके नए जीवन में स्वागत है।',
-        feedbackTitle:'💬 हमें बेहतर बनाने में मदद करें',
-        feedbackText:'कोई देश नहीं है या कुछ गलत है? हमें बताइए — हम हर संदेश पढ़ते हैं।',
-        inlineEmailLabel:'आपका email (वैकल्पिक)',
-        inlineTypeLabel:'आप क्या देखना चाहेंगे?',
-        inlineMessageLabel:'और बताइए',
-        inlineMessagePlaceholder:'उदाहरण: नए देश जोड़ें, visa जानकारी अपडेट करें, या गलती ठीक करें।',
-        inlineSubmit:'Feedback भेजें →',
-        inlineSuccessTitle:'धन्यवाद!',
-        inlineSuccessText:'आपका feedback हमें साइट बेहतर बनाने में मदद करता है।',
-        ctaTitle:'पूरा गाइड चाहिए?',
-        ctaText:'Visa timelines, bank accounts, housing और बहुत कुछ — मुफ़्त।',
-        ctaBtn:'पूरा गाइड पाएं →',
-        tabGuide:'📧 पूरा गाइड पाएं',
-        tabFeedback:'💬 Feedback दें',
-        modalGuideTitle:'पूरा गाइड पाएं',
-        modalGuideText:'हम आपको पूरा relocation pack भेजेंगे — visa timelines, bank accounts, housing tips, healthcare और बहुत कुछ। मुफ़्त।',
-        guideEmailLabel:'आपका email',
-        guideDestinationLabel:'आप कहाँ जा रहे हैं?',
-        guideSubmit:'मुझे गाइड भेजें →',
-        guideSuccessTitle:'आप सूची में जुड़ गए हैं!',
-        guideSuccessText:'हम आपको जल्द ही पूरा गाइड भेजेंगे। अपना inbox और spam folder भी देख लें।',
-        modalFeedbackTitle:'Feedback दें',
-        modalFeedbackText:'कोई देश नहीं है या कुछ पुराना है? हमें बताइए — हर संदेश पढ़ा जाता है।',
-        modalFeedbackTypeLabel:'Feedback का प्रकार',
-        modalFeedbackMessageLabel:'आपका संदेश',
-        modalFeedbackEmailLabel:'आपका email (वैकल्पिक)',
-        modalFeedbackSubmit:'Feedback भेजें →',
-        modalFeedbackSuccessTitle:'धन्यवाद!',
-        modalFeedbackSuccessText:'आपका feedback हमें साइट बेहतर बनाने में मदद करता है।',
-        chooseTopic:'— विषय चुनें —',
-        chooseDestination:'— destination चुनें —',
-        other:'अन्य',
-        feedbackTypes:{
-          country:'नया destination country जोड़ें',
-          origin:'नया origin country जोड़ें',
-          content:'Checklist item गलत या पुराना है',
-          feature:'नई feature सुझाएँ',
-          other:'अन्य feedback'
-        },
-        tags:{urgent:'ज़रूरी',important:'महत्वपूर्ण',optional:'वैकल्पिक'},
-        times:{
-          beforeArrival:'आने से पहले',
-          week1:'पहला सप्ताह',
-          days17:'दिन 1–7',
-          weeks24:'सप्ताह 2–4',
-          months36:'3–6 महीने पहले',
-          weeks48:'4–8 सप्ताह पहले',
-          arrivalWeek:'आगमन सप्ताह'
-        }
+        hero: "Ваш переезд в <br><em>{country},</em><br> шаг за шагом.",
+        subtext: "Персонализированные чек-листы для релокации, созданные иммигрантами для иммигрантов.",
+        movingTo: "Я переезжаю в",
+        comingFrom: "Я еду из",
+        world: "мир",
+        phases: { docs: "Документы и Виза", arrival: "Первая неделя", life: "Обустройство" }
       }
     };
 
     const destinations = [
-      {
-        code:'UK', flag:'🇬🇧',
-        names:{en:'United Kingdom',uk:'Велика Британія',ru:'Великобритания',ar:'المملكة المتحدة',hi:'United Kingdom'},
-        hero:{en:'the United Kingdom',uk:'Великої Британії',ru:'Великобританию',ar:'المملكة المتحدة',hi:'United Kingdom'}
-      },
-      {
-        code:'DE', flag:'🇩🇪',
-        names:{en:'Germany',uk:'Німеччина',ru:'Германия',ar:'ألمانيا',hi:'Germany'},
-        hero:{en:'Germany',uk:'Німеччини',ru:'Германию',ar:'ألمانيا',hi:'Germany'}
-      },
-      {
-        code:'FR', flag:'🇫🇷',
-        names:{en:'France',uk:'Франція',ru:'Франция',ar:'فرنسا',hi:'France'},
-        hero:{en:'France',uk:'Франції',ru:'Францию',ar:'فرنسا',hi:'France'}
-      },
-      {
-        code:'BE', flag:'🇧🇪',
-        names:{en:'Belgium',uk:'Бельгія',ru:'Бельгия',ar:'بلجيكا',hi:'Belgium'},
-        hero:{en:'Belgium',uk:'Бельгії',ru:'Бельгию',ar:'بلجيكا',hi:'Belgium'}
-      },
-      {
-        code:'PL', flag:'🇵🇱',
-        names:{en:'Poland',uk:'Польща',ru:'Польша',ar:'بولندا',hi:'Poland'},
-        hero:{en:'Poland',uk:'Польщі',ru:'Польшу',ar:'بولندا',hi:'Poland'}
-      },
-      {
-        code:'NL', flag:'🇳🇱',
-        names:{en:'Netherlands',uk:'Нідерланди',ru:'Нидерланды',ar:'هولندا',hi:'Netherlands'},
-        hero:{en:'the Netherlands',uk:'Нідерландів',ru:'Нидерланды',ar:'هولندا',hi:'Netherlands'}
-      },
-      {
-        code:'ES', flag:'🇪🇸',
-        names:{en:'Spain',uk:'Іспанія',ru:'Испания',ar:'إسبانيا',hi:'Spain'},
-        hero:{en:'Spain',uk:'Іспанії',ru:'Испанию',ar:'إسبانيا',hi:'Spain'}
-      },
-      {
-        code:'IT', flag:'🇮🇹',
-        names:{en:'Italy',uk:'Італія',ru:'Италия',ar:'إيطاليا',hi:'Italy'},
-        hero:{en:'Italy',uk:'Італії',ru:'Италию',ar:'إيطاليا',hi:'Italy'}
-      },
-      {
-        code:'CA', flag:'🇨🇦',
-        names:{en:'Canada',uk:'Канада',ru:'Канада',ar:'كندا',hi:'Canada'},
-        hero:{en:'Canada',uk:'Канади',ru:'Канаду',ar:'كندا',hi:'Canada'}
-      },
-      {
-        code:'OTHER_EU', flag:'🇪🇺',
-        names:{en:'Other EU country',uk:'Інша країна ЄС',ru:'Другая страна ЕС',ar:'دولة أخرى في الاتحاد الأوروبي',hi:'Other EU country'},
-        hero:{en:'another EU country',uk:'іншої країни ЄС',ru:'другую страну ЕС',ar:'دولة أخرى في الاتحاد الأوروبي',hi:'another EU country'}
-      }
+      { code: 'UK', name: { en: 'United Kingdom', uk: 'Великої Британії', ru: 'Великобританию' }, flag: '🇬🇧' },
+      { code: 'DE', name: { en: 'Germany', uk: 'Німеччини', ru: 'Германию' }, flag: '🇩🇪' },
+      { code: 'CA', name: { en: 'Canada', uk: 'Канади', ru: 'Канаду' }, flag: '🇨🇦' }
     ];
 
     const origins = [
-      {code:'UA',flag:'🇺🇦',names:{en:'Ukraine',uk:'Україна',ru:'Украина',ar:'أوكرانيا',hi:'Ukraine'}},
-      {code:'IN',flag:'🇮🇳',names:{en:'India',uk:'Індія',ru:'Индия',ar:'الهند',hi:'India'}},
-      {code:'NG',flag:'🇳🇬',names:{en:'Nigeria',uk:'Нігерія',ru:'Нигерия',ar:'نيجيريا',hi:'Nigeria'}},
-      {code:'PH',flag:'🇵🇭',names:{en:'Philippines',uk:'Філіппіни',ru:'Филиппины',ar:'الفلبين',hi:'Philippines'}},
-      {code:'RO',flag:'🇷🇴',names:{en:'Romania',uk:'Румунія',ru:'Румыния',ar:'رومانيا',hi:'Romania'}},
-      {code:'PK',flag:'🇵🇰',names:{en:'Pakistan',uk:'Пакистан',ru:'Пакистан',ar:'باكستان',hi:'Pakistan'}},
-      {code:'BD',flag:'🇧🇩',names:{en:'Bangladesh',uk:'Бангладеш',ru:'Бангладеш',ar:'بنغلاديش',hi:'Bangladesh'}},
-      {code:'TR',flag:'🇹🇷',names:{en:'Turkey',uk:'Туреччина',ru:'Турция',ar:'تركيا',hi:'Turkey'}},
-      {code:'MA',flag:'🇲🇦',names:{en:'Morocco',uk:'Марокко',ru:'Марокко',ar:'المغرب',hi:'Morocco'}},
-      {code:'OTHER',flag:'🌍',names:{en:'Other country',uk:'Інша країна',ru:'Другая страна',ar:'بلد آخر',hi:'Other country'}}
+      { code: 'UA', name: { en: 'Ukraine', uk: 'України', ru: 'Украины' }, flag: '🇺🇦' },
+      { code: 'IN', name: { en: 'India', uk: 'Індії', ru: 'Индии' }, flag: '🇮🇳' },
+      { code: 'OTHER', name: { en: 'Other', uk: 'Іншої країни', ru: 'Другой страны' }, flag: '🌍' }
     ];
 
-    const phaseNames = {
-      preDocs:{en:'Visa & documents',uk:'Віза та документи',ru:'Виза и документы',ar:'التأشيرة والوثائق',hi:'वीज़ा और दस्तावेज़'},
-      preDeparture:{en:'Before departure',uk:'Перед виїздом',ru:'Перед отъездом',ar:'قبل المغادرة',hi:'रवाना होने से पहले'},
-      arrival:{en:'Arrival & registration',uk:'Прибуття та реєстрація',ru:'Прибытие и регистрация',ar:'الوصول والتسجيل',hi:'आगमन और पंजीकरण'},
-      firstMonth:{en:'First month',uk:'Перший місяць',ru:'Первый месяц',ar:'الشهر الأول',hi:'पहला महीना'},
-      ukraineRoute:{en:'Before you leave Ukraine',uk:'Перед виїздом з України',ru:'Перед выездом из Украины',ar:'قبل مغادرة أوكرانيا',hi:'यूक्रेन छोड़ने से पहले'},
-      ukArrival:{en:'Arriving in the UK',uk:'Прибуття до Великої Британії',ru:'Прибытие в Великобританию',ar:'الوصول إلى المملكة المتحدة',hi:'यूके में आगमन'}
-    };
-
-    function L(en, uk, ru, ar, hi){
-      return {en, uk, ru, ar, hi};
-    }
-
-    const genericDestinationChecklist = [
-      {
-        phase:'preDocs',
-        time:'beforeArrival',
-        items:[
-          {
-            text:L(
-              'Apply for the correct visa or long-stay permit.',
-              'Подайте заяву на відповідну візу або дозвіл на довгострокове перебування.',
-              'Подайте заявление на подходящую визу или разрешение на длительное пребывание.',
-              'قدّم طلب التأشيرة المناسبة أو تصريح الإقامة الطويلة.',
-              'सही visa या long-stay permit के लिए आवेदन करें।'
-            ),
-            note:L(
-              'Check the embassy or consulate rules for your route.',
-              'Перевірте правила посольства або консульства для вашого маршруту.',
-              'Проверьте правила посольства или консульства для вашего маршрута.',
-              'تحقّق من قواعد السفارة أو القنصلية الخاصة بمسارك.',
-              'अपने route के लिए embassy या consulate के नियम देखें।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Make sure your passport will stay valid long enough.',
-              'Переконайтеся, що ваш паспорт буде дійсним достатньо довго.',
-              'Убедитесь, что ваш паспорт будет действителен достаточно долго.',
-              'تأكد من أن جواز سفرك سيبقى صالحاً لمدة كافية.',
-              'सुनिश्चित करें कि आपका passport पर्याप्त समय तक valid रहे।'
-            ),
-            note:L(
-              'Renew it early if needed.',
-              'За потреби поновіть його заздалегідь.',
-              'Если нужно, продлите его заранее.',
-              'جدّده مبكراً إذا لزم الأمر.',
-              'ज़रूरत हो तो इसे पहले renew करें।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Prepare key personal documents and digital copies.',
-              'Підготуйте основні особисті документи та цифрові копії.',
-              'Подготовьте основные личные документы и цифровые копии.',
-              'جهّز الوثائق الشخصية الأساسية والنسخ الرقمية.',
-              'मुख्य personal documents और digital copies तैयार करें।'
-            ),
-            note:L(
-              'Keep passport, birth certificate, diplomas, and rental papers together.',
-              'Тримайте разом паспорт, свідоцтво про народження, дипломи та документи на житло.',
-              'Держите вместе паспорт, свидетельство о рождении, дипломы и документы на жильё.',
-              'احتفظ بجواز السفر وشهادة الميلاد والشهادات وأوراق السكن معاً.',
-              'Passport, birth certificate, diplomas और housing papers साथ रखें।'
-            ),
-            tag:'important'
-          }
-        ]
-      },
-      {
-        phase:'arrival',
-        time:'days17',
-        items:[
-          {
-            text:L(
-              'Register your address if local law requires it.',
-              'Зареєструйте адресу, якщо цього вимагає місцеве законодавство.',
-              'Зарегистрируйте адрес, если этого требует местное законодательство.',
-              'سجّل عنوانك إذا كان القانون المحلي يتطلب ذلك.',
-              'अगर स्थानीय कानून कहता है तो अपना address register करें।'
-            ),
-            note:L(
-              'Many countries require this soon after arrival.',
-              'У багатьох країнах це потрібно зробити невдовзі після прибуття.',
-              'Во многих странах это нужно сделать вскоре после прибытия.',
-              'العديد من الدول تطلب ذلك بعد الوصول بفترة قصيرة.',
-              'कई देशों में यह arrival के तुरंत बाद ज़रूरी होता है।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Open a local bank account.',
-              'Відкрийте місцевий банківський рахунок.',
-              'Откройте местный банковский счёт.',
-              'افتح حساباً بنكياً محلياً.',
-              'स्थानीय bank account खोलें।'
-            ),
-            note:L(
-              'Bring identification and local address details if possible.',
-              'Візьміть посвідчення особи та дані місцевої адреси, якщо можливо.',
-              'Возьмите удостоверение личности и данные местного адреса, если это возможно.',
-              'أحضر وثيقة الهوية وتفاصيل العنوان المحلي إن أمكن.',
-              'ID और local address details साथ लें।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Get a local SIM card.',
-              'Отримайте місцеву SIM-картку.',
-              'Получите местную SIM-карту.',
-              'احصل على شريحة SIM محلية.',
-              'स्थानीय SIM card लें।'
-            ),
-            note:L(
-              'A local phone number helps with banks, schools, and official services.',
-              'Місцевий номер телефону допоможе з банками, школами та офіційними послугами.',
-              'Местный номер телефона поможет с банками, школами и официальными услугами.',
-              'الرقم المحلي يساعد مع البنوك والمدارس والخدمات الرسمية.',
-              'स्थानीय phone number bank, school और official services में मदद करता है।'
-            ),
-            tag:'important'
-          }
-        ]
-      },
-      {
-        phase:'firstMonth',
-        time:'weeks24',
-        items:[
-          {
-            text:L(
-              'Register for healthcare or health insurance.',
-              'Зареєструйтеся в системі охорони здоров’я або оформіть медичне страхування.',
-              'Зарегистрируйтесь в системе здравоохранения или оформите медицинскую страховку.',
-              'سجّل في نظام الرعاية الصحية أو التأمين الصحي.',
-              'Healthcare या health insurance के लिए register करें।'
-            ),
-            note:L(
-              'This is often essential in the first weeks.',
-              'Це часто дуже важливо в перші тижні.',
-              'Это часто очень важно в первые недели.',
-              'غالباً ما يكون هذا ضرورياً في الأسابيع الأولى.',
-              'पहले हफ्तों में यह अक्सर बहुत ज़रूरी होता है।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Check local tax or identity number requirements.',
-              'Перевірте вимоги щодо місцевого податкового номера або номера особи.',
-              'Проверьте требования к местному налоговому номеру или идентификационному номеру.',
-              'تحقّق من متطلبات الرقم الضريبي أو رقم الهوية المحلي.',
-              'स्थानीय tax number या identity number की ज़रूरत जाँचें।'
-            ),
-            note:L(
-              'You may need this for work, banking, or public services.',
-              'Це може знадобитися для роботи, банківських послуг або державних сервісів.',
-              'Это может понадобиться для работы, банковских услуг или государственных сервисов.',
-              'قد تحتاج إلى ذلك للعمل أو البنوك أو الخدمات العامة.',
-              'यह work, banking या public services के लिए चाहिए हो सकता है।'
-            ),
-            tag:'important'
-          },
-          {
-            text:L(
-              'Look for local language classes and support services.',
-              'Пошукайте місцеві мовні курси та служби підтримки.',
-              'Поищите местные языковые курсы и службы поддержки.',
-              'ابحث عن دورات اللغة المحلية وخدمات الدعم.',
-              'स्थानीय language classes और support services देखें।'
-            ),
-            note:L(
-              'Many areas have free or low-cost support for newcomers.',
-              'У багатьох місцях є безкоштовна або недорога підтримка для новоприбулих.',
-              'Во многих местах есть бесплатная или недорогая поддержка для новых приезжих.',
-              'توجد في كثير من المناطق خدمات دعم مجانية أو منخفضة التكلفة للقادمين الجدد.',
-              'कई जगह newcomers के लिए free या low-cost support मिलता है।'
-            ),
-            tag:'optional'
-          }
-        ]
-      }
-    ];
-
-    const ukChecklistUA = [
-      {
-        phase:'ukraineRoute',
-        time:'weeks48',
-        items:[
-          {
-            text:L(
-              'Check that your passport and all travel documents are ready.',
-              'Перевірте, що ваш паспорт і всі проїзні документи готові.',
-              'Проверьте, что ваш паспорт и все проездные документы готовы.',
-              'تأكد من أن جواز سفرك وكل وثائق السفر جاهزة.',
-              'सुनिश्चित करें कि आपका passport और सभी travel documents तैयार हैं।'
-            ),
-            note:L(
-              'Keep paper copies and phone copies.',
-              'Зберігайте паперові копії та копії в телефоні.',
-              'Храните бумажные копии и копии в телефоне.',
-              'احتفظ بنسخ ورقية ونسخ على الهاتف.',
-              'Paper copies और phone copies साथ रखें।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Prepare sponsor, visa, or entry permission documents.',
-              'Підготуйте документи спонсора, візи або дозволу на в’їзд.',
-              'Подготовьте документы спонсора, визы или разрешения на въезд.',
-              'جهّز وثائق الكفيل أو التأشيرة أو إذن الدخول.',
-              'Sponsor, visa या entry permission documents तैयार करें।'
-            ),
-            note:L(
-              'Make sure names and dates match exactly.',
-              'Переконайтеся, що імена та дати повністю збігаються.',
-              'Убедитесь, что имена и даты полностью совпадают.',
-              'تأكد من أن الأسماء والتواريخ متطابقة تماماً.',
-              'नाम और तारीखें बिल्कुल same हों।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Take medical records and prescriptions with you.',
-              'Візьміть із собою медичні записи та рецепти.',
-              'Возьмите с собой медицинские записи и рецепты.',
-              'خذ معك السجلات الطبية والوصفات.',
-              'Medical records और prescriptions साथ लें।'
-            ),
-            note:L(
-              'This is especially important if you need regular treatment.',
-              'Це особливо важливо, якщо вам потрібне регулярне лікування.',
-              'Это особенно важно, если вам нужно регулярное лечение.',
-              'هذا مهم جداً إذا كنت تحتاج إلى علاج منتظم.',
-              'अगर आपको regular treatment चाहिए तो यह बहुत ज़रूरी है।'
-            ),
-            tag:'important'
-          }
-        ]
-      },
-      {
-        phase:'ukArrival',
-        time:'week1',
-        items:[
-          {
-            text:L(
-              'Register with a GP as soon as possible.',
-              'Зареєструйтеся в лікаря загальної практики якомога швидше.',
-              'Зарегистрируйтесь у врача общей практики как можно скорее.',
-              'سجّل لدى طبيب عام في أقرب وقت ممكن.',
-              'जितनी जल्दी हो सके GP के साथ register करें।'
-            ),
-            note:L(
-              'This helps you access NHS services quickly.',
-              'Це допоможе швидко отримати доступ до послуг NHS.',
-              'Это поможет быстро получить доступ к услугам NHS.',
-              'هذا يساعدك على الوصول السريع إلى خدمات NHS.',
-              'इससे NHS services जल्दी मिलेंगी।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Open a UK bank account.',
-              'Відкрийте банківський рахунок у Великій Британії.',
-              'Откройте банковский счёт в Великобритании.',
-              'افتح حساباً بنكياً في المملكة المتحدة.',
-              'यूके में bank account खोलें।'
-            ),
-            note:L(
-              'A digital bank like <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> can be easier at the beginning.',
-              'На початку цифровий банк, наприклад <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a>, може бути простішим варіантом.',
-              'В начале цифровой банк, например <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a>, может быть более простым вариантом.',
-              'قد يكون البنك الرقمي مثل <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> أسهل في البداية.',
-              'शुरुआत में <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> जैसे digital bank आसान हो सकते हैं।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Set up your immigration status account or eVisa if required.',
-              'Налаштуйте свій обліковий запис імміграційного статусу або eVisa, якщо це потрібно.',
-              'Настройте свой аккаунт иммиграционного статуса или eVisa, если это нужно.',
-              'قم بإعداد حساب حالة الهجرة أو التأشيرة الإلكترونية إذا لزم الأمر.',
-              'ज़रूरत हो तो immigration status account या eVisa सेट करें।'
-            ),
-            note:L(
-              'Digital proof is very important for many services.',
-              'Цифрове підтвердження дуже важливе для багатьох послуг.',
-              'Цифровое подтверждение очень важно для многих услуг.',
-              'الإثبات الرقمي مهم جداً لكثير من الخدمات.',
-              'कई services के लिए digital proof बहुत ज़रूरी है।'
-            ),
-            tag:'urgent'
-          }
-        ]
-      },
-      {
-        phase:'firstMonth',
-        time:'weeks24',
-        items:[
-          {
-            text:L(
-              'Apply for benefits or support if you are eligible.',
-              'Подайте заявку на пільги або допомогу, якщо маєте право.',
-              'Подайте заявку на пособия или помощь, если имеете право.',
-              'قدّم طلباً للحصول على المساعدات إذا كنت مؤهلاً.',
-              'अगर आप eligible हैं तो benefits या support के लिए apply करें।'
-            ),
-            note:L(
-              'Do this early if you need financial help.',
-              'Зробіть це рано, якщо вам потрібна фінансова допомога.',
-              'Сделайте это заранее, если вам нужна финансовая помощь.',
-              'افعل ذلك مبكراً إذا كنت تحتاج إلى دعم مالي.',
-              'अगर financial help चाहिए तो जल्दी करें।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Apply for a National Insurance number if needed.',
-              'Подайте заявку на номер National Insurance, якщо це потрібно.',
-              'Подайте заявку на номер National Insurance, если это нужно.',
-              'قدّم طلباً للحصول على رقم التأمين الوطني إذا لزم الأمر.',
-              'ज़रूरत हो तो National Insurance number के लिए apply करें।'
-            ),
-            note:L(
-              'This is important for work and some official processes.',
-              'Це важливо для роботи та деяких офіційних процедур.',
-              'Это важно для работы и некоторых официальных процедур.',
-              'هذا مهم للعمل وبعض الإجراءات الرسمية.',
-              'यह work और कुछ official processes के लिए ज़रूरी है।'
-            ),
-            tag:'important'
-          },
-          {
-            text:L(
-              'Look for ESOL classes or local support groups.',
-              'Пошукайте курси ESOL або місцеві групи підтримки.',
-              'Поищите курсы ESOL или местные группы поддержки.',
-              'ابحث عن دورات ESOL أو مجموعات دعم محلية.',
-              'ESOL classes या स्थानीय support groups देखें।'
-            ),
-            note:L(
-              'These can help with language and settlement.',
-              'Вони можуть допомогти з мовою та адаптацією.',
-              'Они могут помочь с языком и адаптацией.',
-              'يمكن أن تساعدك في اللغة والاستقرار.',
-              'यह language और settling में मदद कर सकते हैं।'
-            ),
-            tag:'optional'
-          }
-        ]
-      }
-    ];
-
-    const ukChecklistGeneric = [
-      {
-        phase:'preDocs',
-        time:'months36',
-        items:[
-          {
-            text:L(
-              'Confirm the correct UK visa category for your situation.',
-              'Підтвердьте правильну категорію візи до Великої Британії для вашої ситуації.',
-              'Подтвердите правильную категорию визы в Великобританию для вашей ситуации.',
-              'تأكد من فئة التأشيرة البريطانية المناسبة لوضعك.',
-              'अपनी स्थिति के लिए सही UK visa category तय करें।'
-            ),
-            note:L(
-              'For example: work, study, family, or another route.',
-              'Наприклад: робота, навчання, сім’я або інший маршрут.',
-              'Например: работа, учёба, семья или другой маршрут.',
-              'مثلاً: عمل أو دراسة أو عائلة أو مسار آخر.',
-              'जैसे: work, study, family या कोई दूसरा route।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Book biometrics or visa centre appointments if required.',
-              'Забронюйте біометрію або прийом у візовому центрі, якщо це потрібно.',
-              'Забронируйте биометрию или приём в визовом центре, если это нужно.',
-              'احجز موعد البصمات أو مركز التأشيرات إذا لزم الأمر.',
-              'ज़रूरत हो तो biometrics या visa centre appointment बुक करें।'
-            ),
-            note:L(
-              'Popular time slots can go quickly.',
-              'Популярні часові слоти можуть швидко зникати.',
-              'Популярные временные слоты могут быстро исчезнуть.',
-              'قد تمتلئ المواعيد المطلوبة بسرعة.',
-              'Popular time slots जल्दी भर सकते हैं।'
-            ),
-            tag:'urgent'
-          }
-        ]
-      },
-      {
-        phase:'ukArrival',
-        time:'arrivalWeek',
-        items:[
-          {
-            text:L(
-              'Register with a GP.',
-              'Зареєструйтеся в лікаря загальної практики.',
-              'Зарегистрируйтесь у врача общей практики.',
-              'سجّل لدى طبيب عام.',
-              'GP के साथ register करें।'
-            ),
-            note:L(
-              'Bring identification and your address details if possible.',
-              'Візьміть посвідчення особи та дані адреси, якщо можливо.',
-              'Возьмите удостоверение личности и данные адреса, если возможно.',
-              'أحضر وثيقة الهوية وتفاصيل العنوان إن أمكن.',
-              'ID और address details साथ लें।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Open a UK bank account and get a local SIM card.',
-              'Відкрийте банківський рахунок у Великій Британії та отримайте місцеву SIM-картку.',
-              'Откройте банковский счёт в Великобритании и получите местную SIM-карту.',
-              'افتح حساباً بنكياً بريطانياً واحصل على شريحة SIM محلية.',
-              'यूके में bank account खोलें और local SIM card लें।'
-            ),
-            note:L(
-              'These will help with daily life and official contact.',
-              'Це допоможе в повсякденному житті та офіційному спілкуванні.',
-              'Это поможет в повседневной жизни и официальном общении.',
-              'سيساعدك ذلك في الحياة اليومية والتواصل الرسمي.',
-              'यह daily life और official contact में मदद करेगा।'
-            ),
-            tag:'important'
-          }
-        ]
-      },
-      {
-        phase:'firstMonth',
-        time:'weeks24',
-        items:[
-          {
-            text:L(
-              'Look for longer-term housing.',
-              'Шукайте довгострокове житло.',
-              'Ищите долгосрочное жильё.',
-              'ابحث عن سكن طويل الأمد.',
-              'Long-term housing देखें।'
-            ),
-            note:L(
-              'Prepare identification, references, and budget details.',
-              'Підготуйте посвідчення особи, рекомендації та дані про бюджет.',
-              'Подготовьте удостоверение личности, рекомендации и данные о бюджете.',
-              'جهّز وثيقة الهوية والمراجع وتفاصيل الميزانية.',
-              'ID, references और budget details तैयार रखें।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Learn your rights at work and in housing.',
-              'Дізнайтеся про свої права на роботі та щодо житла.',
-              'Узнайте о своих правах на работе и в вопросах жилья.',
-              'تعرّف على حقوقك في العمل والسكن.',
-              'Work और housing में अपने rights जानें।'
-            ),
-            note:L(
-              'This can protect you from unfair treatment.',
-              'Це може захистити вас від несправедливого ставлення.',
-              'Это может защитить вас от несправедливого обращения.',
-              'يمكن أن يحميك ذلك من المعاملة غير العادلة.',
-              'यह unfair treatment से बचाने में मदद कर सकता है।'
-            ),
-            tag:'important'
-          }
-        ]
-      }
-    ];
-
-    const checklistByDestination = {
+    const checklists = {
       UK: {
-        UA: ukChecklistUA,
-        DEFAULT: ukChecklistGeneric
+        UA: [
+          { phase: 'docs', items: [
+            { title: "Homes for Ukraine Scheme", desc: "Check your eligibility and extension status for 2026.", tag: "urgent" },
+            { title: "BRP / e-Visa", desc: "Ensure your biometric residence permit or digital status is ready.", tag: "urgent" }
+          ]},
+          { phase: 'arrival', items: [
+            { title: "GP Registration", desc: "Register with a local doctor to access NHS services.", tag: "info" },
+            { title: "BRP Collection", desc: "Collect your permit from the designated Post Office if applicable.", tag: "urgent" }
+          ]}
+        ],
+        DEFAULT: [
+          { phase: 'docs', items: [
+            { title: "Skilled Worker Visa", desc: "Confirm your Certificate of Sponsorship (CoS) from your employer.", tag: "urgent" }
+          ]}
+        ]
       },
-      DE: genericDestinationChecklist,
-      FR: genericDestinationChecklist,
-      BE: genericDestinationChecklist,
-      PL: genericDestinationChecklist,
-      NL: genericDestinationChecklist,
-      ES: genericDestinationChecklist,
-      IT: genericDestinationChecklist,
-      CA: genericDestinationChecklist,
-      OTHER_EU: genericDestinationChecklist
+      DE: {
+        DEFAULT: [
+          { phase: 'docs', items: [
+            { title: "National Visa (D)", desc: "Apply at the German embassy in your current country.", tag: "urgent" }
+          ]},
+          { phase: 'arrival', items: [
+            { title: "Anmeldung", desc: "Register your address at the Bürgeramt within 14 days.", tag: "urgent" },
+            { title: "Health Insurance", desc: "Sign up for public (AOK, TK) or private insurance.", tag: "urgent" }
+          ]}
+        ]
+      },
+      CA: {
+        DEFAULT: [
+          { phase: 'docs', items: [
+            { title: "PR / Work Permit", desc: "Ensure you have your Letter of Introduction for the border officer.", tag: "urgent" }
+          ]},
+          { phase: 'arrival', items: [
+            { title: "SIN Number", desc: "Apply for your Social Insurance Number at Service Canada.", tag: "urgent" },
+            { title: "Health Card", desc: "Apply for provincial health coverage (OHIP, MSP, etc.).", tag: "info" }
+          ]}
+        ]
+      }
     };
 
     let currentLang = 'en';
-    let currentDestination = null;
-    let currentOrigin = null;
-    let state = {};
-    let completionSent = false;
+    let selectedDest = null;
+    let selectedOrigin = null;
 
-    const $ = id => document.getElementById(id);
-
-    function track(name, params = {}){
-      if(typeof gtag === 'function') gtag('event', name, params);
-    }
-
-    function saveState(){
-      localStorage.setItem('immigrify_state_v3', JSON.stringify(state));
-      localStorage.setItem('immigrify_lang_v3', currentLang);
-    }
-
-    function loadState(){
-      try{ state = JSON.parse(localStorage.getItem('immigrify_state_v3') || '{}'); }catch{ state = {}; }
-      const savedLang = localStorage.getItem('immigrify_lang_v3');
-      if(savedLang && ui[savedLang]) currentLang = savedLang;
-    }
-
-    function tx(obj){
-      if(typeof obj === 'string') return obj;
-      return obj?.[currentLang] || obj?.en || '';
-    }
-
-    function t(key){
-      return ui[currentLang][key];
-    }
-
-    function nameOf(entity){
-      return entity.names[currentLang] || entity.names.en;
-    }
-
-    function heroNameOf(entity){
-      return entity.hero?.[currentLang] || entity.hero?.en || nameOf(entity);
-    }
-
-    function phaseName(key){
-      return tx(phaseNames[key]);
-    }
-
-    function timeName(key){
-      return ui[currentLang].times[key] || key;
-    }
-
-    function tagName(tag){
-      return ui[currentLang].tags[tag] || tag;
-    }
-
-    function template(str, vars){
-      return String(str).replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
-    }
-
-    function itemKey(scope, phaseIndex, itemIndex){
-      return `${scope}_${phaseIndex}_${itemIndex}`;
-    }
-
-    function getActiveChecklist(){
-      if(!currentDestination) return null;
-      if(currentDestination.code === 'UK'){
-        return checklistByDestination.UK[currentOrigin?.code] || checklistByDestination.UK.DEFAULT;
-      }
-      return checklistByDestination[currentDestination.code] || genericDestinationChecklist;
-    }
-
-    function applyUiText(){
-      document.documentElement.lang = ui[currentLang].htmlLang;
-      document.documentElement.dir = ui[currentLang].dir;
-
-      $('langLabel').textContent = t('langLabel');
-      $('eyebrowText').textContent = t('eyebrowText');
-      $('heroLine1').textContent = t('heroLine1');
-      $('heroLine3').textContent = t('heroLine3');
-      $('heroText').textContent = t('heroText');
-      $('destinationLabel').textContent = t('destinationLabel');
-      $('originLabel').textContent = t('originLabel');
-      $('feedbackTitle').textContent = t('feedbackTitle');
-      $('feedbackText').textContent = t('feedbackText');
-      $('inlineEmailLabel').textContent = t('inlineEmailLabel');
-      $('inlineTypeLabel').textContent = t('inlineTypeLabel');
-      $('inlineMessageLabel').textContent = t('inlineMessageLabel');
-      $('inlineMessage').placeholder = t('inlineMessagePlaceholder');
-      $('inlineSubmitBtn').textContent = t('inlineSubmit');
-      $('inlineSuccessTitle').textContent = t('inlineSuccessTitle');
-      $('inlineSuccessText').textContent = t('inlineSuccessText');
-      $('ctaTitle').textContent = t('ctaTitle');
-      $('ctaText').textContent = t('ctaText');
-      $('openGuideBtn').textContent = t('ctaBtn');
-      $('tabGuideBtn').textContent = t('tabGuide');
-      $('tabFeedbackBtn').textContent = t('tabFeedback');
-      $('modalGuideTitle').textContent = t('modalGuideTitle');
-      $('modalGuideText').textContent = t('modalGuideText');
-      $('guideEmailLabel').textContent = t('guideEmailLabel');
-      $('guideDestinationLabel').textContent = t('guideDestinationLabel');
-      $('guideSubmitBtn').textContent = t('guideSubmit');
-      $('guideSuccessTitle').textContent = t('guideSuccessTitle');
-      $('guideSuccessText').textContent = t('guideSuccessText');
-      $('modalFeedbackTitle').textContent = t('modalFeedbackTitle');
-      $('modalFeedbackText').textContent = t('modalFeedbackText');
-      $('modalFeedbackTypeLabel').textContent = t('modalFeedbackTypeLabel');
-      $('modalFeedbackMessageLabel').textContent = t('modalFeedbackMessageLabel');
-      $('modalFeedbackEmailLabel').textContent = t('modalFeedbackEmailLabel');
-      $('modalFeedbackSubmitBtn').textContent = t('modalFeedbackSubmit');
-      $('modalFeedbackSuccessTitle').textContent = t('modalFeedbackSuccessTitle');
-      $('modalFeedbackSuccessText').textContent = t('modalFeedbackSuccessText');
-
-      updateHeroRegion();
-      renderFeedbackOptions();
-      renderGuideDestinations();
-      updateSummary();
-
-      document.querySelectorAll('.lang-btn').forEach(btn=>{
-        btn.classList.toggle('active', btn.dataset.lang === currentLang);
-      });
-    }
-
-    function updateHeroRegion(){
-      $('heroRegion').textContent = currentDestination ? heroNameOf(currentDestination) + ',' : t('heroDefaultRegion');
-    }
-
-    function renderDestinations(){
-      const grid = $('destinationGrid');
-      grid.innerHTML = '';
-      destinations.forEach(dest=>{
-        const btn = document.createElement('button');
-        btn.className = 'pill' + (currentDestination?.code === dest.code ? ' active' : '');
-        btn.type = 'button';
-        btn.innerHTML = `<span>${dest.flag} ${nameOf(dest)}</span>`;
-        btn.addEventListener('click', ()=>selectDestination(dest));
-        grid.appendChild(btn);
-      });
-    }
-
-    function renderOrigins(){
-      const grid = $('originGrid');
-      grid.innerHTML = '';
-      origins.forEach(origin=>{
-        const btn = document.createElement('button');
-        btn.className = 'pill' + (currentOrigin?.code === origin.code ? ' active' : '');
-        btn.type = 'button';
-        btn.innerHTML = `<span>${origin.flag} ${nameOf(origin)}</span>`;
-        btn.addEventListener('click', ()=>selectOrigin(origin));
-        grid.appendChild(btn);
-      });
-    }
-
-    function renderFeedbackOptions(){
-      const selects = [$('inlineType'), $('modalFeedbackType')];
-      selects.forEach(sel=>{
-        const old = sel.value;
-        sel.innerHTML = '';
-        const first = document.createElement('option');
-        first.value = '';
-        first.textContent = t('chooseTopic');
-        sel.appendChild(first);
-        const map = ui[currentLang].feedbackTypes;
-        Object.entries(map).forEach(([value,label])=>{
-          const op = document.createElement('option');
-          op.value = value;
-          op.textContent = label;
-          sel.appendChild(op);
-        });
-        if([...sel.options].some(o=>o.value===old)) sel.value = old;
-      });
-    }
-
-    function renderGuideDestinations(){
-      const sel = $('guideDestination');
-      const old = sel.value;
-      sel.innerHTML = '';
-      const first = document.createElement('option');
-      first.value = '';
-      first.textContent = t('chooseDestination');
-      sel.appendChild(first);
-      destinations.forEach(dest=>{
-        const op = document.createElement('option');
-        op.value = dest.code;
-        op.textContent = `${dest.flag} ${nameOf(dest)}`;
-        sel.appendChild(op);
-      });
-      if(currentDestination) sel.value = currentDestination.code;
-      else if([...sel.options].some(o=>o.value===old)) sel.value = old;
-    }
-
-    function updateSummary(){
-      const el = $('selectionSummary');
-      if(!currentDestination){
-        el.textContent = t('selectionEmpty');
-        return;
-      }
-      if(currentDestination.code === 'UK' && currentOrigin){
-        el.textContent = template(t('selectionRoute'), {
-          origin: nameOf(currentOrigin),
-          destination: nameOf(currentDestination)
-        });
-      } else {
-        el.textContent = template(t('selectionDestination'), {
-          destination: nameOf(currentDestination)
-        });
-      }
-    }
-
-    function resetChecklistArea(){
-      $('progressWrap').classList.remove('visible');
-      $('checklists').classList.remove('visible');
-      $('feedbackWrap').classList.remove('visible');
-      $('stickyCta').classList.remove('visible');
-      $('celebrate').classList.remove('visible');
-      $('checklists').innerHTML = '';
-      $('progressBar').style.width = '0%';
-      $('progressCount').textContent = template(t('progressCount'), {done:0,total:0});
-      completionSent = false;
-      updateSummary();
-    }
-
-    function selectDestination(dest){
-      currentDestination = dest;
-      currentOrigin = null;
-      updateHeroRegion();
-      renderDestinations();
-      renderGuideDestinations();
-      if(dest.code === 'UK'){
-        $('originWrap').style.display = 'block';
-        renderOrigins();
-        resetChecklistArea();
-      } else {
-        $('originWrap').style.display = 'none';
-        renderChecklist();
-      }
-      updateSummary();
-      track('select_destination', {
-        destination_code: dest.code,
-        destination_name: dest.names.en,
-        language: currentLang
-      });
-    }
-
-    function selectOrigin(origin){
-      currentOrigin = origin;
-      renderOrigins();
-      renderChecklist();
-      updateSummary();
-      track('select_origin_country', {
-        origin_code: origin.code,
-        origin_name: origin.names.en,
-        destination_code: currentDestination?.code || '',
-        language: currentLang
-      });
-    }
-
-    function renderChecklist(){
-      const data = getActiveChecklist();
-      if(!data) return;
-
-      const scope = currentDestination.code === 'UK'
-        ? `UK_${currentOrigin?.code || 'DEFAULT'}`
-        : `DEST_${currentDestination.code}`;
-
-      $('progressWrap').classList.add('visible');
-      $('checklists').classList.add('visible');
-      $('feedbackWrap').classList.add('visible');
-      $('stickyCta').classList.add('visible');
-
-      $('progressTitle').textContent = currentDestination.code === 'UK' && currentOrigin
-        ? `${t('progressTitle')}: ${nameOf(currentDestination)} — ${nameOf(currentOrigin)}`
-        : `${t('progressTitle')}: ${nameOf(currentDestination)}`;
-
-      const root = $('checklists');
-      root.innerHTML = '';
-
-      data.forEach((phase, phaseIndex)=>{
-        const box = document.createElement('div');
-        box.className = 'phase';
-        box.innerHTML = `
-          <div class="phase-head">
-            <div class="num">${phaseIndex + 1}</div>
-            <div class="phase-name">${phaseName(phase.phase)}</div>
-            <div class="phase-time">${timeName(phase.time)}</div>
-          </div>
-        `;
-
-        phase.items.forEach((item, itemIndex)=>{
-          const key = itemKey(scope, phaseIndex, itemIndex);
-          const checked = !!state[key];
-          const row = document.createElement('div');
-          row.className = 'item' + (checked ? ' checked' : '');
-          row.innerHTML = `
-            <div class="box"><span class="tick">✓</span></div>
-            <div class="content">
-              <div class="text">${tx(item.text)}</div>
-              ${item.note ? `<div class="note">${tx(item.note)}</div>` : ''}
-            </div>
-            <div class="tag ${item.tag}">${tagName(item.tag)}</div>
-          `;
-          row.addEventListener('click', ()=>{
-            state[key] = !state[key];
-            saveState();
-            row.classList.toggle('checked', !!state[key]);
-            updateProgress(scope, data);
-          });
-          box.appendChild(row);
-        });
-
-        root.appendChild(box);
-      });
-
-      updateProgress(scope, data);
-    }
-
-    function updateProgress(scope, data){
-      let total = 0;
-      let done = 0;
-
-      data.forEach((phase, pIndex)=>{
-        phase.items.forEach((_, iIndex)=>{
-          total++;
-          if(state[itemKey(scope, pIndex, iIndex)]) done++;
-        });
-      });
-
-      const percent = total ? Math.round((done / total) * 100) : 0;
-      $('progressBar').style.width = percent + '%';
-      $('progressCount').textContent = template(t('progressCount'), {done, total});
-
-      if(percent === 100 && total > 0){
-        $('celebrate').classList.add('visible');
-        $('celebrateTitle').textContent = t('celebrateTitle');
-        $('celebrateText').textContent = t('celebrateText');
-        if(!completionSent){
-          completionSent = true;
-          track('checklist_completed', {
-            destination_code: currentDestination?.code || '',
-            origin_code: currentOrigin?.code || '',
-            language: currentLang
-          });
-        }
-      } else {
-        $('celebrate').classList.remove('visible');
-        completionSent = false;
-      }
-    }
-
-    function openModal(tab='guide'){
-      $('modalBg').classList.add('visible');
-      document.body.classList.add('modal-open');
-      switchTab(tab);
-      track('open_modal', {
-        tab,
-        language: currentLang,
-        destination_code: currentDestination?.code || '',
-        origin_code: currentOrigin?.code || ''
-      });
-    }
-
-    function closeModal(){
-      $('modalBg').classList.remove('visible');
-      document.body.classList.remove('modal-open');
-    }
-
-    function switchTab(tab){
-      document.querySelectorAll('.tab').forEach(btn=>{
-        btn.classList.toggle('active', btn.dataset.tab === tab);
-      });
-      document.querySelectorAll('.panel').forEach(panel=>{
-        panel.classList.toggle('active', panel.id === `panel-${tab}`);
-      });
-    }
-
-    async function postForm(data){
-      const res = await fetch(FORMSPREE_URL, {
-        method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify(data)
-      });
-      if(!res.ok) throw new Error('Request failed');
-    }
-
-    async function submitInlineFeedback(){
-      const message = $('inlineMessage').value.trim();
-      if(!message){
-        $('inlineMessage').focus();
-        return;
-      }
-      try{
-        await postForm({
-          _subject:'Immigrity inline feedback',
-          type:'inline-feedback',
-          language:currentLang,
-          category:$('inlineType').value || 'general',
-          message,
-          email:$('inlineEmail').value.trim() || 'not provided',
-          selectedDestination:currentDestination?.names?.en || '',
-          selectedOrigin:currentOrigin?.names?.en || ''
-        });
-        $('inlineSuccess').classList.add('visible');
-        $('inlineSubmitBtn').classList.add('hidden');
-        document.querySelectorAll('.feedback-card .group').forEach(el=>el.classList.add('hidden'));
-        track('submit_inline_feedback', {language:currentLang});
-      }catch{
-        alert('Failed to send. Please try again.');
-      }
-    }
-
-    async function submitGuide(){
-      const email = $('guideEmail').value.trim();
-      if(!email){
-        $('guideEmail').focus();
-        return;
-      }
-      try{
-        await postForm({
-          _subject:'Immigrity guide signup',
-          type:'guide-signup',
-          language:currentLang,
-          email,
-          destination:$('guideDestination').value || currentDestination?.code || ''
-        });
-        $('guideForm').classList.add('hidden');
-        $('guideSuccess').classList.add('visible');
-        track('submit_guide_signup', {language:currentLang});
-      }catch{
-        alert('Failed to send. Please try again.');
-      }
-    }
-
-    async function submitModalFeedback(){
-      const message = $('modalFeedbackMessage').value.trim();
-      if(!message){
-        $('modalFeedbackMessage').focus();
-        return;
-      }
-      try{
-        await postForm({
-          _subject:'Immigrity modal feedback',
-          type:'modal-feedback',
-          language:currentLang,
-          category:$('modalFeedbackType').value || 'general',
-          message,
-          email:$('modalFeedbackEmail').value.trim() || 'not provided',
-          selectedDestination:currentDestination?.names?.en || '',
-          selectedOrigin:currentOrigin?.names?.en || ''
-        });
-        $('modalFeedbackForm').classList.add('hidden');
-        $('modalFeedbackSuccess').classList.add('visible');
-        track('submit_modal_feedback', {language:currentLang});
-      }catch{
-        alert('Failed to send. Please try again.');
-      }
-    }
-
-    function setLanguage(lang){
-      if(!ui[lang]) return;
+    function setLang(lang) {
       currentLang = lang;
-      saveState();
-      applyUiText();
+      document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
+      document.getElementById(`btn-${lang}`).classList.add('active');
+      updateUI();
+    }
+
+    function updateUI() {
+      const t = translations[currentLang];
+      const countryName = selectedDest ? destinations.find(d => d.code === selectedDest).name[currentLang] : t.world;
+      
+      document.getElementById('hero-text').innerHTML = t.hero.replace('{country}', countryName);
+      document.getElementById('hero-subtext').innerText = t.subtext;
+      document.getElementById('label-moving-to').innerText = t.movingTo;
+      document.getElementById('label-coming-from').innerText = t.comingFrom;
+
       renderDestinations();
-      if(currentDestination?.code === 'UK') renderOrigins();
-      if(currentDestination){
-        if(currentDestination.code === 'UK' && currentOrigin){
-          renderChecklist();
-        } else if(currentDestination.code !== 'UK'){
-          renderChecklist();
-        } else {
-          resetChecklistArea();
-        }
+      if (selectedDest === 'UK') {
+        document.getElementById('origin-section').style.display = 'block';
+        renderOrigins();
+      } else {
+        document.getElementById('origin-section').style.display = 'none';
       }
-      track('change_language', {
-        language: currentLang,
-        destination_code: currentDestination?.code || '',
-        origin_code: currentOrigin?.code || ''
-      });
+      renderChecklist();
     }
 
-    function bind(){
-      document.querySelectorAll('.lang-btn').forEach(btn=>{
-        btn.addEventListener('click', ()=>setLanguage(btn.dataset.lang));
-      });
-
-      $('openGuideBtn').addEventListener('click', ()=>openModal('guide'));
-      $('closeModalBtn').addEventListener('click', closeModal);
-      $('modalBg').addEventListener('click', e=>{
-        if(e.target === $('modalBg')) closeModal();
-      });
-
-      document.querySelectorAll('.tab').forEach(btn=>{
-        btn.addEventListener('click', ()=>switchTab(btn.dataset.tab));
-      });
-
-      $('inlineSubmitBtn').addEventListener('click', submitInlineFeedback);
-      $('guideSubmitBtn').addEventListener('click', submitGuide);
-      $('modalFeedbackSubmitBtn').addEventListener('click', submitModalFeedback);
-
-      document.addEventListener('keydown', e=>{
-        if(e.key === 'Escape' && $('modalBg').classList.contains('visible')) closeModal();
-      });
+    function renderDestinations() {
+      const grid = document.getElementById('dest-grid');
+      grid.innerHTML = destinations.map(d => `
+        <button class="pill ${selectedDest === d.code ? 'active' : ''}" onclick="selectDest('${d.code}')">
+          ${d.flag} ${d.name[currentLang] || d.name.en}
+        </button>
+      `).join('');
     }
 
+    function renderOrigins() {
+      const grid = document.getElementById('origin-grid');
+      grid.innerHTML = origins.map(o => `
+        <button class="pill ${selectedOrigin === o.code ? 'active' : ''}" onclick="selectOrigin('${o.code}')">
+          ${o.flag} ${o.name[currentLang] || o.name.en}
+        </button>
+      `).join('');
+    }
 
-    function setupStickyCtaVisibility(){
-      const sticky = $('stickyCta');
-      const feedback = $('feedbackWrap');
-      if(!sticky || !feedback) return;
+    function selectDest(code) {
+      selectedDest = code;
+      selectedOrigin = null;
+      updateUI();
+    }
 
-      const toggle = ()=>{
-        const rect = feedback.getBoundingClientRect();
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-        const shouldHide = rect.top < viewportHeight - 140 && rect.bottom > 80;
-        sticky.classList.toggle('is-hidden', shouldHide);
-      };
+    function selectOrigin(code) {
+      selectedOrigin = code;
+      updateUI();
+    }
 
-      if('IntersectionObserver' in window){
-        const observer = new IntersectionObserver((entries)=>{
-          const entry = entries[0];
-          sticky.classList.toggle('is-hidden', entry.isIntersecting);
-        },{
-          threshold:0.12,
-          rootMargin:'0px 0px -120px 0px'
-        });
-        observer.observe(feedback);
+    function renderChecklist() {
+      const container = document.getElementById('checklist-container');
+      if (!selectedDest) {
+        container.innerHTML = '';
+        return;
       }
 
-      window.addEventListener('scroll', toggle, {passive:true});
-      window.addEventListener('resize', toggle);
-      window.addEventListener('load', toggle);
-      toggle();
+      let data = checklists[selectedDest];
+      if (selectedDest === 'UK' && selectedOrigin) {
+        data = data[selectedOrigin] || data.DEFAULT;
+      } else {
+        data = data.DEFAULT || data;
+      }
+
+      const t = translations[currentLang];
+      
+      container.innerHTML = data.map((p, idx) => `
+        <div class="phase">
+          <div class="phase-title">
+            <span class="phase-num">${idx + 1}</span>
+            ${t.phases[p.phase] || p.phase}
+          </div>
+          ${p.items.map(item => `
+            <div class="item" onclick="this.classList.toggle('checked')">
+              <div class="checkbox"></div>
+              <div class="item-content">
+                <strong>${item.title}</strong>
+                <p>${item.desc}</p>
+                <span class="tag ${item.tag}">${item.tag}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `).join('');
     }
 
-    function init(){
-      loadState();
-      applyUiText();
-      renderDestinations();
-      renderOrigins();
-      renderGuideDestinations();
-      bind();
-      updateSummary();
-      setupStickyCtaVisibility();
-    }
-
-    init();
+    // Initialize
+    updateUI();
   </script>
 </body>
 </html>
