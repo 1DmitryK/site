@@ -521,6 +521,7 @@
           feature:'Suggest a new feature',
           other:'Other feedback'
         },
+        formError:'Failed to send. Please try again.',
         tags:{urgent:'urgent',important:'important',optional:'optional'},
         times:{
           beforeArrival:'Before arrival',
@@ -588,7 +589,8 @@
           feature:'Запропонувати нову функцію',
           other:'Інший відгук'
         },
-        tags:{urgent:'терміново',important:'важливо',optional:'необов’язково'},
+        formError:’Не вдалося надіслати. Спробуйте ще раз.’,
+        tags:{urgent:’терміново’,important:’важливо’,optional:’необов’язково’},
         times:{
           beforeArrival:'До прибуття',
           week1:'Перший тиждень',
@@ -655,6 +657,7 @@
           feature:'Предложить новую функцию',
           other:'Другой отзыв'
         },
+        formError:'Не удалось отправить. Пожалуйста, попробуйте ещё раз.',
         tags:{urgent:'срочно',important:'важно',optional:'необязательно'},
         times:{
           beforeArrival:'До прибытия',
@@ -722,6 +725,7 @@
           feature:'اقتراح ميزة جديدة',
           other:'ملاحظات أخرى'
         },
+        formError:'فشل الإرسال. يرجى المحاولة مرة أخرى.',
         tags:{urgent:'عاجل',important:'مهم',optional:'اختياري'},
         times:{
           beforeArrival:'قبل الوصول',
@@ -789,6 +793,7 @@
           feature:'नई feature सुझाएँ',
           other:'अन्य feedback'
         },
+        formError:'भेजने में विफल। कृपया पुनः प्रयास करें।',
         tags:{urgent:'ज़रूरी',important:'महत्वपूर्ण',optional:'वैकल्पिक'},
         times:{
           beforeArrival:'आने से पहले',
@@ -1381,13 +1386,13 @@
     }
 
     function saveState(){
-      localStorage.setItem('immigrify_state_v3', JSON.stringify(state));
-      localStorage.setItem('immigrify_lang_v3', currentLang);
+      localStorage.setItem('immigrity_state_v3', JSON.stringify(state));
+      localStorage.setItem('immigrity_lang_v3', currentLang);
     }
 
     function loadState(){
-      try{ state = JSON.parse(localStorage.getItem('immigrify_state_v3') || '{}'); }catch{ state = {}; }
-      const savedLang = localStorage.getItem('immigrify_lang_v3');
+      try{ state = JSON.parse(localStorage.getItem('immigrity_state_v3') || '{}'); }catch{ state = {}; }
+      const savedLang = localStorage.getItem('immigrity_lang_v3');
       if(savedLang && ui[savedLang]) currentLang = savedLang;
     }
 
@@ -1770,7 +1775,7 @@
         document.querySelectorAll('.feedback-card .group').forEach(el=>el.classList.add('hidden'));
         track('submit_inline_feedback', {language:currentLang});
       }catch{
-        alert('Failed to send. Please try again.');
+        alert(t('formError'));
       }
     }
 
@@ -1792,7 +1797,7 @@
         $('guideSuccess').classList.add('visible');
         track('submit_guide_signup', {language:currentLang});
       }catch{
-        alert('Failed to send. Please try again.');
+        alert(t('formError'));
       }
     }
 
@@ -1817,7 +1822,7 @@
         $('modalFeedbackSuccess').classList.add('visible');
         track('submit_modal_feedback', {language:currentLang});
       }catch{
-        alert('Failed to send. Please try again.');
+        alert(t('formError'));
       }
     }
 
@@ -1881,17 +1886,6 @@
         sticky.classList.toggle('is-hidden', shouldHide);
       };
 
-      if('IntersectionObserver' in window){
-        const observer = new IntersectionObserver((entries)=>{
-          const entry = entries[0];
-          sticky.classList.toggle('is-hidden', entry.isIntersecting);
-        },{
-          threshold:0.12,
-          rootMargin:'0px 0px -120px 0px'
-        });
-        observer.observe(feedback);
-      }
-
       window.addEventListener('scroll', toggle, {passive:true});
       window.addEventListener('resize', toggle);
       window.addEventListener('load', toggle);
@@ -1902,7 +1896,6 @@
       loadState();
       applyUiText();
       renderDestinations();
-      renderOrigins();
       renderGuideDestinations();
       bind();
       updateSummary();
