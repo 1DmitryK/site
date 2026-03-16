@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Immigrity — Your Move, Simplified</title>
-
+ 
   <meta name="description" content="Immigrity helps immigrants relocate step by step with visa guides, checklists, local tips, and practical planning tools." />
   <meta name="keywords" content="immigration checklist, relocation guide, moving abroad, visa guide, immigrant support, immigrity" />
   <meta name="author" content="Immigrity" />
@@ -20,9 +20,13 @@
   <meta property="og:description" content="Relocation guides, visa checklists, and practical next steps for immigrants moving abroad." />
   <meta property="og:url" content="https://immigrity.com/" />
   <meta property="og:locale" content="en_GB" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Immigrity — Your Move, Simplified" />
   <meta name="twitter:description" content="Relocation guides, visa checklists, and practical next steps for immigrants moving abroad." />
+  <meta name="twitter:image" content="https://immigrity.com/preview.jpg" />
+  <meta name="twitter:image:alt" content="Immigrity — relocation guides and checklists for immigrants" />
+  <meta property="og:image" content="https://immigrity.com/preview.jpg" />
+  <meta property="og:image:alt" content="Immigrity — relocation guides and checklists for immigrants" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -38,20 +42,31 @@
       }
     }
   </script>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FHMB4J92L2"></script>
+ 
+  <!-- Google Analytics — loaded only after consent -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-FHMB4J92L2');
+    function loadGA(){
+      if(document.getElementById('ga-script')) return;
+      var s=document.createElement('script');
+      s.id='ga-script'; s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-FHMB4J92L2';
+      document.head.appendChild(s);
+      gtag('js',new Date());
+      gtag('config','G-FHMB4J92L2');
+      localStorage.setItem('immigrity_consent','1');
+    }
+    function declineGA(){
+      localStorage.setItem('immigrity_consent','0');
+    }
+    if(localStorage.getItem('immigrity_consent')==='1') loadGA();
   </script>
-
+ 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+ 
   <style>
     :root{
       --bg:#f6f1e8;
@@ -268,7 +283,7 @@
     [dir="rtl"] .phase-time{margin-left:0;margin-right:auto}
     [dir="rtl"] .sticky-inner,[dir="rtl"] header,[dir="rtl"] .phase-head,[dir="rtl"] .progress-head{direction:rtl}
     [dir="rtl"] .tag{margin-right:auto;margin-left:0}
-
+ 
     .feedback-wrap{
       padding-bottom:160px;
       scroll-margin-bottom:160px;
@@ -294,6 +309,18 @@
       .feedback-wrap{padding-bottom:220px;scroll-margin-bottom:220px}
       .sticky-cta{left:12px;right:12px;bottom:12px}
     }
+    .cookie-banner{
+      position:fixed;left:0;right:0;bottom:0;z-index:200;
+      background:rgba(20,18,16,.96);color:#fff;
+      padding:16px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;
+      font-size:14px;line-height:1.5;
+    }
+    .cookie-banner.hidden{display:none}
+    .cookie-banner button{
+      border:0;border-radius:999px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;
+    }
+    .cookie-accept{background:#fff;color:var(--ink)}
+    .cookie-decline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)!important}
   </style>
 </head>
 <body>
@@ -303,14 +330,14 @@
       <div class="lang-row">
         <div class="lang-label" id="langLabel">Language</div>
         <button class="lang-btn active" data-lang="en" type="button">EN</button>
-        <button class="lang-btn" data-lang="uk" type="button">UK</button>
+        <button class="lang-btn" data-lang="uk" type="button">UA</button>
         <button class="lang-btn" data-lang="ru" type="button">RU</button>
         <button class="lang-btn" data-lang="ar" type="button">AR</button>
         <button class="lang-btn" data-lang="hi" type="button">HI</button>
       </div>
     </div>
   </header>
-
+ 
   <main class="wrap">
     <section class="hero">
       <div class="eyebrow" id="eyebrowText">Built by immigrants, for immigrants</div>
@@ -321,21 +348,21 @@
       </h1>
       <p id="heroText">Everything you need to relocate — visa guides, checklists, local tips. Built by immigrants, for immigrants.</p>
     </section>
-
+ 
     <section class="section">
       <div class="card">
         <div class="label" id="destinationLabel">I'm moving to</div>
         <div class="grid" id="destinationGrid"></div>
-
+ 
         <div id="originWrap">
           <div class="label" id="originLabel">I'm coming from</div>
           <div class="grid" id="originGrid"></div>
         </div>
-
+ 
         <div class="summary" id="selectionSummary"></div>
       </div>
     </section>
-
+ 
     <section class="section progress-wrap" id="progressWrap">
       <div class="progress-card">
         <div class="progress-head">
@@ -345,37 +372,37 @@
         <div class="track"><div class="bar" id="progressBar"></div></div>
       </div>
     </section>
-
+ 
     <section class="section checklists" id="checklists"></section>
-
+ 
     <div class="celebrate" id="celebrate">
       <div class="celebrate-emoji">🎉</div>
       <h2 id="celebrateTitle">You're all set!</h2>
       <p id="celebrateText">All steps completed. Welcome to your new life.</p>
     </div>
-
+ 
     <section class="section feedback-wrap" id="feedbackWrap">
       <div class="feedback-card">
         <h3 id="feedbackTitle">💬 Help us improve</h3>
         <p id="feedbackText">Missing a country? Something wrong? Let us know — we read every message.</p>
-
+ 
         <div class="group">
           <label class="field-label" for="inlineEmail" id="inlineEmailLabel">Your email (optional)</label>
           <input class="input" id="inlineEmail" type="email" placeholder="your@email.com">
         </div>
-
+ 
         <div class="group">
           <label class="field-label" for="inlineType" id="inlineTypeLabel">What would you like to see?</label>
           <select class="select" id="inlineType"></select>
         </div>
-
+ 
         <div class="group">
           <label class="field-label" for="inlineMessage" id="inlineMessageLabel">Tell us more</label>
           <textarea class="textarea" id="inlineMessage"></textarea>
         </div>
-
+ 
         <button class="btn" id="inlineSubmitBtn" type="button">Send feedback →</button>
-
+ 
         <div class="success" id="inlineSuccess">
           <div style="font-size:48px;margin-bottom:10px">🙏</div>
           <h3 id="inlineSuccessTitle">Thank you!</h3>
@@ -384,7 +411,7 @@
       </div>
     </section>
   </main>
-
+ 
   <div class="sticky-cta" id="stickyCta">
     <div class="sticky-inner">
       <div class="cta-copy">
@@ -394,64 +421,64 @@
       <button class="btn" id="openGuideBtn" type="button">Get Full Guide →</button>
     </div>
   </div>
-
+ 
   <div class="modal-bg" id="modalBg">
     <div class="modal">
       <button class="close" id="closeModalBtn" type="button" aria-label="Close">×</button>
-
+ 
       <div class="tabs">
         <button class="tab active" type="button" data-tab="guide" id="tabGuideBtn">📧 Get Full Guide</button>
         <button class="tab" type="button" data-tab="feedback" id="tabFeedbackBtn">💬 Give Feedback</button>
       </div>
-
+ 
       <div class="panel active" id="panel-guide">
         <h2 id="modalGuideTitle" style="margin:0 0 8px;font-family:'Fraunces',serif;font-size:30px">Get the full guide</h2>
         <p id="modalGuideText" style="margin:0 0 18px;color:var(--muted);line-height:1.6">We'll send you the complete relocation pack — visa timelines, bank accounts, housing tips, healthcare, and more. Free.</p>
-
+ 
         <div id="guideForm">
           <div class="group">
             <label class="field-label" for="guideEmail" id="guideEmailLabel">Your email address</label>
             <input class="input" id="guideEmail" type="email" placeholder="your@email.com">
           </div>
-
+ 
           <div class="group">
             <label class="field-label" for="guideDestination" id="guideDestinationLabel">Where are you moving to?</label>
             <select class="select" id="guideDestination"></select>
           </div>
-
+ 
           <button class="btn" id="guideSubmitBtn" type="button">Send me the guide →</button>
         </div>
-
+ 
         <div class="success" id="guideSuccess">
           <div style="font-size:48px;margin-bottom:10px">✅</div>
           <h3 id="guideSuccessTitle">You're on the list!</h3>
           <p id="guideSuccessText">We'll send you the full guide soon. Check your inbox and spam folder.</p>
         </div>
       </div>
-
+ 
       <div class="panel" id="panel-feedback">
         <h2 id="modalFeedbackTitle" style="margin:0 0 8px;font-family:'Fraunces',serif;font-size:30px">Give feedback</h2>
         <p id="modalFeedbackText" style="margin:0 0 18px;color:var(--muted);line-height:1.6">Missing a country? Something outdated? Tell us — every message is read personally.</p>
-
+ 
         <div id="modalFeedbackForm">
           <div class="group">
             <label class="field-label" for="modalFeedbackType" id="modalFeedbackTypeLabel">Type of feedback</label>
             <select class="select" id="modalFeedbackType"></select>
           </div>
-
+ 
           <div class="group">
             <label class="field-label" for="modalFeedbackMessage" id="modalFeedbackMessageLabel">Your message</label>
             <textarea class="textarea" id="modalFeedbackMessage"></textarea>
           </div>
-
+ 
           <div class="group">
             <label class="field-label" for="modalFeedbackEmail" id="modalFeedbackEmailLabel">Your email (optional)</label>
             <input class="input" id="modalFeedbackEmail" type="email" placeholder="your@email.com">
           </div>
-
+ 
           <button class="btn" id="modalFeedbackSubmitBtn" type="button">Send feedback →</button>
         </div>
-
+ 
         <div class="success" id="modalFeedbackSuccess">
           <div style="font-size:48px;margin-bottom:10px">🙏</div>
           <h3 id="modalFeedbackSuccessTitle">Thank you!</h3>
@@ -460,10 +487,17 @@
       </div>
     </div>
   </div>
-
+ 
+  <!-- Cookie consent banner -->
+  <div class="cookie-banner hidden" id="cookieBanner">
+    <span id="cookieText">We use analytics cookies to improve your experience.</span>
+    <button class="cookie-accept" id="cookieAccept" type="button">Accept</button>
+    <button class="cookie-decline" id="cookieDecline" type="button">Decline</button>
+  </div>
+ 
   <script>
     const FORMSPREE_URL = 'https://formspree.io/f/xlgpbpkv';
-
+ 
     const ui = {
       en: {
         htmlLang:'en', dir:'ltr',
@@ -522,6 +556,12 @@
           other:'Other feedback'
         },
         tags:{urgent:'urgent',important:'important',optional:'optional'},
+        errorSend:'Failed to send. Please try again.',
+        closeLabel:'Close',
+        cookieText:'We use analytics cookies to improve your experience.',
+        cookieAccept:'Accept',
+        cookieDecline:'Decline',
+        referralNote:'(referral link)',
         times:{
           beforeArrival:'Before arrival',
           week1:'Week 1',
@@ -589,6 +629,12 @@
           other:'Інший відгук'
         },
         tags:{urgent:'терміново',important:'важливо',optional:'необов’язково'},
+        errorSend:'Не вдалося надіслати. Спробуйте ще раз.',
+        closeLabel:'Закрити',
+        cookieText:'Ми використовуємо аналітичні cookies для покращення вашого досвіду.',
+        cookieAccept:'Прийняти',
+        cookieDecline:'Відхилити',
+        referralNote:'(реферальне посилання)',
         times:{
           beforeArrival:'До прибуття',
           week1:'Перший тиждень',
@@ -656,6 +702,12 @@
           other:'Другой отзыв'
         },
         tags:{urgent:'срочно',important:'важно',optional:'необязательно'},
+        errorSend:'Не удалось отправить. Попробуйте ещё раз.',
+        closeLabel:'Закрыть',
+        cookieText:'Мы используем аналитические cookies для улучшения вашего опыта.',
+        cookieAccept:'Принять',
+        cookieDecline:'Отклонить',
+        referralNote:'(реферальная ссылка)',
         times:{
           beforeArrival:'До прибытия',
           week1:'Первая неделя',
@@ -723,6 +775,12 @@
           other:'ملاحظات أخرى'
         },
         tags:{urgent:'عاجل',important:'مهم',optional:'اختياري'},
+        errorSend:'فشل الإرسال. يرجى المحاولة مرة أخرى.',
+        closeLabel:'إغلاق',
+        cookieText:'نستخدم ملفات تعريف الارتباط التحليلية لتحسين تجربتك.',
+        cookieAccept:'قبول',
+        cookieDecline:'رفض',
+        referralNote:'(رابط إحالة)',
         times:{
           beforeArrival:'قبل الوصول',
           week1:'الأسبوع الأول',
@@ -743,10 +801,10 @@
         heroText:'स्थानांतरण के लिए जो कुछ चाहिए — वीज़ा गाइड, चेकलिस्ट और स्थानीय सुझाव।',
         destinationLabel:'मैं जा रहा/रही हूँ',
         originLabel:'मैं आ रहा/रही हूँ',
-        selectionEmpty:'अपनी व्यक्तिगत relocation checklist देखने के लिए destination चुनें।',
-        selectionDestination:'चुना गया destination: {destination}.',
-        selectionRoute:'चुना गया route: {origin} → {destination}.',
-        progressTitle:'आपकी relocation checklist',
+        selectionEmpty:'अपनी व्यक्तिगत स्थानांतरण चेकलिस्ट देखने के लिए गंतव्य चुनें।',
+        selectionDestination:'चुना गया गंतव्य: {destination}.',
+        selectionRoute:'चुना गया मार्ग: {origin} → {destination}.',
+        progressTitle:'आपकी स्थानांतरण चेकलिस्ट',
         progressCount:'{done} में से {total} पूरे',
         celebrateTitle:'सब तैयार है!',
         celebrateText:'सभी चरण पूरे हो गए। आपके नए जीवन में स्वागत है।',
@@ -756,40 +814,46 @@
         inlineTypeLabel:'आप क्या देखना चाहेंगे?',
         inlineMessageLabel:'और बताइए',
         inlineMessagePlaceholder:'उदाहरण: नए देश जोड़ें, visa जानकारी अपडेट करें, या गलती ठीक करें।',
-        inlineSubmit:'Feedback भेजें →',
+        inlineSubmit:'प्रतिक्रिया भेजें →',
         inlineSuccessTitle:'धन्यवाद!',
-        inlineSuccessText:'आपका feedback हमें साइट बेहतर बनाने में मदद करता है।',
+        inlineSuccessText:'आपकी प्रतिक्रिया हमें साइट बेहतर बनाने में मदद करती है।',
         ctaTitle:'पूरा गाइड चाहिए?',
-        ctaText:'Visa timelines, bank accounts, housing और बहुत कुछ — मुफ़्त।',
+        ctaText:'वीज़ा समयसीमा, बैंक खाते, आवास और बहुत कुछ — मुफ़्त।',
         ctaBtn:'पूरा गाइड पाएं →',
         tabGuide:'📧 पूरा गाइड पाएं',
-        tabFeedback:'💬 Feedback दें',
+        tabFeedback:'💬 प्रतिक्रिया दें',
         modalGuideTitle:'पूरा गाइड पाएं',
-        modalGuideText:'हम आपको पूरा relocation pack भेजेंगे — visa timelines, bank accounts, housing tips, healthcare और बहुत कुछ। मुफ़्त।',
+        modalGuideText:'हम आपको पूरा स्थानांतरण पैकेज भेजेंगे — वीज़ा समयसीमा, बैंक खाते, आवास सुझाव, स्वास्थ्य सेवा और बहुत कुछ। मुफ़्त।',
         guideEmailLabel:'आपका email',
         guideDestinationLabel:'आप कहाँ जा रहे हैं?',
         guideSubmit:'मुझे गाइड भेजें →',
         guideSuccessTitle:'आप सूची में जुड़ गए हैं!',
         guideSuccessText:'हम आपको जल्द ही पूरा गाइड भेजेंगे। अपना inbox और spam folder भी देख लें।',
-        modalFeedbackTitle:'Feedback दें',
+        modalFeedbackTitle:'प्रतिक्रिया दें',
         modalFeedbackText:'कोई देश नहीं है या कुछ पुराना है? हमें बताइए — हर संदेश पढ़ा जाता है।',
-        modalFeedbackTypeLabel:'Feedback का प्रकार',
+        modalFeedbackTypeLabel:'प्रतिक्रिया का प्रकार',
         modalFeedbackMessageLabel:'आपका संदेश',
         modalFeedbackEmailLabel:'आपका email (वैकल्पिक)',
-        modalFeedbackSubmit:'Feedback भेजें →',
+        modalFeedbackSubmit:'प्रतिक्रिया भेजें →',
         modalFeedbackSuccessTitle:'धन्यवाद!',
-        modalFeedbackSuccessText:'आपका feedback हमें साइट बेहतर बनाने में मदद करता है।',
+        modalFeedbackSuccessText:'आपकी प्रतिक्रिया हमें साइट बेहतर बनाने में मदद करती है।',
         chooseTopic:'— विषय चुनें —',
-        chooseDestination:'— destination चुनें —',
+        chooseDestination:'— गंतव्य चुनें —',
         other:'अन्य',
         feedbackTypes:{
-          country:'नया destination country जोड़ें',
-          origin:'नया origin country जोड़ें',
-          content:'Checklist item गलत या पुराना है',
-          feature:'नई feature सुझाएँ',
-          other:'अन्य feedback'
+          country:'नया गंतव्य देश जोड़ें',
+          origin:'नया मूल देश जोड़ें',
+          content:'चेकलिस्ट आइटम गलत या पुराना है',
+          feature:'नई सुविधा सुझाएँ',
+          other:'अन्य प्रतिक्रिया'
         },
         tags:{urgent:'ज़रूरी',important:'महत्वपूर्ण',optional:'वैकल्पिक'},
+        errorSend:'भेजने में विफल। कृपया पुनः प्रयास करें।',
+        closeLabel:'बंद करें',
+        cookieText:'हम आपके अनुभव को बेहतर बनाने के लिए analytics cookies का उपयोग करते हैं।',
+        cookieAccept:'स्वीकार करें',
+        cookieDecline:'अस्वीकार करें',
+        referralNote:'(referral link)',
         times:{
           beforeArrival:'आने से पहले',
           week1:'पहला सप्ताह',
@@ -801,7 +865,7 @@
         }
       }
     };
-
+ 
     const destinations = [
       {
         code:'UK', flag:'🇬🇧',
@@ -854,7 +918,7 @@
         hero:{en:'another EU country',uk:'іншої країни ЄС',ru:'другую страну ЕС',ar:'دولة أخرى في الاتحاد الأوروبي',hi:'another EU country'}
       }
     ];
-
+ 
     const origins = [
       {code:'UA',flag:'🇺🇦',names:{en:'Ukraine',uk:'Україна',ru:'Украина',ar:'أوكرانيا',hi:'Ukraine'}},
       {code:'IN',flag:'🇮🇳',names:{en:'India',uk:'Індія',ru:'Индия',ar:'الهند',hi:'India'}},
@@ -867,7 +931,7 @@
       {code:'MA',flag:'🇲🇦',names:{en:'Morocco',uk:'Марокко',ru:'Марокко',ar:'المغرب',hi:'Morocco'}},
       {code:'OTHER',flag:'🌍',names:{en:'Other country',uk:'Інша країна',ru:'Другая страна',ar:'بلد آخر',hi:'Other country'}}
     ];
-
+ 
     const phaseNames = {
       preDocs:{en:'Visa & documents',uk:'Віза та документи',ru:'Виза и документы',ar:'التأشيرة والوثائق',hi:'वीज़ा और दस्तावेज़'},
       preDeparture:{en:'Before departure',uk:'Перед виїздом',ru:'Перед отъездом',ar:'قبل المغادرة',hi:'रवाना होने से पहले'},
@@ -876,11 +940,11 @@
       ukraineRoute:{en:'Before you leave Ukraine',uk:'Перед виїздом з України',ru:'Перед выездом из Украины',ar:'قبل مغادرة أوكرانيا',hi:'यूक्रेन छोड़ने से पहले'},
       ukArrival:{en:'Arriving in the UK',uk:'Прибуття до Великої Британії',ru:'Прибытие в Великобританию',ar:'الوصول إلى المملكة المتحدة',hi:'यूके में आगमन'}
     };
-
+ 
     function L(en, uk, ru, ar, hi){
       return {en, uk, ru, ar, hi};
     }
-
+ 
     const genericDestinationChecklist = [
       {
         phase:'preDocs',
@@ -1054,7 +1118,7 @@
         ]
       }
     ];
-
+ 
     const ukChecklistUA = [
       {
         phase:'ukraineRoute',
@@ -1143,11 +1207,11 @@
               'यूके में bank account खोलें।'
             ),
             note:L(
-              'A digital bank like <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> can be easier at the beginning.',
-              'На початку цифровий банк, наприклад <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a>, може бути простішим варіантом.',
-              'В начале цифровой банк, например <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a>, может быть более простым вариантом.',
-              'قد يكون البنك الرقمي مثل <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> أسهل في البداية.',
-              'शुरुआत में <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> जैसे digital bank आसान हो सकते हैं।'
+              'A digital bank like <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(referral link)</small> or Starling can be easier at the beginning.',
+              'На початку цифровий банк, наприклад <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(реферальне посилання)</small> або Starling, може бути простішим варіантом.',
+              'В начале цифровой банк, например <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(реферальная ссылка)</small> или Starling, может быть более простым вариантом.',
+              'قد يكون البنك الرقمي مثل <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(رابط إحالة)</small> أو Starling أسهل في البداية.',
+              'शुरुआत में <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(referral link)</small> या Starling जैसे डिजिटल बैंक आसान हो सकते हैं।'
             ),
             tag:'urgent'
           },
@@ -1228,7 +1292,7 @@
         ]
       }
     ];
-
+ 
     const ukChecklistGeneric = [
       {
         phase:'preDocs',
@@ -1351,7 +1415,7 @@
         ]
       }
     ];
-
+ 
     const checklistByDestination = {
       UK: {
         UA: ukChecklistUA,
@@ -1367,67 +1431,73 @@
       CA: genericDestinationChecklist,
       OTHER_EU: genericDestinationChecklist
     };
-
+ 
     let currentLang = 'en';
     let currentDestination = null;
     let currentOrigin = null;
     let state = {};
     let completionSent = false;
-
+ 
     const $ = id => document.getElementById(id);
-
+ 
     function track(name, params = {}){
       if(typeof gtag === 'function') gtag('event', name, params);
     }
-
+ 
     function saveState(){
-      localStorage.setItem('immigrify_state_v3', JSON.stringify(state));
-      localStorage.setItem('immigrify_lang_v3', currentLang);
+      localStorage.setItem('immigrity_state_v4', JSON.stringify(state));
+      localStorage.setItem('immigrity_lang_v4', currentLang);
+      if(currentDestination) localStorage.setItem('immigrity_dest_v4', currentDestination.code);
+      if(currentOrigin) localStorage.setItem('immigrity_origin_v4', currentOrigin.code);
     }
-
+ 
     function loadState(){
-      try{ state = JSON.parse(localStorage.getItem('immigrify_state_v3') || '{}'); }catch{ state = {}; }
-      const savedLang = localStorage.getItem('immigrify_lang_v3');
+      try{ state = JSON.parse(localStorage.getItem('immigrity_state_v4') || '{}'); }catch{ state = {}; }
+      const savedLang = localStorage.getItem('immigrity_lang_v4');
       if(savedLang && ui[savedLang]) currentLang = savedLang;
+      const savedDest = localStorage.getItem('immigrity_dest_v4');
+      if(savedDest) currentDestination = destinations.find(d=>d.code===savedDest)||null;
+      const savedOrigin = localStorage.getItem('immigrity_origin_v4');
+      if(savedOrigin) currentOrigin = origins.find(o=>o.code===savedOrigin)||null;
     }
-
+ 
     function tx(obj){
       if(typeof obj === 'string') return obj;
       return obj?.[currentLang] || obj?.en || '';
     }
-
+ 
     function t(key){
       return ui[currentLang][key];
     }
-
+ 
     function nameOf(entity){
       return entity.names[currentLang] || entity.names.en;
     }
-
+ 
     function heroNameOf(entity){
       return entity.hero?.[currentLang] || entity.hero?.en || nameOf(entity);
     }
-
+ 
     function phaseName(key){
       return tx(phaseNames[key]);
     }
-
+ 
     function timeName(key){
       return ui[currentLang].times[key] || key;
     }
-
+ 
     function tagName(tag){
       return ui[currentLang].tags[tag] || tag;
     }
-
+ 
     function template(str, vars){
       return String(str).replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
     }
-
+ 
     function itemKey(scope, phaseIndex, itemIndex){
       return `${scope}_${phaseIndex}_${itemIndex}`;
     }
-
+ 
     function getActiveChecklist(){
       if(!currentDestination) return null;
       if(currentDestination.code === 'UK'){
@@ -1435,11 +1505,11 @@
       }
       return checklistByDestination[currentDestination.code] || genericDestinationChecklist;
     }
-
+ 
     function applyUiText(){
       document.documentElement.lang = ui[currentLang].htmlLang;
       document.documentElement.dir = ui[currentLang].dir;
-
+ 
       $('langLabel').textContent = t('langLabel');
       $('eyebrowText').textContent = t('eyebrowText');
       $('heroLine1').textContent = t('heroLine1');
@@ -1476,21 +1546,23 @@
       $('modalFeedbackSubmitBtn').textContent = t('modalFeedbackSubmit');
       $('modalFeedbackSuccessTitle').textContent = t('modalFeedbackSuccessTitle');
       $('modalFeedbackSuccessText').textContent = t('modalFeedbackSuccessText');
-
+ 
+      $('closeModalBtn').setAttribute('aria-label', t('closeLabel'));
+      if(typeof updateCookieBannerText==='function') updateCookieBannerText();
       updateHeroRegion();
       renderFeedbackOptions();
       renderGuideDestinations();
       updateSummary();
-
+ 
       document.querySelectorAll('.lang-btn').forEach(btn=>{
         btn.classList.toggle('active', btn.dataset.lang === currentLang);
       });
     }
-
+ 
     function updateHeroRegion(){
       $('heroRegion').textContent = currentDestination ? heroNameOf(currentDestination) + ',' : t('heroDefaultRegion');
     }
-
+ 
     function renderDestinations(){
       const grid = $('destinationGrid');
       grid.innerHTML = '';
@@ -1503,7 +1575,7 @@
         grid.appendChild(btn);
       });
     }
-
+ 
     function renderOrigins(){
       const grid = $('originGrid');
       grid.innerHTML = '';
@@ -1516,7 +1588,7 @@
         grid.appendChild(btn);
       });
     }
-
+ 
     function renderFeedbackOptions(){
       const selects = [$('inlineType'), $('modalFeedbackType')];
       selects.forEach(sel=>{
@@ -1536,7 +1608,7 @@
         if([...sel.options].some(o=>o.value===old)) sel.value = old;
       });
     }
-
+ 
     function renderGuideDestinations(){
       const sel = $('guideDestination');
       const old = sel.value;
@@ -1554,7 +1626,7 @@
       if(currentDestination) sel.value = currentDestination.code;
       else if([...sel.options].some(o=>o.value===old)) sel.value = old;
     }
-
+ 
     function updateSummary(){
       const el = $('selectionSummary');
       if(!currentDestination){
@@ -1572,7 +1644,7 @@
         });
       }
     }
-
+ 
     function resetChecklistArea(){
       $('progressWrap').classList.remove('visible');
       $('checklists').classList.remove('visible');
@@ -1585,7 +1657,7 @@
       completionSent = false;
       updateSummary();
     }
-
+ 
     function selectDestination(dest){
       currentDestination = dest;
       currentOrigin = null;
@@ -1607,7 +1679,7 @@
         language: currentLang
       });
     }
-
+ 
     function selectOrigin(origin){
       currentOrigin = origin;
       renderOrigins();
@@ -1620,27 +1692,27 @@
         language: currentLang
       });
     }
-
+ 
     function renderChecklist(){
       const data = getActiveChecklist();
       if(!data) return;
-
+ 
       const scope = currentDestination.code === 'UK'
         ? `UK_${currentOrigin?.code || 'DEFAULT'}`
         : `DEST_${currentDestination.code}`;
-
+ 
       $('progressWrap').classList.add('visible');
       $('checklists').classList.add('visible');
       $('feedbackWrap').classList.add('visible');
       $('stickyCta').classList.add('visible');
-
+ 
       $('progressTitle').textContent = currentDestination.code === 'UK' && currentOrigin
         ? `${t('progressTitle')}: ${nameOf(currentDestination)} — ${nameOf(currentOrigin)}`
         : `${t('progressTitle')}: ${nameOf(currentDestination)}`;
-
+ 
       const root = $('checklists');
       root.innerHTML = '';
-
+ 
       data.forEach((phase, phaseIndex)=>{
         const box = document.createElement('div');
         box.className = 'phase';
@@ -1651,7 +1723,7 @@
             <div class="phase-time">${timeName(phase.time)}</div>
           </div>
         `;
-
+ 
         phase.items.forEach((item, itemIndex)=>{
           const key = itemKey(scope, phaseIndex, itemIndex);
           const checked = !!state[key];
@@ -1673,28 +1745,28 @@
           });
           box.appendChild(row);
         });
-
+ 
         root.appendChild(box);
       });
-
+ 
       updateProgress(scope, data);
     }
-
+ 
     function updateProgress(scope, data){
       let total = 0;
       let done = 0;
-
+ 
       data.forEach((phase, pIndex)=>{
         phase.items.forEach((_, iIndex)=>{
           total++;
           if(state[itemKey(scope, pIndex, iIndex)]) done++;
         });
       });
-
+ 
       const percent = total ? Math.round((done / total) * 100) : 0;
       $('progressBar').style.width = percent + '%';
       $('progressCount').textContent = template(t('progressCount'), {done, total});
-
+ 
       if(percent === 100 && total > 0){
         $('celebrate').classList.add('visible');
         $('celebrateTitle').textContent = t('celebrateTitle');
@@ -1712,7 +1784,7 @@
         completionSent = false;
       }
     }
-
+ 
     function openModal(tab='guide'){
       $('modalBg').classList.add('visible');
       document.body.classList.add('modal-open');
@@ -1724,12 +1796,12 @@
         origin_code: currentOrigin?.code || ''
       });
     }
-
+ 
     function closeModal(){
       $('modalBg').classList.remove('visible');
       document.body.classList.remove('modal-open');
     }
-
+ 
     function switchTab(tab){
       document.querySelectorAll('.tab').forEach(btn=>{
         btn.classList.toggle('active', btn.dataset.tab === tab);
@@ -1738,7 +1810,7 @@
         panel.classList.toggle('active', panel.id === `panel-${tab}`);
       });
     }
-
+ 
     async function postForm(data){
       const res = await fetch(FORMSPREE_URL, {
         method:'POST',
@@ -1747,13 +1819,12 @@
       });
       if(!res.ok) throw new Error('Request failed');
     }
-
+ 
     async function submitInlineFeedback(){
+      const inEm = $('inlineEmail');
+      if(inEm.value.trim() && !inEm.checkValidity()){ inEm.reportValidity(); return; }
       const message = $('inlineMessage').value.trim();
-      if(!message){
-        $('inlineMessage').focus();
-        return;
-      }
+      if(!message){ $('inlineMessage').focus(); return; }
       try{
         await postForm({
           _subject:'Immigrity inline feedback',
@@ -1770,16 +1841,15 @@
         document.querySelectorAll('.feedback-card .group').forEach(el=>el.classList.add('hidden'));
         track('submit_inline_feedback', {language:currentLang});
       }catch{
-        alert('Failed to send. Please try again.');
+        alert(t('errorSend'));
       }
     }
-
+ 
     async function submitGuide(){
-      const email = $('guideEmail').value.trim();
-      if(!email){
-        $('guideEmail').focus();
-        return;
-      }
+      const guideEmailEl = $('guideEmail');
+      const email = guideEmailEl.value.trim();
+      if(!email){ guideEmailEl.focus(); return; }
+      if(!guideEmailEl.checkValidity()){ guideEmailEl.reportValidity(); return; }
       try{
         await postForm({
           _subject:'Immigrity guide signup',
@@ -1792,16 +1862,15 @@
         $('guideSuccess').classList.add('visible');
         track('submit_guide_signup', {language:currentLang});
       }catch{
-        alert('Failed to send. Please try again.');
+        alert(t('errorSend'));
       }
     }
-
+ 
     async function submitModalFeedback(){
+      const mfEm = $('modalFeedbackEmail');
+      if(mfEm.value.trim() && !mfEm.checkValidity()){ mfEm.reportValidity(); return; }
       const message = $('modalFeedbackMessage').value.trim();
-      if(!message){
-        $('modalFeedbackMessage').focus();
-        return;
-      }
+      if(!message){ $('modalFeedbackMessage').focus(); return; }
       try{
         await postForm({
           _subject:'Immigrity modal feedback',
@@ -1817,10 +1886,10 @@
         $('modalFeedbackSuccess').classList.add('visible');
         track('submit_modal_feedback', {language:currentLang});
       }catch{
-        alert('Failed to send. Please try again.');
+        alert(t('errorSend'));
       }
     }
-
+ 
     function setLanguage(lang){
       if(!ui[lang]) return;
       currentLang = lang;
@@ -1843,44 +1912,44 @@
         origin_code: currentOrigin?.code || ''
       });
     }
-
+ 
     function bind(){
       document.querySelectorAll('.lang-btn').forEach(btn=>{
         btn.addEventListener('click', ()=>setLanguage(btn.dataset.lang));
       });
-
+ 
       $('openGuideBtn').addEventListener('click', ()=>openModal('guide'));
       $('closeModalBtn').addEventListener('click', closeModal);
       $('modalBg').addEventListener('click', e=>{
         if(e.target === $('modalBg')) closeModal();
       });
-
+ 
       document.querySelectorAll('.tab').forEach(btn=>{
         btn.addEventListener('click', ()=>switchTab(btn.dataset.tab));
       });
-
+ 
       $('inlineSubmitBtn').addEventListener('click', submitInlineFeedback);
       $('guideSubmitBtn').addEventListener('click', submitGuide);
       $('modalFeedbackSubmitBtn').addEventListener('click', submitModalFeedback);
-
+ 
       document.addEventListener('keydown', e=>{
         if(e.key === 'Escape' && $('modalBg').classList.contains('visible')) closeModal();
       });
     }
-
-
+ 
+ 
     function setupStickyCtaVisibility(){
       const sticky = $('stickyCta');
       const feedback = $('feedbackWrap');
       if(!sticky || !feedback) return;
-
+ 
       const toggle = ()=>{
         const rect = feedback.getBoundingClientRect();
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
         const shouldHide = rect.top < viewportHeight - 140 && rect.bottom > 80;
         sticky.classList.toggle('is-hidden', shouldHide);
       };
-
+ 
       if('IntersectionObserver' in window){
         const observer = new IntersectionObserver((entries)=>{
           const entry = entries[0];
@@ -1891,24 +1960,55 @@
         });
         observer.observe(feedback);
       }
-
+ 
       window.addEventListener('scroll', toggle, {passive:true});
       window.addEventListener('resize', toggle);
       window.addEventListener('load', toggle);
       toggle();
     }
-
+ 
+    function updateCookieBannerText(){
+      var b=$('cookieBanner'); if(!b) return;
+      $('cookieText').textContent=t('cookieText');
+      $('cookieAccept').textContent=t('cookieAccept');
+      $('cookieDecline').textContent=t('cookieDecline');
+    }
+ 
+    function initCookieBanner(){
+      var consent=localStorage.getItem('immigrity_consent');
+      if(consent===null) $('cookieBanner').classList.remove('hidden');
+      $('cookieAccept').addEventListener('click',function(){
+        loadGA(); $('cookieBanner').classList.add('hidden');
+      });
+      $('cookieDecline').addEventListener('click',function(){
+        declineGA(); $('cookieBanner').classList.add('hidden');
+      });
+    }
+ 
     function init(){
       loadState();
       applyUiText();
+      updateCookieBannerText();
       renderDestinations();
       renderOrigins();
       renderGuideDestinations();
       bind();
       updateSummary();
       setupStickyCtaVisibility();
+      initCookieBanner();
+      // Restore saved destination/origin
+      if(currentDestination){
+        updateHeroRegion();
+        if(currentDestination.code==='UK'){
+          $('originWrap').style.display='block';
+          renderOrigins();
+          if(currentOrigin) renderChecklist();
+        } else {
+          renderChecklist();
+        }
+      }
     }
-
+ 
     init();
   </script>
 </body>
