@@ -1707,7 +1707,7 @@
       $('stickyCta').classList.add('visible');
  
       $('progressTitle').textContent = currentDestination.code === 'UK' && currentOrigin
-        ? `${t('progressTitle')}: ${nameOf(currentDestination)} — ${nameOf(currentOrigin)}`
+        ? `${t('progressTitle')}: ${nameOf(currentOrigin)} → ${nameOf(currentDestination)}`
         : `${t('progressTitle')}: ${nameOf(currentDestination)}`;
  
       const root = $('checklists');
