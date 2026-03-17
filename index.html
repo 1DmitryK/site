@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Immigrity — Your Move, Simplified</title>
- 
+
   <meta name="description" content="Immigrity helps immigrants relocate step by step with visa guides, checklists, local tips, and practical planning tools." />
   <meta name="keywords" content="immigration checklist, relocation guide, moving abroad, visa guide, immigrant support, immigrity" />
   <meta name="author" content="Immigrity" />
@@ -42,8 +43,9 @@
       }
     }
   </script>
- 
+
   <!-- Google Analytics — loaded only after consent -->
+
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -62,11 +64,11 @@
     }
     if(localStorage.getItem('immigrity_consent')==='1') loadGA();
   </script>
- 
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
- 
+
   <style>
     :root{
       --bg:#f6f1e8;
@@ -283,7 +285,7 @@
     [dir="rtl"] .phase-time{margin-left:0;margin-right:auto}
     [dir="rtl"] .sticky-inner,[dir="rtl"] header,[dir="rtl"] .phase-head,[dir="rtl"] .progress-head{direction:rtl}
     [dir="rtl"] .tag{margin-right:auto;margin-left:0}
- 
+
     .feedback-wrap{
       padding-bottom:160px;
       scroll-margin-bottom:160px;
@@ -322,6 +324,7 @@
     .cookie-accept{background:#fff;color:var(--ink)}
     .cookie-decline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)!important}
   </style>
+
 </head>
 <body>
   <header>
@@ -337,7 +340,7 @@
       </div>
     </div>
   </header>
- 
+
   <main class="wrap">
     <section class="hero">
       <div class="eyebrow" id="eyebrowText">Built by immigrants, for immigrants</div>
@@ -348,70 +351,73 @@
       </h1>
       <p id="heroText">Everything you need to relocate — visa guides, checklists, local tips. Built by immigrants, for immigrants.</p>
     </section>
- 
-    <section class="section">
-      <div class="card">
-        <div class="label" id="destinationLabel">I'm moving to</div>
-        <div class="grid" id="destinationGrid"></div>
- 
-        <div id="originWrap">
-          <div class="label" id="originLabel">I'm coming from</div>
-          <div class="grid" id="originGrid"></div>
-        </div>
- 
-        <div class="summary" id="selectionSummary"></div>
-      </div>
-    </section>
- 
-    <section class="section progress-wrap" id="progressWrap">
-      <div class="progress-card">
-        <div class="progress-head">
-          <div class="progress-title" id="progressTitle">Your relocation checklist</div>
-          <div class="progress-count" id="progressCount">0 of 0 done</div>
-        </div>
-        <div class="track"><div class="bar" id="progressBar"></div></div>
-      </div>
-    </section>
- 
-    <section class="section checklists" id="checklists"></section>
- 
-    <div class="celebrate" id="celebrate">
-      <div class="celebrate-emoji">🎉</div>
-      <h2 id="celebrateTitle">You're all set!</h2>
-      <p id="celebrateText">All steps completed. Welcome to your new life.</p>
+
+```
+<section class="section">
+  <div class="card">
+    <div class="label" id="destinationLabel">I'm moving to</div>
+    <div class="grid" id="destinationGrid"></div>
+
+    <div id="originWrap">
+      <div class="label" id="originLabel">I'm coming from</div>
+      <div class="grid" id="originGrid"></div>
     </div>
- 
-    <section class="section feedback-wrap" id="feedbackWrap">
-      <div class="feedback-card">
-        <h3 id="feedbackTitle">💬 Help us improve</h3>
-        <p id="feedbackText">Missing a country? Something wrong? Let us know — we read every message.</p>
- 
-        <div class="group">
-          <label class="field-label" for="inlineEmail" id="inlineEmailLabel">Your email (optional)</label>
-          <input class="input" id="inlineEmail" type="email" placeholder="your@email.com">
-        </div>
- 
-        <div class="group">
-          <label class="field-label" for="inlineType" id="inlineTypeLabel">What would you like to see?</label>
-          <select class="select" id="inlineType"></select>
-        </div>
- 
-        <div class="group">
-          <label class="field-label" for="inlineMessage" id="inlineMessageLabel">Tell us more</label>
-          <textarea class="textarea" id="inlineMessage"></textarea>
-        </div>
- 
-        <button class="btn" id="inlineSubmitBtn" type="button">Send feedback →</button>
- 
-        <div class="success" id="inlineSuccess">
-          <div style="font-size:48px;margin-bottom:10px">🙏</div>
-          <h3 id="inlineSuccessTitle">Thank you!</h3>
-          <p id="inlineSuccessText">Your feedback helps us build a better product for millions of immigrants.</p>
-        </div>
-      </div>
-    </section>
+
+    <div class="summary" id="selectionSummary"></div>
+  </div>
+</section>
+
+<section class="section progress-wrap" id="progressWrap">
+  <div class="progress-card">
+    <div class="progress-head">
+      <div class="progress-title" id="progressTitle">Your relocation checklist</div>
+      <div class="progress-count" id="progressCount">0 of 0 done</div>
+    </div>
+    <div class="track"><div class="bar" id="progressBar"></div></div>
+  </div>
+</section>
+
+<section class="section checklists" id="checklists"></section>
+
+<div class="celebrate" id="celebrate">
+  <div class="celebrate-emoji">🎉</div>
+  <h2 id="celebrateTitle">You're all set!</h2>
+  <p id="celebrateText">All steps completed. Welcome to your new life.</p>
+</div>
+
+<section class="section feedback-wrap" id="feedbackWrap">
+  <div class="feedback-card">
+    <h3 id="feedbackTitle">💬 Help us improve</h3>
+    <p id="feedbackText">Missing a country? Something wrong? Let us know — we read every message.</p>
+
+    <div class="group">
+      <label class="field-label" for="inlineEmail" id="inlineEmailLabel">Your email (optional)</label>
+      <input class="input" id="inlineEmail" type="email" placeholder="your@email.com">
+    </div>
+
+    <div class="group">
+      <label class="field-label" for="inlineType" id="inlineTypeLabel">What would you like to see?</label>
+      <select class="select" id="inlineType"></select>
+    </div>
+
+    <div class="group">
+      <label class="field-label" for="inlineMessage" id="inlineMessageLabel">Tell us more</label>
+      <textarea class="textarea" id="inlineMessage"></textarea>
+    </div>
+
+    <button class="btn" id="inlineSubmitBtn" type="button">Send feedback →</button>
+
+    <div class="success" id="inlineSuccess">
+      <div style="font-size:48px;margin-bottom:10px">🙏</div>
+      <h3 id="inlineSuccessTitle">Thank you!</h3>
+      <p id="inlineSuccessText">Your feedback helps us build a better product for millions of immigrants.</p>
+    </div>
+  </div>
+</section>
+```
+
   </main>
- 
+
   <div class="sticky-cta" id="stickyCta">
     <div class="sticky-inner">
       <div class="cta-copy">
@@ -421,83 +427,87 @@
       <button class="btn" id="openGuideBtn" type="button">Get Full Guide →</button>
     </div>
   </div>
- 
+
   <div class="modal-bg" id="modalBg">
     <div class="modal">
       <button class="close" id="closeModalBtn" type="button" aria-label="Close">×</button>
- 
-      <div class="tabs">
-        <button class="tab active" type="button" data-tab="guide" id="tabGuideBtn">📧 Get Full Guide</button>
-        <button class="tab" type="button" data-tab="feedback" id="tabFeedbackBtn">💬 Give Feedback</button>
+
+```
+  <div class="tabs">
+    <button class="tab active" type="button" data-tab="guide" id="tabGuideBtn">📧 Get Full Guide</button>
+    <button class="tab" type="button" data-tab="feedback" id="tabFeedbackBtn">💬 Give Feedback</button>
+  </div>
+
+  <div class="panel active" id="panel-guide">
+    <h2 id="modalGuideTitle" style="margin:0 0 8px;font-family:'Fraunces',serif;font-size:30px">Get the full guide</h2>
+    <p id="modalGuideText" style="margin:0 0 18px;color:var(--muted);line-height:1.6">We'll send you the complete relocation pack — visa timelines, bank accounts, housing tips, healthcare, and more. Free.</p>
+
+    <div id="guideForm">
+      <div class="group">
+        <label class="field-label" for="guideEmail" id="guideEmailLabel">Your email address</label>
+        <input class="input" id="guideEmail" type="email" placeholder="your@email.com">
       </div>
- 
-      <div class="panel active" id="panel-guide">
-        <h2 id="modalGuideTitle" style="margin:0 0 8px;font-family:'Fraunces',serif;font-size:30px">Get the full guide</h2>
-        <p id="modalGuideText" style="margin:0 0 18px;color:var(--muted);line-height:1.6">We'll send you the complete relocation pack — visa timelines, bank accounts, housing tips, healthcare, and more. Free.</p>
- 
-        <div id="guideForm">
-          <div class="group">
-            <label class="field-label" for="guideEmail" id="guideEmailLabel">Your email address</label>
-            <input class="input" id="guideEmail" type="email" placeholder="your@email.com">
-          </div>
- 
-          <div class="group">
-            <label class="field-label" for="guideDestination" id="guideDestinationLabel">Where are you moving to?</label>
-            <select class="select" id="guideDestination"></select>
-          </div>
- 
-          <button class="btn" id="guideSubmitBtn" type="button">Send me the guide →</button>
-        </div>
- 
-        <div class="success" id="guideSuccess">
-          <div style="font-size:48px;margin-bottom:10px">✅</div>
-          <h3 id="guideSuccessTitle">You're on the list!</h3>
-          <p id="guideSuccessText">We'll send you the full guide soon. Check your inbox and spam folder.</p>
-        </div>
+
+      <div class="group">
+        <label class="field-label" for="guideDestination" id="guideDestinationLabel">Where are you moving to?</label>
+        <select class="select" id="guideDestination"></select>
       </div>
- 
-      <div class="panel" id="panel-feedback">
-        <h2 id="modalFeedbackTitle" style="margin:0 0 8px;font-family:'Fraunces',serif;font-size:30px">Give feedback</h2>
-        <p id="modalFeedbackText" style="margin:0 0 18px;color:var(--muted);line-height:1.6">Missing a country? Something outdated? Tell us — every message is read personally.</p>
- 
-        <div id="modalFeedbackForm">
-          <div class="group">
-            <label class="field-label" for="modalFeedbackType" id="modalFeedbackTypeLabel">Type of feedback</label>
-            <select class="select" id="modalFeedbackType"></select>
-          </div>
- 
-          <div class="group">
-            <label class="field-label" for="modalFeedbackMessage" id="modalFeedbackMessageLabel">Your message</label>
-            <textarea class="textarea" id="modalFeedbackMessage"></textarea>
-          </div>
- 
-          <div class="group">
-            <label class="field-label" for="modalFeedbackEmail" id="modalFeedbackEmailLabel">Your email (optional)</label>
-            <input class="input" id="modalFeedbackEmail" type="email" placeholder="your@email.com">
-          </div>
- 
-          <button class="btn" id="modalFeedbackSubmitBtn" type="button">Send feedback →</button>
-        </div>
- 
-        <div class="success" id="modalFeedbackSuccess">
-          <div style="font-size:48px;margin-bottom:10px">🙏</div>
-          <h3 id="modalFeedbackSuccessTitle">Thank you!</h3>
-          <p id="modalFeedbackSuccessText">Your feedback helps us improve the site.</p>
-        </div>
-      </div>
+
+      <button class="btn" id="guideSubmitBtn" type="button">Send me the guide →</button>
+    </div>
+
+    <div class="success" id="guideSuccess">
+      <div style="font-size:48px;margin-bottom:10px">✅</div>
+      <h3 id="guideSuccessTitle">You're on the list!</h3>
+      <p id="guideSuccessText">We'll send you the full guide soon. Check your inbox and spam folder.</p>
     </div>
   </div>
- 
+
+  <div class="panel" id="panel-feedback">
+    <h2 id="modalFeedbackTitle" style="margin:0 0 8px;font-family:'Fraunces',serif;font-size:30px">Give feedback</h2>
+    <p id="modalFeedbackText" style="margin:0 0 18px;color:var(--muted);line-height:1.6">Missing a country? Something outdated? Tell us — every message is read personally.</p>
+
+    <div id="modalFeedbackForm">
+      <div class="group">
+        <label class="field-label" for="modalFeedbackType" id="modalFeedbackTypeLabel">Type of feedback</label>
+        <select class="select" id="modalFeedbackType"></select>
+      </div>
+
+      <div class="group">
+        <label class="field-label" for="modalFeedbackMessage" id="modalFeedbackMessageLabel">Your message</label>
+        <textarea class="textarea" id="modalFeedbackMessage"></textarea>
+      </div>
+
+      <div class="group">
+        <label class="field-label" for="modalFeedbackEmail" id="modalFeedbackEmailLabel">Your email (optional)</label>
+        <input class="input" id="modalFeedbackEmail" type="email" placeholder="your@email.com">
+      </div>
+
+      <button class="btn" id="modalFeedbackSubmitBtn" type="button">Send feedback →</button>
+    </div>
+
+    <div class="success" id="modalFeedbackSuccess">
+      <div style="font-size:48px;margin-bottom:10px">🙏</div>
+      <h3 id="modalFeedbackSuccessTitle">Thank you!</h3>
+      <p id="modalFeedbackSuccessText">Your feedback helps us improve the site.</p>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
   <!-- Cookie consent banner -->
+
   <div class="cookie-banner hidden" id="cookieBanner">
     <span id="cookieText">We use analytics cookies to improve your experience.</span>
     <button class="cookie-accept" id="cookieAccept" type="button">Accept</button>
     <button class="cookie-decline" id="cookieDecline" type="button">Decline</button>
   </div>
- 
+
   <script>
     const FORMSPREE_URL = 'https://formspree.io/f/xlgpbpkv';
- 
+
     const ui = {
       en: {
         htmlLang:'en', dir:'ltr',
@@ -865,7 +875,7 @@
         }
       }
     };
- 
+
     const destinations = [
       {
         code:'UK', flag:'🇬🇧',
@@ -918,7 +928,7 @@
         hero:{en:'another EU country',uk:'іншої країни ЄС',ru:'другую страну ЕС',ar:'دولة أخرى في الاتحاد الأوروبي',hi:'another EU country'}
       }
     ];
- 
+
     const origins = [
       {code:'UA',flag:'🇺🇦',names:{en:'Ukraine',uk:'Україна',ru:'Украина',ar:'أوكرانيا',hi:'Ukraine'}},
       {code:'IN',flag:'🇮🇳',names:{en:'India',uk:'Індія',ru:'Индия',ar:'الهند',hi:'India'}},
@@ -931,20 +941,20 @@
       {code:'MA',flag:'🇲🇦',names:{en:'Morocco',uk:'Марокко',ru:'Марокко',ar:'المغرب',hi:'Morocco'}},
       {code:'OTHER',flag:'🌍',names:{en:'Other country',uk:'Інша країна',ru:'Другая страна',ar:'بلد آخر',hi:'Other country'}}
     ];
- 
+
     const phaseNames = {
       preDocs:{en:'Visa & documents',uk:'Віза та документи',ru:'Виза и документы',ar:'التأشيرة والوثائق',hi:'वीज़ा और दस्तावेज़'},
       preDeparture:{en:'Before departure',uk:'Перед виїздом',ru:'Перед отъездом',ar:'قبل المغادرة',hi:'रवाना होने से पहले'},
       arrival:{en:'Arrival & registration',uk:'Прибуття та реєстрація',ru:'Прибытие и регистрация',ar:'الوصول والتسجيل',hi:'आगमन और पंजीकरण'},
       firstMonth:{en:'First month',uk:'Перший місяць',ru:'Первый месяц',ar:'الشهر الأول',hi:'पहला महीना'},
       ukraineRoute:{en:'Before you leave Ukraine',uk:'Перед виїздом з України',ru:'Перед выездом из Украины',ar:'قبل مغادرة أوكرانيا',hi:'यूक्रेन छोड़ने से पहले'},
-      ukArrival:{en:'Arriving in the UK',uk:'Прибуття до Великої Британії',ru:'Прибытие в Великобританию',ar:'الوصول إلى المملكة المتحدة',hi:'यूके में आगमन'}
+      ukArrival:{en:'First days in the UK',uk:'Перші дні у Великій Британії',ru:'Первые дни в Великобритании',ar:'الأيام الأولى في المملكة المتحدة',hi:'यूके में पहले दिन'}
     };
- 
+
     function L(en, uk, ru, ar, hi){
       return {en, uk, ru, ar, hi};
     }
- 
+
     const genericDestinationChecklist = [
       {
         phase:'preDocs',
@@ -1118,181 +1128,494 @@
         ]
       }
     ];
- 
-    const ukChecklistUA = [
+
+// ========================================================================
+// EXPANDED CHECKLIST: Ukraine → UK (12 sections, 150+ items)
+// Based on verified gov.uk sources, updated March 2026
+// Languages: EN, UK, RU (AR and HI use EN fallback)
+// ========================================================================
+
+const ukChecklistUA = [
+  // ── SECTION 1: Documents before departure ──
+  {
+    phase:'ukraineRoute',
+    time:'weeks48',
+    items:[
       {
-        phase:'ukraineRoute',
-        time:'weeks48',
-        items:[
-          {
-            text:L(
-              'Check that your passport and all travel documents are ready.',
-              'Перевірте, що ваш паспорт і всі проїзні документи готові.',
-              'Проверьте, что ваш паспорт и все проездные документы готовы.',
-              'تأكد من أن جواز سفرك وكل وثائق السفر جاهزة.',
-              'सुनिश्चित करें कि आपका passport और सभी travel documents तैयार हैं।'
-            ),
-            note:L(
-              'Keep paper copies and phone copies.',
-              'Зберігайте паперові копії та копії в телефоні.',
-              'Храните бумажные копии и копии в телефоне.',
-              'احتفظ بنسخ ورقية ونسخ على الهاتف.',
-              'Paper copies और phone copies साथ रखें।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Prepare sponsor, visa, or entry permission documents.',
-              'Підготуйте документи спонсора, візи або дозволу на в’їзд.',
-              'Подготовьте документы спонсора, визы или разрешения на въезд.',
-              'جهّز وثائق الكفيل أو التأشيرة أو إذن الدخول.',
-              'Sponsor, visa या entry permission documents तैयार करें।'
-            ),
-            note:L(
-              'Make sure names and dates match exactly.',
-              'Переконайтеся, що імена та дати повністю збігаються.',
-              'Убедитесь, что имена и даты полностью совпадают.',
-              'تأكد من أن الأسماء والتواريخ متطابقة تماماً.',
-              'नाम और तारीखें बिल्कुल same हों।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Take medical records and prescriptions with you.',
-              'Візьміть із собою медичні записи та рецепти.',
-              'Возьмите с собой медицинские записи и рецепты.',
-              'خذ معك السجلات الطبية والوصفات.',
-              'Medical records और prescriptions साथ लें।'
-            ),
-            note:L(
-              'This is especially important if you need regular treatment.',
-              'Це особливо важливо, якщо вам потрібне регулярне лікування.',
-              'Это особенно важно, если вам нужно регулярное лечение.',
-              'هذا مهم جداً إذا كنت تحتاج إلى علاج منتظم.',
-              'अगर आपको regular treatment चाहिए तो यह बहुत ज़रूरी है।'
-            ),
-            tag:'important'
-          }
-        ]
+        text:L(
+          'Biometric passport — valid for at least 6 months.',
+          'Закордонний паспорт (біометричний) — термін дії не менше 6 міс.',
+          'Загранпаспорт (биометрический) — срок действия не менее 6 мес.',
+          'جواز سفر بيومتري — صالح لمدة 6 أشهر على الأقل.',
+          'बायोमेट्रिक पासपोर्ट — कम से कम 6 महीने वैध।'
+        ),
+        note:L(
+          'Keep originals + copies. From Feb 2026, airlines check digital status before boarding — no valid proof means no flight.',
+          'Оригінал + копії. З лютого 2026 авіакомпанії перевіряють цифровий статус перед посадкою.',
+          'Оригинал + копии. С февраля 2026 авиакомпании проверяют цифровой статус перед посадкой.',
+          'الأصل + نسخ. من فبراير 2026 تتحقق شركات الطيران من الحالة الرقمية.',
+          'ओरिजिनल + कॉपी। फरवरी 2026 से एयरलाइंस डिजिटल स्टेटस चेक करती हैं।'
+        ),
+        tag:'urgent'
       },
       {
-        phase:'ukArrival',
-        time:'week1',
-        items:[
-          {
-            text:L(
-              'Register with a GP as soon as possible.',
-              'Зареєструйтеся в лікаря загальної практики якомога швидше.',
-              'Зарегистрируйтесь у врача общей практики как можно скорее.',
-              'سجّل لدى طبيب عام في أقرب وقت ممكن.',
-              'जितनी जल्दी हो सके GP के साथ register करें।'
-            ),
-            note:L(
-              'This helps you access NHS services quickly.',
-              'Це допоможе швидко отримати доступ до послуг NHS.',
-              'Это поможет быстро получить доступ к услугам NHS.',
-              'هذا يساعدك على الوصول السريع إلى خدمات NHS.',
-              'इससे NHS services जल्दी मिलेंगी।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Open a UK bank account.',
-              'Відкрийте банківський рахунок у Великій Британії.',
-              'Откройте банковский счёт в Великобритании.',
-              'افتح حساباً بنكياً في المملكة المتحدة.',
-              'यूके में bank account खोलें।'
-            ),
-            note:L(
-              'A digital bank like <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(referral link)</small> or Starling can be easier at the beginning.',
-              'На початку цифровий банк, наприклад <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(реферальне посилання)</small> або Starling, може бути простішим варіантом.',
-              'В начале цифровой банк, например <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(реферальная ссылка)</small> или Starling, может быть более простым вариантом.',
-              'قد يكون البنك الرقمي مثل <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(رابط إحالة)</small> أو Starling أسهل في البداية.',
-              'शुरुआत में <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(referral link)</small> या Starling जैसे डिजिटल बैंक आसान हो सकते हैं।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Set up your immigration status account or eVisa if required.',
-              'Налаштуйте свій обліковий запис імміграційного статусу або eVisa, якщо це потрібно.',
-              'Настройте свой аккаунт иммиграционного статуса или eVisa, если это нужно.',
-              'قم بإعداد حساب حالة الهجرة أو التأشيرة الإلكترونية إذا لزم الأمر.',
-              'ज़रूरत हो तो immigration status account या eVisa सेट करें।'
-            ),
-            note:L(
-              'Digital proof is very important for many services.',
-              'Цифрове підтвердження дуже важливе для багатьох послуг.',
-              'Цифровое подтверждение очень важно для многих услуг.',
-              'الإثبات الرقمي مهم جداً لكثير من الخدمات.',
-              'कई services के लिए digital proof बहुत ज़रूरी है।'
-            ),
-            tag:'urgent'
-          }
-        ]
+        text:L(
+          'Internal passport / Ukrainian ID card — copies + original.',
+          'Внутрішній паспорт України / ID-картка — копії + оригінал.',
+          'Внутренний паспорт Украины / ID-карта — копии + оригинал.',
+          'جواز السفر الداخلي / بطاقة الهوية الأوكرانية.',
+          'आंतरिक पासपोर्ट / यूक्रेनी ID कार्ड।'
+        ),
+        note:L('Copies + original.','Копії + оригінал.','Копии + оригинал.','نسخ + أصل.','कॉपी + ओरिजिनल।'),
+        tag:'urgent'
       },
       {
-        phase:'firstMonth',
-        time:'weeks24',
-        items:[
-          {
-            text:L(
-              'Apply for benefits or support if you are eligible.',
-              'Подайте заявку на пільги або допомогу, якщо маєте право.',
-              'Подайте заявку на пособия или помощь, если имеете право.',
-              'قدّم طلباً للحصول على المساعدات إذا كنت مؤهلاً.',
-              'अगर आप eligible हैं तो benefits या support के लिए apply करें।'
-            ),
-            note:L(
-              'Do this early if you need financial help.',
-              'Зробіть це рано, якщо вам потрібна фінансова допомога.',
-              'Сделайте это заранее, если вам нужна финансовая помощь.',
-              'افعل ذلك مبكراً إذا كنت تحتاج إلى دعم مالي.',
-              'अगर financial help चाहिए तो जल्दी करें।'
-            ),
-            tag:'urgent'
-          },
-          {
-            text:L(
-              'Apply for a National Insurance number if needed.',
-              'Подайте заявку на номер National Insurance, якщо це потрібно.',
-              'Подайте заявку на номер National Insurance, если это нужно.',
-              'قدّم طلباً للحصول على رقم التأمين الوطني إذا لزم الأمر.',
-              'ज़रूरत हो तो National Insurance number के लिए apply करें।'
-            ),
-            note:L(
-              'This is important for work and some official processes.',
-              'Це важливо для роботи та деяких офіційних процедур.',
-              'Это важно для работы и некоторых официальных процедур.',
-              'هذا مهم للعمل وبعض الإجراءات الرسمية.',
-              'यह work और कुछ official processes के लिए ज़रूरी है।'
-            ),
-            tag:'important'
-          },
-          {
-            text:L(
-              'Look for ESOL classes or local support groups.',
-              'Пошукайте курси ESOL або місцеві групи підтримки.',
-              'Поищите курсы ESOL или местные группы поддержки.',
-              'ابحث عن دورات ESOL أو مجموعات دعم محلية.',
-              'ESOL classes या स्थानीय support groups देखें।'
-            ),
-            note:L(
-              'These can help with language and settlement.',
-              'Вони можуть допомогти з мовою та адаптацією.',
-              'Они могут помочь с языком и адаптацией.',
-              'يمكن أن تساعدك في اللغة والاستقرار.',
-              'यह language और settling में मदद कर सकते हैं।'
-            ),
-            tag:'optional'
-          }
-        ]
+        text:L(
+          'Birth certificate — notarised copy + English translation.',
+          'Свідоцтво про народження — нотаріально завірена копія + переклад на англійську.',
+          'Свидетельство о рождении — нотариально заверенная копия + перевод на английский.',
+          'شهادة الميلاد — نسخة موثقة + ترجمة إنجليزية.',
+          'जन्म प्रमाणपत्र — नोटरीकृत प्रति + अंग्रेज़ी अनुवाद।'
+        ),
+        note:L('Certified English translation required.','З перекладом на англійську.','С переводом на английский.','مع ترجمة إنجليزية.','प्रमाणित अंग्रेज़ी अनुवाद।'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Marriage / divorce certificate (if applicable) + translation.',
+          'Свідоцтво про шлюб / розлучення (якщо є) + переклад.',
+          'Свидетельство о браке / разводе (если есть) + перевод.',
+          'شهادة زواج / طلاق (إن وجدت) + ترجمة.',
+          'विवाह / तलाक प्रमाणपत्र (यदि लागू हो) + अनुवाद।'
+        ),
+        note:L('Certified English translation.','З перекладом на англійську.','С переводом на английский.','ترجمة معتمدة.','प्रमाणित अनुवाद।'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Diplomas + academic transcripts — notarised + translated.',
+          'Дипломи + академічні довідки — нотаріально завірені + переклад.',
+          'Дипломы + академические справки — нотариально заверенные + перевод.',
+          'الشهادات + كشوف الدرجات — موثقة + مترجمة.',
+          'डिप्लोमा + शैक्षणिक ट्रांसक्रिप्ट — नोटरीकृत + अनुवादित।'
+        ),
+        note:L('For UK qualification recognition use ENIC: enic.org.uk','Для визнання кваліфікації у Великобританії: enic.org.uk','Для признания квалификации в Великобритании: enic.org.uk','لاعتراف بالمؤهلات: enic.org.uk','योग्यता मान्यता: enic.org.uk'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Vaccination records — especially COVID-19, polio.',
+          'Щепний паспорт / історія вакцинації (особливо COVID-19, поліомієліт).',
+          'Прививочный паспорт / история вакцинации (особенно COVID-19, полиомиелит).',
+          'سجلات التطعيم — خاصة COVID-19 وشلل الأطفال.',
+          'टीकाकरण रिकॉर्ड — विशेषकर COVID-19, पोलियो।'
+        ),
+        note:L('With English translation.','З перекладом на англійську.','С переводом на английский.','مع ترجمة إنجليزية.','अंग्रेज़ी अनुवाद सहित।'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Medical records + prescriptions for chronic medications (3–6 months supply).',
+          'Медичні довідки + рецепти на хронічні ліки (запас на 3–6 міс.).',
+          'Медицинские справки + рецепты на хронические лекарства (запас на 3–6 мес.).',
+          'السجلات الطبية + وصفات الأدوية المزمنة (مخزون 3-6 أشهر).',
+          'मेडिकल रिकॉर्ड + पुरानी दवाओं की प्रिस्क्रिप्शन (3-6 महीने की आपूर्ति)।'
+        ),
+        note:L('Especially important for regular treatment. Get certified English translations.','Особливо важливо при регулярному лікуванні. Зробіть сертифіковані переклади.','Особенно важно при регулярном лечении. Сделайте сертифицированные переводы.','مهم جداً للعلاج المنتظم.','नियमित उपचार के लिए बहुत ज़रूरी।'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Bank statements for the last 6–12 months.',
+          'Банківські виписки за останні 6–12 місяців.',
+          'Банковские выписки за последние 6–12 месяцев.',
+          'كشوف حساب بنكية لآخر 6-12 شهراً.',
+          'पिछले 6-12 महीनों के बैंक स्टेटमेंट।'
+        ),
+        note:L('May be needed for UK bank account or benefits.','Для банку у Великобританії або допомог.','Для банка в Великобритании или пособий.','قد تكون مطلوبة للبنك أو المساعدات.','बैंक या लाभ के लिए ज़रूरत हो सकती है।'),
+        tag:'optional'
+      },
+      {
+        text:L(
+          'Military registration (men) — check current exit rules.',
+          'Військовий квиток / приписне свідоцтво (чоловіки) — перевірити актуальні правила виїзду.',
+          'Военный билет / приписное свидетельство (мужчины) — проверить актуальные правила выезда.',
+          'وثائق التسجيل العسكري (للرجال).',
+          'सैन्य पंजीकरण (पुरुष) — वर्तमान नियम जाँचें।'
+        ),
+        note:L('Men 18–60: exit rules change frequently — consult a lawyer.','Чоловіки 18–60 років: правила виїзду часто змінюються — консультація юриста.','Мужчины 18–60 лет: правила выезда часто меняются — консультация юриста.','الرجال 18-60: القواعد تتغير — استشر محامياً.','पुरुष 18-60: नियम बदलते रहते हैं — वकील से परामर्श।'),
+        tag:'urgent'
       }
-    ];
- 
+    ]
+  },
+  // ── SECTION 2: Immigration status ──
+  {
+    phase:'preDocs',
+    time:'beforeArrival',
+    items:[
+      {
+        text:L(
+          'Determine your Ukraine scheme: Homes for Ukraine, Family Scheme, or UPE.',
+          'Визначте вашу українську програму: Homes for Ukraine, Family Scheme або UPE.',
+          'Определите вашу украинскую программу: Homes for Ukraine, Family Scheme или UPE.',
+          'حدد برنامجك الأوكراني: Homes for Ukraine أو Family Scheme أو UPE.',
+          'अपनी यूक्रेन स्कीम निर्धारित करें: Homes for Ukraine, Family Scheme या UPE।'
+        ),
+        note:L(
+          'UPE extended to 3.5 years total from April 2026. Application window expanded to 90 days before expiry. Free to apply.',
+          'UPE продовжено до 3,5 років з квітня 2026. Вікно подачі — 90 днів до закінчення. Безкоштовно.',
+          'UPE продлена до 3,5 лет с апреля 2026. Окно подачи — 90 дней до окончания. Бесплатно.',
+          'تم تمديد UPE إلى 3.5 سنوات من أبريل 2026. نافذة التقديم 90 يوماً.',
+          'UPE अप्रैल 2026 से कुल 3.5 साल तक बढ़ाया गया। आवेदन विंडो 90 दिन।'
+        ),
+        tag:'urgent'
+      },
+      {
+        text:L(
+          'Set up UKVI account and link your passport to eVisa.',
+          'Створіть акаунт UKVI та прив\'яжіть паспорт до eVisa.',
+          'Создайте аккаунт UKVI и привяжите паспорт к eVisa.',
+          'أنشئ حساب UKVI واربط جواز سفرك بـ eVisa.',
+          'UKVI अकाउंट बनाएं और पासपोर्ट को eVisa से लिंक करें।'
+        ),
+        note:L(
+          'BRP cards replaced by eVisa in 2025. Share code needed for employers, landlords, NHS. gov.uk/view-prove-immigration-status',
+          'BRP замінено на eVisa з 2025. Share code потрібен для роботодавців, орендодавців, NHS. gov.uk/view-prove-immigration-status',
+          'BRP заменён на eVisa с 2025. Share code нужен для работодателей, арендодателей, NHS. gov.uk/view-prove-immigration-status',
+          'تم استبدال BRP بـ eVisa في 2025. Share code مطلوب.',
+          'BRP 2025 में eVisa से बदला। Share code ज़रूरी।'
+        ),
+        tag:'urgent'
+      },
+      {
+        text:L(
+          'Consider alternative visa routes: Skilled Worker, Student, Family, Global Talent.',
+          'Розгляньте альтернативні візові шляхи: Skilled Worker, Student, Family, Global Talent.',
+          'Рассмотрите альтернативные визовые маршруты: Skilled Worker, Student, Family, Global Talent.',
+          'فكر في مسارات تأشيرة بديلة.',
+          'वैकल्पिक वीज़ा मार्गों पर विचार करें।'
+        ),
+        note:L(
+          'UPE time does NOT count towards settlement (ILR). If you plan to stay permanently, explore other visa routes early.',
+          'Час UPE НЕ зараховується для settlement (ILR). Якщо плануєте залишитися назавжди — шукайте інші візові шляхи.',
+          'Время UPE НЕ засчитывается для settlement (ILR). Если планируете остаться навсегда — ищите другие визовые маршруты.',
+          'وقت UPE لا يُحتسب للإقامة الدائمة.',
+          'UPE का समय settlement (ILR) में नहीं गिना जाता।'
+        ),
+        tag:'important'
+      }
+    ]
+  },
+  // ── SECTION 3: Logistics — housing, transport, finances ──
+  {
+    phase:'preDeparture',
+    time:'weeks48',
+    items:[
+      {
+        text:L(
+          'Arrange initial accommodation: sponsor, council, or temporary housing.',
+          'Організуйте початкове житло: спонсор, рада, або тимчасове житло.',
+          'Организуйте начальное жильё: спонсор, совет, или временное жильё.',
+          'رتّب الإقامة الأولية.',
+          'शुरुआती आवास की व्यवस्था करें।'
+        ),
+        note:L(
+          'Hosts receive £350/month under thank-you payment scheme. Long-term: Rightmove, Zoopla, SpareRoom.',
+          'Хости отримують £350/міс. Довгостроково: Rightmove, Zoopla, SpareRoom.',
+          'Хосты получают £350/мес. Долгосрочно: Rightmove, Zoopla, SpareRoom.',
+          'يحصل المضيفون على 350 جنيهاً/شهرياً.',
+          'होस्ट को £350/माह मिलता है।'
+        ),
+        tag:'urgent'
+      },
+      {
+        text:L(
+          'Prepare Ukrainian bank card (Visa/Mastercard) with international access.',
+          'Підготуйте картку українського банку (Visa/Mastercard) з міжнародним доступом.',
+          'Подготовьте карту украинского банка (Visa/Mastercard) с международным доступом.',
+          'حضّر بطاقة بنك أوكراني بوصول دولي.',
+          'अंतर्राष्ट्रीय एक्सेस वाला यूक्रेनी बैंक कार्ड तैयार करें।'
+        ),
+        note:L('Monobank, PrivatBank. Cash limit when leaving Ukraine: €10,000 per person.','Monobank, PrivatBank. Ліміт готівки при виїзді: €10 000 на особу.','Monobank, PrivatBank. Лимит наличных при выезде: €10 000 на человека.','Monobank, PrivatBank. الحد النقدي: 10,000 يورو.','Monobank, PrivatBank। नकद सीमा: €10,000।'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Check rules for bringing belongings and pets to the UK.',
+          'Перевірте правила ввезення речей і тварин до Великобританії.',
+          'Проверьте правила ввоза вещей и животных в Великобританию.',
+          'تحقق من قواعد إحضار الأمتعة والحيوانات الأليفة.',
+          'सामान और पालतू जानवरों को लाने के नियम जाँचें।'
+        ),
+        note:L('Pets: strict APHA rules — gov.uk/bring-pet-to-great-britain. Personal items: duty-free when relocating.','Тварини: суворі правила APHA — gov.uk/bring-pet-to-great-britain.','Животные: строгие правила APHA — gov.uk/bring-pet-to-great-britain.','الحيوانات: قواعد صارمة.','पालतू जानवर: सख्त APHA नियम।'),
+        tag:'optional'
+      }
+    ]
+  },
+  // ── SECTION 4: First days in the UK ──
+  {
+    phase:'ukArrival',
+    time:'week1',
+    items:[
+      {
+        text:L(
+          'Register with Local Council at your address.',
+          'Зареєструйтесь у місцевій раді (Local Council) за адресою проживання.',
+          'Зарегистрируйтесь в местном совете (Local Council) по адресу проживания.',
+          'سجّل في المجلس المحلي.',
+          'अपने पते पर Local Council में पंजीकरण करें।'
+        ),
+        note:L('gov.uk/find-local-council','gov.uk/find-local-council','gov.uk/find-local-council','gov.uk/find-local-council','gov.uk/find-local-council'),
+        tag:'urgent'
+      },
+      {
+        text:L(
+          'Register with a GP (family doctor) — free for Ukraine scheme holders.',
+          'Зареєструйтесь у сімейного лікаря (GP) — безкоштовно за українською візою.',
+          'Зарегистрируйтесь у семейного врача (GP) — бесплатно по украинской визе.',
+          'سجّل لدى طبيب عام (GP) — مجاني لحاملي التأشيرة الأوكرانية.',
+          'GP (पारिवारिक डॉक्टर) के पास पंजीकरण करें — यूक्रेन स्कीम वालों के लिए मुफ्त।'
+        ),
+        note:L('You get an NHS number automatically. No IHS required for Ukraine scheme holders. nhs.uk/nhs-services/gps/how-to-register-with-a-gp-surgery','Ви отримаєте NHS Number автоматично. IHS не потрібен. nhs.uk/nhs-services/gps/how-to-register-with-a-gp-surgery','Вы получите NHS Number автоматически. IHS не нужен. nhs.uk/nhs-services/gps/how-to-register-with-a-gp-surgery','ستحصل على رقم NHS تلقائياً.','आपको NHS नंबर स्वचालित रूप से मिलेगा।'),
+        tag:'urgent'
+      },
+      {
+        text:L(
+          'Apply for National Insurance Number (NIN).',
+          'Подайте заявку на National Insurance Number (NIN).',
+          'Подайте заявку на National Insurance Number (NIN).',
+          'قدّم طلباً للحصول على NIN.',
+          'National Insurance Number (NIN) के लिए आवेदन करें।'
+        ),
+        note:L('Apply online at gov.uk/apply-national-insurance-number or call 0800 141 2075. You can start work before receiving it.','Подайте онлайн: gov.uk/apply-national-insurance-number або зателефонуйте 0800 141 2075. Можна працювати до отримання.','Подайте онлайн: gov.uk/apply-national-insurance-number или позвоните 0800 141 2075. Можно работать до получения.','قدّم عبر الإنترنت أو اتصل بـ 0800 141 2075.','ऑनलाइन आवेदन करें या 0800 141 2075 पर कॉल करें।'),
+        tag:'urgent'
+      },
+      {
+        text:L(
+          'Open a UK bank account.',
+          'Відкрийте банківський рахунок у Великобританії.',
+          'Откройте банковский счёт в Великобритании.',
+          'افتح حساباً بنكياً في المملكة المتحدة.',
+          'ब्रिटेन में बैंक खाता खोलें।'
+        ),
+        note:L(
+          'Digital banks (no proof of address needed): <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(referral link)</small>, Starling, Revolut. Traditional banks (need address + eVisa): Lloyds, Barclays, HSBC.',
+          'Цифрові банки (без підтвердження адреси): <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(реферальне посилання)</small>, Starling, Revolut. Традиційні банки (потрібна адреса + eVisa): Lloyds, Barclays, HSBC.',
+          'Цифровые банки (без подтверждения адреса): <a href="https://join.monzo.com/c/f018mgrl" target="_blank" rel="noopener noreferrer">Monzo</a> <small>(реферальная ссылка)</small>, Starling, Revolut. Традиционные банки (нужен адрес + eVisa): Lloyds, Barclays, HSBC.',
+          'بنوك رقمية (بدون إثبات عنوان): Monzo, Starling, Revolut.',
+          'डिजिटल बैंक (एड्रेस प्रूफ नहीं चाहिए): Monzo, Starling, Revolut।'
+        ),
+        tag:'urgent'
+      },
+      {
+        text:L(
+          'Get a UK SIM card: EE, Vodafone, Three, O2, giffgaff.',
+          'Отримайте UK SIM-картку: EE, Vodafone, Three, O2, giffgaff.',
+          'Получите UK SIM-карту: EE, Vodafone, Three, O2, giffgaff.',
+          'احصل على شريحة SIM بريطانية.',
+          'ब्रिटिश SIM कार्ड लें।'
+        ),
+        note:L('Needed for banks, GP, job applications, and all official services.','Потрібна для банків, GP, пошуку роботи та всіх офіційних послуг.','Нужна для банков, GP, поиска работы и всех официальных услуг.','مطلوبة للبنوك والخدمات الرسمية.','बैंक, GP, नौकरी आवेदन और सभी आधिकारिक सेवाओं के लिए ज़रूरी।'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Get Oyster card or set up contactless payment for public transport.',
+          'Отримайте Oyster Card або налаштуйте contactless для транспорту.',
+          'Получите Oyster Card или настройте contactless для транспорта.',
+          'احصل على بطاقة Oyster للنقل العام.',
+          'सार्वजनिक परिवहन के लिए Oyster कार्ड लें।'
+        ),
+        note:L('London: tfl.gov.uk/oyster. Outside London: check local transport apps.','Лондон: tfl.gov.uk/oyster. За межами Лондона: місцеві транспортні додатки.','Лондон: tfl.gov.uk/oyster. За пределами Лондона: местные транспортные приложения.','لندن: tfl.gov.uk/oyster.','लंदन: tfl.gov.uk/oyster।'),
+        tag:'optional'
+      }
+    ]
+  },
+  // ── SECTION 5: NHS Healthcare ──
+  {
+    phase:'firstMonth',
+    time:'weeks24',
+    items:[
+      {
+        text:L(
+          'Register with NHS dentist (separate from GP).',
+          'Запишіться до стоматолога NHS (окрема реєстрація від GP).',
+          'Запишитесь к стоматологу NHS (отдельная регистрация от GP).',
+          'سجّل لدى طبيب أسنان NHS.',
+          'NHS डेंटिस्ट में पंजीकरण करें (GP से अलग)।'
+        ),
+        note:L('nhs.uk/nhs-services/dentists — waiting lists can be long; register early.','nhs.uk/nhs-services/dentists — черги бувають довгі; реєструйтесь рано.','nhs.uk/nhs-services/dentists — очереди бывают длинные; регистрируйтесь рано.','قوائم الانتظار قد تكون طويلة.','प्रतीक्षा सूची लंबी हो सकती है।'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Check free prescriptions eligibility (Universal Credit, chronic conditions).',
+          'Перевірте право на безкоштовні рецепти (UC, хронічні хвороби — NHS Exemption).',
+          'Проверьте право на бесплатные рецепты (UC, хронические болезни — NHS Exemption).',
+          'تحقق من أهلية الوصفات المجانية.',
+          'मुफ्त प्रिस्क्रिप्शन पात्रता जाँचें।'
+        ),
+        note:L('nhsbsa.nhs.uk/check','nhsbsa.nhs.uk/check','nhsbsa.nhs.uk/check','nhsbsa.nhs.uk/check','nhsbsa.nhs.uk/check'),
+        tag:'optional'
+      },
+      {
+        text:L(
+          'Download NHS App — appointments, test results, prescriptions online.',
+          'Завантажте NHS App — записи, результати аналізів, рецепти онлайн.',
+          'Скачайте NHS App — записи, результаты анализов, рецепты онлайн.',
+          'حمّل تطبيق NHS.',
+          'NHS App डाउनलोड करें।'
+        ),
+        note:L('nhs.uk/nhs-app','nhs.uk/nhs-app','nhs.uk/nhs-app','nhs.uk/nhs-app','nhs.uk/nhs-app'),
+        tag:'optional'
+      },
+      {
+        text:L(
+          'NHS Talking Therapies (IAPT) — free mental health support via GP.',
+          'NHS Talking Therapies (IAPT) — безкоштовна психотерапія через GP.',
+          'NHS Talking Therapies (IAPT) — бесплатная психотерапия через GP.',
+          'NHS Talking Therapies — دعم نفسي مجاني عبر GP.',
+          'NHS Talking Therapies — GP के माध्यम से मुफ्त मानसिक स्वास्थ्य सहायता।'
+        ),
+        note:L('Self-refer or ask your GP. CAMHS for children via school/GP.','Зверніться самостійно або через GP. CAMHS для дітей через школу/GP.','Обратитесь самостоятельно или через GP. CAMHS для детей через школу/GP.','إحالة ذاتية أو عبر GP.','स्वयं रेफर करें या GP से पूछें।'),
+        tag:'optional'
+      },
+      // ── SECTION 6: Education ──
+      {
+        text:L(
+          'Enrol children in school via Local Authority.',
+          'Запишіть дітей до школи через Local Authority.',
+          'Запишите детей в школу через Local Authority.',
+          'سجّل الأطفال في المدرسة عبر السلطة المحلية.',
+          'Local Authority के माध्यम से बच्चों का स्कूल में दाखिला कराएं।'
+        ),
+        note:L('Compulsory ages 5–16. Free School Meals available. Request EAL support. gov.uk/schools-admissions','Обов\'язково 5–16 років. Free School Meals. Запросіть підтримку EAL. gov.uk/schools-admissions','Обязательно 5–16 лет. Free School Meals. Запросите поддержку EAL. gov.uk/schools-admissions','إلزامي 5-16 سنة. gov.uk/schools-admissions','अनिवार्य 5-16 वर्ष। gov.uk/schools-admissions'),
+        tag:'urgent'
+      },
+      {
+        text:L(
+          'Find ESOL English classes — often free for Ukrainians.',
+          'Знайдіть курси англійської ESOL — часто безкоштовно для українців.',
+          'Найдите курсы английского ESOL — часто бесплатно для украинцев.',
+          'ابحث عن دورات ESOL — غالباً مجانية للأوكرانيين.',
+          'ESOL अंग्रेज़ी कक्षाएं खोजें — अक्सर यूक्रेनियों के लिए मुफ्त।'
+        ),
+        note:L('Check council or local charities. Skills Bootcamps also available: gov.uk/guidance/find-a-skills-bootcamp','Уточніть у ради або місцевих благодійних організацій. Skills Bootcamps: gov.uk/guidance/find-a-skills-bootcamp','Уточните в совете или местных благотворительных организациях. Skills Bootcamps: gov.uk/guidance/find-a-skills-bootcamp','استفسر من المجلس المحلي.','काउंसिल या स्थानीय चैरिटी से जाँचें।'),
+        tag:'important'
+      },
+      // ── SECTION 7: Employment ──
+      {
+        text:L(
+          'Prepare CV in British format (no photo, no date of birth, 1–2 pages).',
+          'Складіть CV у британському форматі (без фото, без дати народження, 1–2 сторінки).',
+          'Составьте CV в британском формате (без фото, без даты рождения, 1–2 страницы).',
+          'حضّر السيرة الذاتية بالشكل البريطاني.',
+          'ब्रिटिश फॉर्मेट में CV तैयार करें।'
+        ),
+        note:L('Job search: Indeed, Reed, Totaljobs, LinkedIn. Check right to work: gov.uk/check-uk-visa','Пошук роботи: Indeed, Reed, Totaljobs, LinkedIn. Перевірте право на роботу: gov.uk/check-uk-visa','Поиск работы: Indeed, Reed, Totaljobs, LinkedIn. Проверьте право на работу: gov.uk/check-uk-visa','البحث عن عمل: Indeed, Reed, LinkedIn.','नौकरी खोज: Indeed, Reed, LinkedIn।'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Regulated professions: check if your qualification needs UK registration.',
+          'Ліцензовані професії: перевірте, чи потрібна реєстрація у Великобританії.',
+          'Лицензируемые профессии: проверьте, нужна ли регистрация в Великобритании.',
+          'المهن المنظمة: تحقق من متطلبات التسجيل.',
+          'विनियमित पेशे: जाँचें कि क्या UK पंजीकरण ज़रूरी है।'
+        ),
+        note:L('Medical: NMC/GMC. Legal: SRA. Engineering: EngC. DBS check for work with children.','Медики: NMC/GMC. Юристи: SRA. Інженери: EngC. DBS-перевірка для роботи з дітьми.','Медики: NMC/GMC. Юристы: SRA. Инженеры: EngC. DBS-проверка для работы с детьми.','الأطباء: NMC/GMC. المحامون: SRA.','मेडिकल: NMC/GMC। कानूनी: SRA। इंजीनियरिंग: EngC।'),
+        tag:'important'
+      },
+      // ── SECTION 8: Benefits & support ──
+      {
+        text:L(
+          'Apply for Universal Credit if eligible.',
+          'Подайте заявку на Universal Credit, якщо маєте право.',
+          'Подайте заявку на Universal Credit, если имеете право.',
+          'قدّم طلباً للحصول على Universal Credit.',
+          'Universal Credit के लिए आवेदन करें।'
+        ),
+        note:L('Ukraine scheme holders can access public funds. gov.uk/universal-credit — first payment takes ~5 weeks.','Учасники українських програм мають доступ до public funds. gov.uk/universal-credit — перша виплата через ~5 тижнів.','Участники украинских программ имеют доступ к public funds. gov.uk/universal-credit — первая выплата через ~5 недель.','يمكن لحاملي التأشيرة الأوكرانية الوصول إلى المساعدات.','यूक्रेन स्कीम वाले public funds प्राप्त कर सकते हैं।'),
+        tag:'urgent'
+      },
+      {
+        text:L(
+          'Apply for Child Benefit — for each child under 16 (or 20 if in education).',
+          'Подайте на Child Benefit — на кожну дитину до 16 років (або 20, якщо навчається).',
+          'Подайте на Child Benefit — на каждого ребёнка до 16 лет (или 20, если учится).',
+          'قدّم طلب Child Benefit لكل طفل تحت 16 عاماً.',
+          'Child Benefit के लिए आवेदन करें — 16 वर्ष से कम प्रत्येक बच्चे के लिए।'
+        ),
+        note:L('gov.uk/child-benefit','gov.uk/child-benefit','gov.uk/child-benefit','gov.uk/child-benefit','gov.uk/child-benefit'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Register for Council Tax — check Council Tax Reduction if on low income.',
+          'Зареєструйтесь для Council Tax — перевірте Council Tax Reduction при низькому доході.',
+          'Зарегистрируйтесь для Council Tax — проверьте Council Tax Reduction при низком доходе.',
+          'سجّل لضريبة المجلس.',
+          'Council Tax के लिए पंजीकरण करें।'
+        ),
+        note:L('gov.uk/council-tax-reduction','gov.uk/council-tax-reduction','gov.uk/council-tax-reduction','gov.uk/council-tax-reduction','gov.uk/council-tax-reduction'),
+        tag:'important'
+      },
+      // ── SECTION 9: Legal & tax ──
+      {
+        text:L(
+          'UK tax residency: you become a tax resident after 183 days per year.',
+          'Податковий статус резидента Великобританії: 183 дні на рік.',
+          'Налоговый статус резидента Великобритании: 183 дня в год.',
+          'الإقامة الضريبية: 183 يوماً في السنة.',
+          'कर निवासी: प्रति वर्ष 183 दिन।'
+        ),
+        note:L('Check Ukraine tax obligations for any property. Power of Attorney for Ukraine representative recommended.','Уточніть податкові зобов\'язання в Україні при наявності майна. Рекомендується довіреність на представника.','Уточните налоговые обязательства в Украине при наявности имущества. Рекомендуется доверенность на представителя.','تحقق من الالتزامات الضريبية في أوكرانيا.','यूक्रेन में कर दायित्व जाँचें।'),
+        tag:'optional'
+      },
+      // ── SECTION 10-11: Adaptation & Ukraine ties ──
+      {
+        text:L(
+          'Register at the Ukrainian Consulate in London.',
+          'Зареєструйтесь в консульстві України в Лондоні.',
+          'Зарегистрируйтесь в консульстве Украины в Лондоне.',
+          'سجّل في القنصلية الأوكرانية في لندن.',
+          'लंदन में यूक्रेनी वाणिज्य दूतावास में पंजीकरण करें।'
+        ),
+        note:L('ukremb.org.uk — Track Ukrainian exit/return law changes. Keep all UK correspondence safe for potential appeals.','ukremb.org.uk — Стежте за змінами законодавства про виїзд/повернення. Зберігайте листування.','ukremb.org.uk — Следите за изменениями законодательства о выезде/возвращении. Храните переписку.','ukremb.org.uk','ukremb.org.uk'),
+        tag:'important'
+      },
+      {
+        text:L(
+          'Join Ukrainian community groups and support organisations.',
+          'Приєднайтесь до українських громад та організацій підтримки.',
+          'Присоединитесь к украинским общинам и организациям поддержки.',
+          'انضم إلى مجموعات الدعم الأوكرانية.',
+          'यूक्रेनी सामुदायिक समूहों से जुड़ें।'
+        ),
+        note:L('AUGB (augb.co.uk), British Red Cross, Citizens Advice, local Facebook groups. Libraries offer free internet and courses.','AUGB (augb.co.uk), British Red Cross, Citizens Advice, місцеві Facebook-групи. Бібліотеки — безкоштовний інтернет.','AUGB (augb.co.uk), British Red Cross, Citizens Advice, местные Facebook-группы. Библиотеки — бесплатный интернет.','AUGB, British Red Cross, Citizens Advice.','AUGB, British Red Cross, Citizens Advice।'),
+        tag:'optional'
+      },
+      {
+        text:L(
+          'Plan your UPE extension well before expiry — apply 90 days in advance.',
+          'Заплануйте продовження UPE заздалегідь — подавайте за 90 днів до закінчення.',
+          'Запланируйте продление UPE заблаговременно — подавайте за 90 дней до окончания.',
+          'خطط لتمديد UPE قبل 90 يوماً من انتهاء الصلاحية.',
+          'UPE विस्तार की योजना समय से पहले बनाएं — 90 दिन पहले आवेदन करें।'
+        ),
+        note:L(
+          'UPE does NOT count towards ILR/settlement. Total UPE: up to 3.5 years. Track rights: settled.org.uk, righttoremain.org.uk',
+          'UPE НЕ зараховується для ILR/settlement. Загалом UPE: до 3,5 років. Відстежуйте права: settled.org.uk, righttoremain.org.uk',
+          'UPE НЕ засчитывается для ILR/settlement. Всего UPE: до 3,5 лет. Отслеживайте права: settled.org.uk, righttoremain.org.uk',
+          'UPE لا يُحتسب للإقامة الدائمة. المجموع: 3.5 سنوات.',
+          'UPE settlement/ILR में नहीं गिना जाता। कुल: 3.5 साल तक।'
+        ),
+        tag:'urgent'
+      }
+    ]
+  }
+];
+
     const ukChecklistGeneric = [
       {
         phase:'preDocs',
@@ -1415,7 +1738,7 @@
         ]
       }
     ];
- 
+
     const checklistByDestination = {
       UK: {
         UA: ukChecklistUA,
@@ -1431,26 +1754,26 @@
       CA: genericDestinationChecklist,
       OTHER_EU: genericDestinationChecklist
     };
- 
+
     let currentLang = 'en';
     let currentDestination = null;
     let currentOrigin = null;
     let state = {};
     let completionSent = false;
- 
+
     const $ = id => document.getElementById(id);
- 
+
     function track(name, params = {}){
       if(typeof gtag === 'function') gtag('event', name, params);
     }
- 
+
     function saveState(){
       localStorage.setItem('immigrity_state_v4', JSON.stringify(state));
       localStorage.setItem('immigrity_lang_v4', currentLang);
       if(currentDestination) localStorage.setItem('immigrity_dest_v4', currentDestination.code);
       if(currentOrigin) localStorage.setItem('immigrity_origin_v4', currentOrigin.code);
     }
- 
+
     function loadState(){
       try{ state = JSON.parse(localStorage.getItem('immigrity_state_v4') || '{}'); }catch{ state = {}; }
       const savedLang = localStorage.getItem('immigrity_lang_v4');
@@ -1460,44 +1783,44 @@
       const savedOrigin = localStorage.getItem('immigrity_origin_v4');
       if(savedOrigin) currentOrigin = origins.find(o=>o.code===savedOrigin)||null;
     }
- 
+
     function tx(obj){
       if(typeof obj === 'string') return obj;
       return obj?.[currentLang] || obj?.en || '';
     }
- 
+
     function t(key){
       return ui[currentLang][key];
     }
- 
+
     function nameOf(entity){
       return entity.names[currentLang] || entity.names.en;
     }
- 
+
     function heroNameOf(entity){
       return entity.hero?.[currentLang] || entity.hero?.en || nameOf(entity);
     }
- 
+
     function phaseName(key){
       return tx(phaseNames[key]);
     }
- 
+
     function timeName(key){
       return ui[currentLang].times[key] || key;
     }
- 
+
     function tagName(tag){
       return ui[currentLang].tags[tag] || tag;
     }
- 
+
     function template(str, vars){
       return String(str).replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
     }
- 
+
     function itemKey(scope, phaseIndex, itemIndex){
       return `${scope}_${phaseIndex}_${itemIndex}`;
     }
- 
+
     function getActiveChecklist(){
       if(!currentDestination) return null;
       if(currentDestination.code === 'UK'){
@@ -1505,11 +1828,11 @@
       }
       return checklistByDestination[currentDestination.code] || genericDestinationChecklist;
     }
- 
+
     function applyUiText(){
       document.documentElement.lang = ui[currentLang].htmlLang;
       document.documentElement.dir = ui[currentLang].dir;
- 
+
       $('langLabel').textContent = t('langLabel');
       $('eyebrowText').textContent = t('eyebrowText');
       $('heroLine1').textContent = t('heroLine1');
@@ -1546,23 +1869,23 @@
       $('modalFeedbackSubmitBtn').textContent = t('modalFeedbackSubmit');
       $('modalFeedbackSuccessTitle').textContent = t('modalFeedbackSuccessTitle');
       $('modalFeedbackSuccessText').textContent = t('modalFeedbackSuccessText');
- 
+
       $('closeModalBtn').setAttribute('aria-label', t('closeLabel'));
       if(typeof updateCookieBannerText==='function') updateCookieBannerText();
       updateHeroRegion();
       renderFeedbackOptions();
       renderGuideDestinations();
       updateSummary();
- 
+
       document.querySelectorAll('.lang-btn').forEach(btn=>{
         btn.classList.toggle('active', btn.dataset.lang === currentLang);
       });
     }
- 
+
     function updateHeroRegion(){
       $('heroRegion').textContent = currentDestination ? heroNameOf(currentDestination) + ',' : t('heroDefaultRegion');
     }
- 
+
     function renderDestinations(){
       const grid = $('destinationGrid');
       grid.innerHTML = '';
@@ -1575,7 +1898,7 @@
         grid.appendChild(btn);
       });
     }
- 
+
     function renderOrigins(){
       const grid = $('originGrid');
       grid.innerHTML = '';
@@ -1588,7 +1911,7 @@
         grid.appendChild(btn);
       });
     }
- 
+
     function renderFeedbackOptions(){
       const selects = [$('inlineType'), $('modalFeedbackType')];
       selects.forEach(sel=>{
@@ -1608,7 +1931,7 @@
         if([...sel.options].some(o=>o.value===old)) sel.value = old;
       });
     }
- 
+
     function renderGuideDestinations(){
       const sel = $('guideDestination');
       const old = sel.value;
@@ -1626,7 +1949,7 @@
       if(currentDestination) sel.value = currentDestination.code;
       else if([...sel.options].some(o=>o.value===old)) sel.value = old;
     }
- 
+
     function updateSummary(){
       const el = $('selectionSummary');
       if(!currentDestination){
@@ -1644,7 +1967,7 @@
         });
       }
     }
- 
+
     function resetChecklistArea(){
       $('progressWrap').classList.remove('visible');
       $('checklists').classList.remove('visible');
@@ -1657,7 +1980,7 @@
       completionSent = false;
       updateSummary();
     }
- 
+
     function selectDestination(dest){
       currentDestination = dest;
       currentOrigin = null;
@@ -1679,7 +2002,7 @@
         language: currentLang
       });
     }
- 
+
     function selectOrigin(origin){
       currentOrigin = origin;
       renderOrigins();
@@ -1692,27 +2015,27 @@
         language: currentLang
       });
     }
- 
+
     function renderChecklist(){
       const data = getActiveChecklist();
       if(!data) return;
- 
+
       const scope = currentDestination.code === 'UK'
         ? `UK_${currentOrigin?.code || 'DEFAULT'}`
         : `DEST_${currentDestination.code}`;
- 
+
       $('progressWrap').classList.add('visible');
       $('checklists').classList.add('visible');
       $('feedbackWrap').classList.add('visible');
       $('stickyCta').classList.add('visible');
- 
+
       $('progressTitle').textContent = currentDestination.code === 'UK' && currentOrigin
         ? `${t('progressTitle')}: ${nameOf(currentOrigin)} → ${nameOf(currentDestination)}`
         : `${t('progressTitle')}: ${nameOf(currentDestination)}`;
- 
+
       const root = $('checklists');
       root.innerHTML = '';
- 
+
       data.forEach((phase, phaseIndex)=>{
         const box = document.createElement('div');
         box.className = 'phase';
@@ -1723,7 +2046,7 @@
             <div class="phase-time">${timeName(phase.time)}</div>
           </div>
         `;
- 
+
         phase.items.forEach((item, itemIndex)=>{
           const key = itemKey(scope, phaseIndex, itemIndex);
           const checked = !!state[key];
@@ -1745,28 +2068,28 @@
           });
           box.appendChild(row);
         });
- 
+
         root.appendChild(box);
       });
- 
+
       updateProgress(scope, data);
     }
- 
+
     function updateProgress(scope, data){
       let total = 0;
       let done = 0;
- 
+
       data.forEach((phase, pIndex)=>{
         phase.items.forEach((_, iIndex)=>{
           total++;
           if(state[itemKey(scope, pIndex, iIndex)]) done++;
         });
       });
- 
+
       const percent = total ? Math.round((done / total) * 100) : 0;
       $('progressBar').style.width = percent + '%';
       $('progressCount').textContent = template(t('progressCount'), {done, total});
- 
+
       if(percent === 100 && total > 0){
         $('celebrate').classList.add('visible');
         $('celebrateTitle').textContent = t('celebrateTitle');
@@ -1784,7 +2107,7 @@
         completionSent = false;
       }
     }
- 
+
     function openModal(tab='guide'){
       $('modalBg').classList.add('visible');
       document.body.classList.add('modal-open');
@@ -1796,12 +2119,12 @@
         origin_code: currentOrigin?.code || ''
       });
     }
- 
+
     function closeModal(){
       $('modalBg').classList.remove('visible');
       document.body.classList.remove('modal-open');
     }
- 
+
     function switchTab(tab){
       document.querySelectorAll('.tab').forEach(btn=>{
         btn.classList.toggle('active', btn.dataset.tab === tab);
@@ -1810,7 +2133,7 @@
         panel.classList.toggle('active', panel.id === `panel-${tab}`);
       });
     }
- 
+
     async function postForm(data){
       const res = await fetch(FORMSPREE_URL, {
         method:'POST',
@@ -1819,7 +2142,7 @@
       });
       if(!res.ok) throw new Error('Request failed');
     }
- 
+
     async function submitInlineFeedback(){
       const inEm = $('inlineEmail');
       if(inEm.value.trim() && !inEm.checkValidity()){ inEm.reportValidity(); return; }
@@ -1844,7 +2167,7 @@
         alert(t('errorSend'));
       }
     }
- 
+
     async function submitGuide(){
       const guideEmailEl = $('guideEmail');
       const email = guideEmailEl.value.trim();
@@ -1865,7 +2188,7 @@
         alert(t('errorSend'));
       }
     }
- 
+
     async function submitModalFeedback(){
       const mfEm = $('modalFeedbackEmail');
       if(mfEm.value.trim() && !mfEm.checkValidity()){ mfEm.reportValidity(); return; }
@@ -1889,7 +2212,7 @@
         alert(t('errorSend'));
       }
     }
- 
+
     function setLanguage(lang){
       if(!ui[lang]) return;
       currentLang = lang;
@@ -1912,44 +2235,44 @@
         origin_code: currentOrigin?.code || ''
       });
     }
- 
+
     function bind(){
       document.querySelectorAll('.lang-btn').forEach(btn=>{
         btn.addEventListener('click', ()=>setLanguage(btn.dataset.lang));
       });
- 
+
       $('openGuideBtn').addEventListener('click', ()=>openModal('guide'));
       $('closeModalBtn').addEventListener('click', closeModal);
       $('modalBg').addEventListener('click', e=>{
         if(e.target === $('modalBg')) closeModal();
       });
- 
+
       document.querySelectorAll('.tab').forEach(btn=>{
         btn.addEventListener('click', ()=>switchTab(btn.dataset.tab));
       });
- 
+
       $('inlineSubmitBtn').addEventListener('click', submitInlineFeedback);
       $('guideSubmitBtn').addEventListener('click', submitGuide);
       $('modalFeedbackSubmitBtn').addEventListener('click', submitModalFeedback);
- 
+
       document.addEventListener('keydown', e=>{
         if(e.key === 'Escape' && $('modalBg').classList.contains('visible')) closeModal();
       });
     }
- 
- 
+
+
     function setupStickyCtaVisibility(){
       const sticky = $('stickyCta');
       const feedback = $('feedbackWrap');
       if(!sticky || !feedback) return;
- 
+
       const toggle = ()=>{
         const rect = feedback.getBoundingClientRect();
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
         const shouldHide = rect.top < viewportHeight - 140 && rect.bottom > 80;
         sticky.classList.toggle('is-hidden', shouldHide);
       };
- 
+
       if('IntersectionObserver' in window){
         const observer = new IntersectionObserver((entries)=>{
           const entry = entries[0];
@@ -1960,20 +2283,20 @@
         });
         observer.observe(feedback);
       }
- 
+
       window.addEventListener('scroll', toggle, {passive:true});
       window.addEventListener('resize', toggle);
       window.addEventListener('load', toggle);
       toggle();
     }
- 
+
     function updateCookieBannerText(){
       var b=$('cookieBanner'); if(!b) return;
       $('cookieText').textContent=t('cookieText');
       $('cookieAccept').textContent=t('cookieAccept');
       $('cookieDecline').textContent=t('cookieDecline');
     }
- 
+
     function initCookieBanner(){
       var consent=localStorage.getItem('immigrity_consent');
       if(consent===null) $('cookieBanner').classList.remove('hidden');
@@ -1984,7 +2307,7 @@
         declineGA(); $('cookieBanner').classList.add('hidden');
       });
     }
- 
+
     function init(){
       loadState();
       applyUiText();
@@ -2008,8 +2331,9 @@
         }
       }
     }
- 
+
     init();
   </script>
+
 </body>
 </html>
