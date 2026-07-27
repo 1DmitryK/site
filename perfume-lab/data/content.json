@@ -1,0 +1,27 @@
+{
+  "molecules": [
+    {"name":"Iso E Super","family":"Woody amber","role":"Volume · diffusion","status":"To source","note":"Study as a controlled dilution before formula use."},
+    {"name":"Ambroxan","family":"Ambergris-type","role":"Persistence · trail","status":"To source","note":"Powerful and substantive; evaluate at multiple dilutions."},
+    {"name":"Hedione","family":"Jasmine-type","role":"Radiance · space","status":"To source","note":"Useful for opening floral hearts and improving diffusion."},
+    {"name":"Galaxolide","family":"Polycyclic musk","role":"Clean background","status":"To source","note":"Review safety and environmental profile before selection."},
+    {"name":"Cashmeran","family":"Woody musky","role":"Texture · warmth","status":"To source","note":"Distinctive material; test at low concentration first."}
+  ],
+  "experiments": [
+    {"code":"EXP–001","title":"Juniper / incense contrast","status":"Planning","question":"Can a dry juniper opening remain airy over a resinous base?","next":"Prepare blotter-scale mods A–C."},
+    {"code":"EXP–002","title":"Softening vetiver","status":"Planning","question":"Compare sandalwood and copaiba as rounding materials for a dry vetiver base.","next":"Evaluate at 24 h, 72 h and 1 week."},
+    {"code":"EXP–003","title":"Young floral transparency","status":"Concept","question":"Build a youthful floral heart without excessive sweetness or heaviness.","next":"Start from neroli, jasmine and pale woods."}
+  ],
+  "journal": [
+    {"date":"27 Jul 2026","title":"Digital laboratory opened","text":"Created the first public-safe catalogue structure. Exact author formulas remain outside the public repository."},
+    {"date":"Formulation note","title":"Personal exclusions recorded","text":"Lavender and cassia are excluded from the principal masculine signature direction."},
+    {"date":"Next session","title":"Controlled evaluation protocol","text":"Prepare blotters, record opening / 30 min / 4 h / 24 h observations, and promote only tested changes into a new version."}
+  ],
+  "knowledge": [
+    {"title":"From note pyramid to evaporation curve","topic":"Formulation","summary":"Treat top, heart and base as a communication model; actual evaporation and perception overlap continuously."},
+    {"title":"Why dilution matters","topic":"Technique","summary":"Materials can smell radically different neat and in dilution. Controlled dilutions improve accuracy, repeatability and safety."},
+    {"title":"Building a signature accord","topic":"Accords","summary":"A signature is a repeatable relationship between materials, not simply one strong ingredient used everywhere."},
+    {"title":"Maturation vs maceration","topic":"Process","summary":"Keep terminology precise and record what changes over time rather than assuming longer ageing always means better perfume."},
+    {"title":"Blotter evaluation protocol","topic":"Evaluation","summary":"Use consistent timing, coded samples and side-by-side controls to reduce memory bias."},
+    {"title":"Essential-oil safety baseline","topic":"Safety","summary":"Identity, chemotype, supplier documentation, oxidation state and current dermal limits matter before skin use."}
+  ]
+}
