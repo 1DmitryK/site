@@ -1,0 +1,6 @@
+[
+  {"id":"dk-base","name":"D / K Base","status":"private","family":"Woody resin","description":"A recurring signature framework: dry wood, soft balsam and mineral incense.","materials":["Vetiver","Sandalwood","Cedarwood","Frankincense","Copaiba"],"version":"Study 01"},
+  {"id":"forest-air","name":"Forest Air","status":"concept","family":"Green woods","description":"Cool coniferous air with a dry aromatic edge and transparent resin.","materials":["Juniper Berry","Cypress","Grapefruit","Frankincense"],"version":"Concept 01"},
+  {"id":"sensual-light","name":"Sensual Light","status":"concept","family":"Radiant floral","description":"Soft petals, luminous citrus and creamy wood without heavy sweetness.","materials":["Neroli","Jasmine","Sandalwood","Bergamot"],"version":"Concept 01"},
+  {"id":"clean-shirt","name":"Clean Shirt","status":"concept","family":"Aromatic clean","description":"A crisp, composed freshness designed to feel clean rather than detergent-like.","materials":["Bergamot","Geranium","Clary Sage","Cedarwood"],"version":"Concept 01"}
+]
