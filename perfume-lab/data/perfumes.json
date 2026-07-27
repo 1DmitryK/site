@@ -1,0 +1,58 @@
+[
+  {
+    "id":"northern-wind",
+    "name":"Northern Wind",
+    "collection":"Men",
+    "version":"Lab v0.2",
+    "status":"testing",
+    "character":"Fresh · dry · woody",
+    "story":"A cool, dry opening moving into aromatic green woods and a calm resinous trail.",
+    "top":["Bergamot","Grapefruit","Juniper Berry"],
+    "heart":["Clary Sage","Geranium","Cypress","Frankincense"],
+    "base":["Vetiver","Sandalwood","Cedarwood","Copaiba"],
+    "concentration":"Eau de Parfum study",
+    "privacy":"Exact proportions withheld in this public repository."
+  },
+  {
+    "id":"signature-no-1",
+    "name":"Signature No. 1",
+    "collection":"Men",
+    "version":"Lab v0.1",
+    "status":"testing",
+    "character":"Citrus · aromatic · resinous",
+    "story":"A recognisable masculine study without lavender or cassia, built around juniper, sage and vetiver.",
+    "top":["Bergamot","Grapefruit"],
+    "heart":["Juniper Berry","Clary Sage","Geranium","Rosemary"],
+    "base":["Sandalwood","Vetiver","Myrrh","Frankincense"],
+    "concentration":"Eau de Parfum study",
+    "privacy":"Exact proportions withheld in this public repository."
+  },
+  {
+    "id":"luminous-petal",
+    "name":"Luminous Petal",
+    "collection":"Women",
+    "version":"Concept v0.1",
+    "status":"concept",
+    "character":"Luminous · floral · soft woods",
+    "story":"A youthful floral concept with sparkling citrus, transparent petals and a smooth, quiet base.",
+    "top":["Tangerine","Neroli","Bergamot"],
+    "heart":["Rose","Jasmine","Geranium"],
+    "base":["Sandalwood","Vanilla","Copaiba"],
+    "concentration":"Concept study",
+    "privacy":"Demonstration note structure only; no production formula is published."
+  },
+  {
+    "id":"rain-glass",
+    "name":"Rain / Glass",
+    "collection":"Unisex",
+    "version":"Concept v0.1",
+    "status":"concept",
+    "character":"Mineral · green · weightless",
+    "story":"An abstract study of cool air after rain, using citrus lift, coniferous clarity and pale incense.",
+    "top":["Grapefruit","Lemon"],
+    "heart":["Juniper Berry","Cypress","Frankincense"],
+    "base":["Cedarwood","Vetiver"],
+    "concentration":"Accord-led concept",
+    "privacy":"Demonstration note structure only; no production formula is published."
+  }
+]
