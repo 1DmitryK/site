@@ -14,6 +14,8 @@ const state = {
   materials: [],
   accords: [],
   content: {},
+  ru: {},
+  language: localStorage.getItem("perfume-lab-language") || (navigator.language.toLowerCase().startsWith("ru") ? "ru" : "en"),
   perfumeFilter: "All",
   oilFilter: "All"
 };
@@ -30,13 +32,58 @@ const esc = (value = "") =>
   })[char]);
 
 async function loadData() {
-  const [perfumes, materials, accords, content] = await Promise.all([
+  const [perfumes, materials, accords, content, ru] = await Promise.all([
     fetch("./data/perfumes.json").then((r) => r.json()),
     fetch("./data/materials.json").then((r) => r.json()),
     fetch("./data/accords.json").then((r) => r.json()),
-    fetch("./data/content.json").then((r) => r.json())
+    fetch("./data/content.json").then((r) => r.json()),
+    fetch("./data/ru.json").then((r) => r.json())
   ]);
-  Object.assign(state, { perfumes, materials, accords, content });
+  Object.assign(state, { perfumes, materials, accords, content, ru });
+}
+
+function translate(value) {
+  if (state.language !== "ru") return value;
+  return state.ru[value] || value;
+}
+
+function translateDom(root = document.body) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      return ["SCRIPT", "STYLE"].includes(node.parentElement?.tagName)
+        ? NodeFilter.FILTER_REJECT
+        : NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  nodes.forEach((node) => {
+    if (node.__i18nOriginal === undefined) node.__i18nOriginal = node.nodeValue;
+    const original = node.__i18nOriginal;
+    const trimmed = original.trim();
+    node.nodeValue = trimmed
+      ? original.replace(trimmed, translate(trimmed))
+      : original;
+  });
+
+  root.querySelectorAll?.("[placeholder], [aria-label]").forEach((element) => {
+    ["placeholder", "aria-label"].forEach((attribute) => {
+      if (!element.hasAttribute(attribute)) return;
+      const key = `i18nOriginal${attribute.replace(/(^|-)([a-z])/g, (_, __, letter) => letter.toUpperCase())}`;
+      if (!element.dataset[key]) element.dataset[key] = element.getAttribute(attribute);
+      element.setAttribute(attribute, translate(element.dataset[key]));
+    });
+  });
+}
+
+function applyLanguage() {
+  document.documentElement.lang = state.language;
+  document.title = state.language === "ru" ? "D / K — Парфюмерная лаборатория" : "D / K — Olfactory Laboratory";
+  document.querySelectorAll("[data-language]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.language === state.language);
+    button.setAttribute("aria-pressed", String(button.dataset.language === state.language));
+  });
+  translateDom(document.body);
 }
 
 function renderNav() {
@@ -45,6 +92,7 @@ function renderNav() {
       <span class="nav-icon">${icon}</span><span>${label}</span>
     </a>
   `).join("");
+  translateDom(nav);
 }
 
 function head(eyebrow, title, lead, date = "") {
@@ -268,6 +316,7 @@ function route() {
     knowledge: knowledgeView
   };
   app.innerHTML = (views[name] || notFound)();
+  translateDom(app);
   window.scrollTo({ top: 0, behavior: "instant" });
   document.querySelector(".sidebar").classList.remove("open");
   document.querySelector("#menu-button").setAttribute("aria-expanded", "false");
@@ -293,6 +342,7 @@ function renderSearch(query = "") {
       <span><strong>${esc(item.title)}</strong><span>${esc(item.detail)}</span></span>
       <em>${esc(item.type)}</em>
     </a>`).join("") : `<div class="empty-state"><strong>No matches</strong><span>Try a material, accord or formula name.</span></div>`;
+  translateDom(searchResults);
 }
 
 function openSearch() {
@@ -304,8 +354,17 @@ function openSearch() {
 document.addEventListener("click", (event) => {
   const perfumeFilter = event.target.closest("[data-perfume-filter]");
   const oilFilter = event.target.closest("[data-oil-filter]");
+  const languageButton = event.target.closest("[data-language]");
   if (perfumeFilter) { state.perfumeFilter = perfumeFilter.dataset.perfumeFilter; route(); }
   if (oilFilter) { state.oilFilter = oilFilter.dataset.oilFilter; route(); }
+  if (languageButton) {
+    state.language = languageButton.dataset.language;
+    localStorage.setItem("perfume-lab-language", state.language);
+    renderNav();
+    route();
+    renderSearch(searchInput.value);
+    applyLanguage();
+  }
   if (event.target.closest(".search-result")) dialog.close();
 });
 
@@ -325,6 +384,10 @@ window.addEventListener("keydown", (event) => {
 });
 
 renderNav();
-loadData().then(route).catch(() => {
+loadData().then(() => {
+  renderNav();
+  route();
+  applyLanguage();
+}).catch(() => {
   app.innerHTML = `<section class="page"><div class="empty-state"><strong>Laboratory data could not be loaded</strong><span>Serve this folder over HTTP and reload.</span></div></section>`;
 });
