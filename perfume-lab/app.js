@@ -323,12 +323,22 @@ function route() {
 }
 
 function searchableRecords() {
+  const searchableText = (record) => {
+    const values = [];
+    const collect = (value) => {
+      if (typeof value === "string") values.push(value, translate(value));
+      else if (Array.isArray(value)) value.forEach(collect);
+      else if (value && typeof value === "object") Object.values(value).forEach(collect);
+    };
+    collect(record);
+    return values.join(" ");
+  };
   return [
-    ...state.perfumes.map((item) => ({ title: item.name, type: "Perfume", detail: `${item.collection} · ${item.character}`, href: `#perfume/${item.id}`, text: JSON.stringify(item) })),
-    ...state.accords.map((item) => ({ title: item.name, type: "Accord", detail: item.family, href: "#accords", text: JSON.stringify(item) })),
-    ...state.materials.map((item) => ({ title: item.name, type: "Essential oil", detail: `${item.family} · ${item.profile}`, href: "#oils", text: JSON.stringify(item) })),
-    ...state.content.molecules.map((item) => ({ title: item.name, type: "Molecule", detail: item.role, href: "#molecules", text: JSON.stringify(item) })),
-    ...state.content.knowledge.map((item) => ({ title: item.title, type: "Knowledge", detail: item.topic, href: "#knowledge", text: JSON.stringify(item) }))
+    ...state.perfumes.map((item) => ({ title: item.name, type: "Perfume", detail: `${item.collection} · ${item.character}`, href: `#perfume/${item.id}`, text: searchableText(item) })),
+    ...state.accords.map((item) => ({ title: item.name, type: "Accord", detail: item.family, href: "#accords", text: searchableText(item) })),
+    ...state.materials.map((item) => ({ title: item.name, type: "Essential oil", detail: `${item.family} · ${item.profile}`, href: "#oils", text: searchableText(item) })),
+    ...state.content.molecules.map((item) => ({ title: item.name, type: "Molecule", detail: item.role, href: "#molecules", text: searchableText(item) })),
+    ...state.content.knowledge.map((item) => ({ title: item.title, type: "Knowledge", detail: item.topic, href: "#knowledge", text: searchableText(item) }))
   ];
 }
 
