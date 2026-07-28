@@ -10,7 +10,8 @@ const required = [
   "data/materials.json",
   "data/perfumes.json",
   "data/accords.json",
-  "data/content.json"
+  "data/content.json",
+  "data/ru.json"
 ];
 
 for (const file of required) {
