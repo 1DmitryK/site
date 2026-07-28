@@ -30,6 +30,9 @@ assert(content.journal.length >= 3, "Journal is incomplete");
 assert(content.knowledge.length >= 6, "Knowledge base is incomplete");
 assert(html.includes('data-language="ru"'), "Russian language switch is missing");
 assert(app.includes("perfume-lab-language"), "Language preference persistence is missing");
+assert(app.includes('href="#oil/'), "Ingredient detail links are missing");
+assert(app.includes("function oilView"), "Material detail route is missing");
+assert(app.includes("Used in"), "Reverse usage links are missing");
 assert(Object.keys(ru).length >= 140, "Russian translation catalogue is incomplete");
 
 console.log("All privacy, data integrity and app structure checks passed");
