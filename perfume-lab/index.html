@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A private-minded digital laboratory for perfumes, accords, materials, experiments and olfactory knowledge."
+    />
+    <meta name="theme-color" content="#101310" />
+    <title>D / K — Olfactory Laboratory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <div class="shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <a class="brand" href="#home" aria-label="D K Olfactory Laboratory home">
+          <span class="brand-mark">D<span>/</span>K</span>
+          <span class="brand-copy">Olfactory<br />Laboratory</span>
+        </a>
+
+        <nav id="primary-nav" class="nav"></nav>
+
+        <div class="privacy-card">
+          <div class="privacy-icon">⌁</div>
+          <div>
+            <strong>Public-safe mode</strong>
+            <span>Exact formulas remain private</span>
+          </div>
+        </div>
+      </aside>
+
+      <header class="mobile-header">
+        <a class="brand compact" href="#home">
+          <span class="brand-mark">D<span>/</span>K</span>
+          <span class="brand-copy">Olfactory Lab</span>
+        </a>
+        <button id="menu-button" class="icon-button" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      </header>
+
+      <main id="content" class="main" tabindex="-1">
+        <div class="topbar">
+          <button id="search-button" class="search-trigger" type="button">
+            <span>⌕</span>
+            <span>Search formulas, materials, notes…</span>
+            <kbd>⌘ K</kbd>
+          </button>
+          <div class="topbar-actions">
+            <div class="language-switch" role="group" aria-label="Language">
+              <button type="button" data-language="en">EN</button>
+              <button type="button" data-language="ru">RU</button>
+            </div>
+            <div class="topbar-meta">
+              <span class="pulse"></span>
+              Laboratory active
+            </div>
+          </div>
+        </div>
+        <div id="app" aria-live="polite"></div>
+      </main>
+    </div>
+
+    <dialog id="search-dialog" class="search-dialog">
+      <form method="dialog" class="search-panel">
+        <div class="search-input-wrap">
+          <span>⌕</span>
+          <input id="global-search" type="search" placeholder="Search the laboratory…" autocomplete="off" />
+          <button class="close-search" value="close" aria-label="Close search">Esc</button>
+        </div>
+        <div id="search-results" class="search-results"></div>
+      </form>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
