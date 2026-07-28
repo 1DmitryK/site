@@ -112,6 +112,13 @@ function status(value) {
   return `<span class="status ${esc(value)}">${esc(value)}</span>`;
 }
 
+function ingredientLink(name) {
+  const material = state.materials.find((item) => item.name === name);
+  return material
+    ? `<a class="tag ingredient-link" href="#oil/${esc(material.id)}">${esc(name)}<span aria-hidden="true">↗</span></a>`
+    : `<span class="tag">${esc(name)}</span>`;
+}
+
 function perfumeCard(perfume, index) {
   return `
     <a class="record-card" href="#perfume/${esc(perfume.id)}">
@@ -170,7 +177,7 @@ function perfumeView(id) {
   const noteRow = (label, values) => `
     <div class="note-row">
       <span class="note-label">${label}</span>
-      <div class="ingredient-list">${values.map((value) => `<span class="tag">${esc(value)}</span>`).join("")}</div>
+      <div class="ingredient-list">${values.map(ingredientLink).join("")}</div>
     </div>`;
   return `
     <section class="page">
@@ -205,7 +212,7 @@ function accordsView() {
           <div class="record-top"><span class="record-index">${String(index + 1).padStart(2, "0")}</span>${status(item.status)}</div>
           <h3>${esc(item.name)}</h3>
           <p>${esc(item.description)}</p>
-          <div class="ingredient-list">${item.materials.map((name) => `<span class="tag">${esc(name)}</span>`).join("")}</div>
+          <div class="ingredient-list">${item.materials.map(ingredientLink).join("")}</div>
           <div class="record-footer"><span class="record-notes">${esc(item.family)}<br>${esc(item.version)}</span></div>
         </article>`).join("")}
       </div>
@@ -221,13 +228,58 @@ function oilsView() {
       ${head("Recorded inventory", "Essential Oils", `${state.materials.length} materials transcribed from the known inventory. Two previously mentioned items still need identification before they are added.`)}
       <div class="toolbar">${filters.map((item) => `<button class="filter-button ${state.oilFilter === item ? "active" : ""}" data-oil-filter="${item}">${item}</button>`).join("")}</div>
       <div class="material-grid">${list.map((item, index) => `
-        <article class="material-card family-${item.family}">
+        <a class="material-card family-${item.family}" href="#oil/${esc(item.id)}">
           <span class="material-code">EO–${String(index + 1).padStart(3, "0")}</span>
           <h3>${esc(item.name)}</h3>
           <p><em>${esc(item.botanical)}</em></p>
           <div class="material-meta"><span>${esc(item.family)}</span><span>${esc(item.note)}</span></div>
           <p>${esc(item.profile)}</p>
-        </article>`).join("")}
+          <span class="material-open">Open material →</span>
+        </a>`).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function oilView(id) {
+  const item = state.materials.find((material) => material.id === id);
+  if (!item) return notFound();
+  const perfumeUses = state.perfumes.filter((perfume) =>
+    [...perfume.top, ...perfume.heart, ...perfume.base].includes(item.name)
+  );
+  const accordUses = state.accords.filter((accord) => accord.materials.includes(item.name));
+  const uses = [
+    ...perfumeUses.map((record) => ({ name: record.name, type: "Perfume", href: `#perfume/${record.id}`, detail: record.character })),
+    ...accordUses.map((record) => ({ name: record.name, type: "Accord", href: "#accords", detail: record.family }))
+  ];
+  return `
+    <section class="page">
+      <a class="back-link" href="#oils">← Essential Oils</a>
+      ${head(`EO material / ${item.family}`, item.name, item.profile)}
+      <div class="formula-view">
+        <article class="formula-panel material-detail">
+          <div class="material-identity">
+            <span class="material-code">BOTANICAL IDENTITY</span>
+            <h2><em>${esc(item.botanical)}</em></h2>
+          </div>
+          <div class="note-row">
+            <span class="note-label">Recorded sensory profile</span>
+            <p>${esc(item.profile)}</p>
+          </div>
+          <div class="note-row">
+            <span class="note-label">Perfumery role</span>
+            <p>${esc(item.note)} · ${esc(item.family)}</p>
+          </div>
+          <div class="privacy-notice">⌁ Material identity, supplier documentation, oxidation state and current safety limits should be verified before skin use.</div>
+        </article>
+        <aside class="info-panel">
+          <h2>Used in</h2>
+          ${uses.length ? `<div class="usage-list">${uses.map((use) => `
+            <a class="usage-link" href="${use.href}">
+              <span><strong>${esc(use.name)}</strong><small>${esc(use.detail)}</small></span>
+              <span><em>${esc(use.type)}</em> ↗</span>
+            </a>`).join("")}</div>` : `<div class="empty-compact">No linked studies yet.</div>`}
+        </aside>
       </div>
     </section>
   `;
@@ -303,13 +355,15 @@ function notFound() {
 function route() {
   const raw = location.hash.replace(/^#/, "") || "home";
   const [name, id] = raw.split("/");
-  document.querySelectorAll(".nav-link").forEach((link) => link.classList.toggle("active", link.dataset.route === (name === "perfume" ? "perfumes" : name)));
+  const activeRoute = name === "perfume" ? "perfumes" : name === "oil" ? "oils" : name;
+  document.querySelectorAll(".nav-link").forEach((link) => link.classList.toggle("active", link.dataset.route === activeRoute));
   const views = {
     home: homeView,
     perfumes: perfumesView,
     perfume: () => perfumeView(id),
     accords: accordsView,
     oils: oilsView,
+    oil: () => oilView(id),
     molecules: moleculesView,
     experiments: experimentsView,
     journal: journalView,
@@ -336,7 +390,7 @@ function searchableRecords() {
   return [
     ...state.perfumes.map((item) => ({ title: item.name, type: "Perfume", detail: `${item.collection} · ${item.character}`, href: `#perfume/${item.id}`, text: searchableText(item) })),
     ...state.accords.map((item) => ({ title: item.name, type: "Accord", detail: item.family, href: "#accords", text: searchableText(item) })),
-    ...state.materials.map((item) => ({ title: item.name, type: "Essential oil", detail: `${item.family} · ${item.profile}`, href: "#oils", text: searchableText(item) })),
+    ...state.materials.map((item) => ({ title: item.name, type: "Essential oil", detail: `${item.family} · ${item.profile}`, href: `#oil/${item.id}`, text: searchableText(item) })),
     ...state.content.molecules.map((item) => ({ title: item.name, type: "Molecule", detail: item.role, href: "#molecules", text: searchableText(item) })),
     ...state.content.knowledge.map((item) => ({ title: item.title, type: "Knowledge", detail: item.topic, href: "#knowledge", text: searchableText(item) }))
   ];
